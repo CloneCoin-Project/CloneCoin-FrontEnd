@@ -1,44 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## CloneCoin-FrontEnd
 
-## Available Scripts
+## 🧑🏻‍💻👩🏻‍💻 팀원
 
-In the project directory, you can run:
+### Front-End
+김태은, 이진수
 
-### `yarn start`
+### Back-End
+권영진, 김승욱, 이시헌, 최종은
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br/>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 기술 스택
+- React
+- 상태 관리 및 비동기 처리 : Redux, Redux-saga
+- UI: Antd UI, styled-components
+- Linter / Formatter: ESLint, Prettier
+- Language : JavaScript
+- 비즈니스 로직 처리: React Custom hooks
+- 통신 API : REST, WebSocket
+- CI / CD : AWS Code PipeLine, S3, CloudFront
+- SSL : AWS Certificate Manager
+- Hosting : AWS Route 53
 
-### `yarn test`
+### 사용 Tool (VScode Extension)
+- ESLint : JavaScript 코드에서 발견 된 문제을 식별하는 정적 코드 분석 도구
+- Prettier: 코드 포멧터 (작성한 코드를 정해진 코딩 스타일로 변환해주는 도구)
+- EditorConfig: 코드 포멧터
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `yarn build`
+## 정책
+### Branch 관리
+개발자가 각 기능별 Branch를 생성 후, master Pull Request
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Branch 명
+- master : 제품으로 출시될 수 있는 브랜치
+- develop : 다음 출시 버전을 개발하는 브랜치
+- feature : 기능을 개발하는 브랜치
+- release : 이번 출시 버전을 준비하는 브랜치
+- hotfix : 출시 버전에서 발생한 버그를 수정 하는 브랜치
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Commit Message 규칙 (Angular Commit Convention)
+- feat : 새로운 기능 추가
+- fix : 버그 수정
+- docs : 문서 관련
+- style : 스타일 변경 (포매팅 수정, 들여쓰기 추가, …)
+- build : 빌드 관련 파일 수정
+- chore : 그 외 수정
