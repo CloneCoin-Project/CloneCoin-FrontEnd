@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -15,6 +16,10 @@
       "@pages/*": [
         "./src/pages/*",
         "./src/pages"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*",
+        "./src/hooks"
       ],
       "@styles/*": [
         "./src/styles/*",
