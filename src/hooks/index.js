@@ -1,1 +1,1 @@
-export { default as useScrollToTop } from '@hooks/useScrollToTop';
+export { default as useScrollToTop } from '@/hooks/useScrollToTop';

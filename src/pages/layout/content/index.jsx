@@ -1,7 +1,17 @@
-import * as S from '@pages/layout/content/style';
+import { useRef } from 'react';
 
-const LayoutPageContent = () => {
-  return <S.LayoutPagContent>Content</S.LayoutPagContent>;
+import * as S from '@pages/layout/content/style';
+import { useScrollToTop as ScrollToTop } from '@hooks';
+
+const LayoutPageContent = ({ children }) => {
+  const contentBodyEl = useRef(null);
+  return (
+    <S.LayoutPagContent>
+      <ScrollToTop targetElement={contentBodyEl.current}>
+        {children}
+      </ScrollToTop>
+    </S.LayoutPagContent>
+  );
 };
 
 export default LayoutPageContent;
