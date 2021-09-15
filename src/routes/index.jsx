@@ -1,15 +1,32 @@
 import { lazy } from 'react';
-import { useRoutes, Route, Navigate } from 'react-router-dom';
+import { useRoutes, Navigate } from 'react-router-dom';
 
 import LayoutPage from '@pages/layout';
+import WrappedRouteComponent from '@/routes/config';
 
 const HomePage = lazy(() => import('@pages/home'));
+const NotFoundPage = lazy(() => import('@pages/404'));
 
 const homeRoute = [
   {
-    path: "home",
-    element: <WrappedRouteComponent element={<HomePage />} auth />,
+    path: 'home',
+    element: <HomePage />,
   },
 ];
 
-const RenderRouter = () => useRoutes([{path: "/", element: }])
+const RenderRouter = () =>
+  useRoutes([
+    {
+      path: '/',
+      element: <LayoutPage />,
+      children: [
+        ...homeRoute,
+        {
+          path: '*',
+          element: <NotFoundPage />,
+        },
+      ],
+    },
+  ]);
+
+export default RenderRouter;

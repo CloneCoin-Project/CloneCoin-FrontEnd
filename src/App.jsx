@@ -1,10 +1,11 @@
-import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import RenderRouter from '@routes';
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">Clone Coin</header>
-    </div>
+    <BrowserRouter>
+      <RenderRouter />
+    </BrowserRouter>
   );
 };
 
