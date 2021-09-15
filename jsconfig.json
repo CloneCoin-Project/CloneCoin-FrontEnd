@@ -1,22 +1,37 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ],
-      "@apis": [
-        "./src/apis", "./src/apis/*"
+      "@apis/*": [
+        "./src/apis/*",
+        "./src/apis"
       ],
       "@assets/*": [
         "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*",
+        "./src/pages"
+      ],
+      "@hooks": [
+        "./src/hooks"
       ],
       "@styles/*": [
         "./src/styles/*",
         "./src/styles"
       ],
       "@store": [
-        "./src/store", "./src/store/*"
+        "./src/store"
+      ],
+      "@routes": [
+        "./src/routes"
       ]
     }
   }
