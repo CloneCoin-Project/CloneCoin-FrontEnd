@@ -2,7 +2,6 @@ import { lazy } from 'react';
 import { useRoutes, Navigate } from 'react-router-dom';
 
 import LayoutPage from '@pages/layout';
-import WrappedRouteComponent from '@/routes/config';
 
 const HomePage = lazy(() => import('@pages/home'));
 const NotFoundPage = lazy(() => import('@pages/404'));

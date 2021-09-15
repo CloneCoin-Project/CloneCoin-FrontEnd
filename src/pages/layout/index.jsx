@@ -2,6 +2,7 @@ import { Suspense, useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router';
 
 import LayoutPageHeader from '@pages/layout/header';
+import LayoutPageContent from '@pages/layout/content';
 import FallbackLoading from '@components/common/FallbackLoading';
 
 import * as S from '@pages/layout/style';
@@ -17,9 +18,11 @@ const LayoutPage = () => {
   return (
     <S.LayoutPageContainer>
       <LayoutPageHeader />
+      <LayoutPageContent>
         <Suspense fallback={<FallbackLoading />}>
           <Outlet />
         </Suspense>
+      </LayoutPageContent>
     </S.LayoutPageContainer>
   );
 };

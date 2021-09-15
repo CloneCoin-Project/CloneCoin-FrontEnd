@@ -10,8 +10,8 @@ export const LayoutPageHeader = styled(Header)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1;
   box-shadow: 0 2px 8px #f0f1f2;
+  background-color: #ffffff;
 `;
 
 export const LogoContainer = styled(Link)`
