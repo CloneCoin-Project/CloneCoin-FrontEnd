@@ -1,24 +1,17 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useTickerAllData } from '@hooks';
+import { SocketClient, bithumbServices } from '@apis/socket';
 
-const sendType = {
-  type: 'ticker',
-  symbols: [],
-  tickTypes: ['MID'],
-};
-
-const JsonToString = (json) => JSON.stringify(json);
-const ToJson = (string) => JSON.parse(string);
-
-const socketUrl = 'wss://pubwss.bithumb.com/pub/ws';
+import { JsonToString, ToJson } from '@utils/parse';
 
 const useTickerSocket = () => {
-  const { tickerList, tickerAllData } = useTickerAllData();
+  const { getTickerAll, tickerList, tickerAllData } = useTickerAllData();
   const [currentTickers, setCurrentTickers] = useState({});
-  const [connectionCount, setConnectionCount] = useState(1);
+  const [currentSocket, setCurrentSocket] = useState(null);
 
-  const ws = useMemo(() => new WebSocket(socketUrl), [connectionCount]);
-  const readySocketState = useMemo(() => ws.readyState, [ws, ws.readyState]);
+  useEffect(() => {
+    getTickerAll();
+  }, []);
 
   useEffect(() => {
     if (Object.keys(tickerAllData).length < 1) return;
@@ -26,46 +19,48 @@ const useTickerSocket = () => {
   }, [tickerAllData]);
 
   useEffect(() => {
-    if (readySocketState === 1 && tickerList.length > 0) {
-      ws.binaryType = 'arraybuffer';
+    if (tickerList.length < 1 || currentSocket) return;
+    setCurrentSocket(
+      SocketClient.publicInstance(SocketClient.path.bithumbPublicSocket),
+    );
+  }, [tickerList]);
+
+  useEffect(() => {
+    if (!currentSocket) return;
+
+    currentSocket.onopen = () => {
+      const sendType = bithumbServices.sendTickerType;
       sendType.symbols = tickerList;
-      ws.send(JsonToString(sendType));
-    }
-  }, [ws, readySocketState, tickerList]);
+      currentSocket.send(JsonToString(sendType));
+    };
 
-  ws.onmessage = (event) => {
-    const { data } = event;
-    if (data) {
-      const _target = ToJson(data)['content'];
-      if (_target) {
-        const { symbol, chgRate, closePrice } = _target;
-        setCurrentTickers({
-          ...currentTickers,
-          [symbol]: {
-            prevCloseingPrice: currentTickers[symbol]['prevCloseingPrice'],
-            currentPrice: closePrice,
-            fluctuationRate: chgRate,
-          },
-        });
+    currentSocket.onmessage = (event) => {
+      const { data } = event;
+      if (data) {
+        const _target = ToJson(data)['content'];
+
+        if (_target) {
+          const { symbol, chgRate, closePrice } = _target;
+          setCurrentTickers({
+            ...currentTickers,
+            [symbol]: {
+              prevCloseingPrice: currentTickers[symbol]['prevCloseingPrice'],
+              currentPrice: closePrice,
+              fluctuationRate: chgRate,
+              accTradeValue: currentTickers[symbol]['accTradeValue'],
+            },
+          });
+        }
       }
-    }
-  };
-  ws.onclose = (event) => {
-    console.log(event);
-  };
+    };
 
-  const connectionStart = () => {
-    setConnectionCount(connectionCount+1);
-  };
-
-  const connectionClose = () => {
-    ws.close();
-  };
+    currentSocket.onclose = (event) => {
+      console.log('Socket Closed', event);
+    };
+  }, [currentSocket]);
 
   return {
     currentTickers,
-    connectionClose,
-    connectionStart,
   };
 };
 

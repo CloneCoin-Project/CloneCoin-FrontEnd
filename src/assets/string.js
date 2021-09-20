@@ -4,3 +4,4 @@ export const MY_PORT_FOLIO = '나의 포트폴리오';
 export const LOGOUT = '로그아웃';
 export const LOGIN = '로그인';
 export const ICON_BITCOIN = "bitcoin";
+export const DRAWER_TITLE = '현재 코인의 시세는?'

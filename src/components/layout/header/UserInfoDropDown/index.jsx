@@ -8,9 +8,10 @@ import { MY_INFO } from '@assets/string';
 const UserInfoDropDown = () => {
   const [isLogin, setIsLogin] = useState(false);
 
-  const handleTempClick = () => {
-    setIsLogin(!isLogin);
-  }
+  const handleTempClick = () =>
+    setTimeout(() => {
+      setIsLogin(!isLogin);
+    }, 500);
 
   return (
     <S.Dropdown

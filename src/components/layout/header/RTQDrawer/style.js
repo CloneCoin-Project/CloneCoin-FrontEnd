@@ -1,6 +1,17 @@
 import styled from 'styled-components';
-import { Drawer, Table } from 'antd';
+import { Drawer as AntdDrawer, Table } from 'antd';
 
 export const IconContainer = styled.div``;
 
-export { Drawer, Table };
+export const Drawer = styled(AntdDrawer)`
+  & .ant-drawer-body {
+    padding: 0px;
+  }
+
+  & .ant-drawer-title {
+    color: #E48701;
+    font-size: 18px;
+  }
+`;
+
+export { Table };
