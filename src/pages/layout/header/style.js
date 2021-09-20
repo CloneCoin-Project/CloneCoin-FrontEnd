@@ -15,6 +15,10 @@ export const LayoutPageHeader = styled(Header)`
   align-items: center;
   box-shadow: 0 2px 8px #f0f1f2;
   background-color: #ffffff;
+
+  @media screen and (max-width: 480px) {
+    padding: 0 20px;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
@@ -39,7 +43,7 @@ export const LogoTitle = styled.span.attrs({
 })`
   font-size: 19px;
   font-weight: 700;
-  color: #ffb74d;
+  color: #e48701;
   white-space: nowrap;
   &::before {
     content: attr(title);
