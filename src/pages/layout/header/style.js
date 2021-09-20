@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Layout } from 'antd';
 
+import LogoPng from '@assets/images/logo.png';
+import { PROJECT_TITLE } from '@assets/string';
+
 const { Header } = Layout;
 
 export const LayoutPageHeader = styled(Header)`
@@ -19,8 +22,34 @@ export const LogoContainer = styled(Link)`
   justify-content: center;
   align-items: center;
   z-index: 2;
-  img {
-    max-width: 100%;
-    max-height: 100%;
+  gap: 10px;
+`;
+
+export const LogoImage = styled.img.attrs({
+  src: LogoPng,
+  alt: PROJECT_TITLE,
+})`
+  height: 32px;
+  max-width: 100%;
+  max-height: 100%;
+`;
+
+export const LogoTitle = styled.span.attrs({
+  title: PROJECT_TITLE,
+})`
+  font-size: 19px;
+  font-weight: 700;
+  color: #ffb74d;
+  white-space: nowrap;
+  &::before {
+    content: attr(title);
   }
+`;
+
+export const InfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  gap: 10px;
 `;
