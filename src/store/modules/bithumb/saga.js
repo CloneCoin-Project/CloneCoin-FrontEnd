@@ -1,7 +1,7 @@
 import { createAsyncAction } from 'typesafe-actions';
 
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { bithumbServices } from '@apis/rest/services';
+import { bithumbServices } from '@apis/rest';
 import { getTickerAllData, getTickerList } from '@utils/bithumb';
 
 const PREFIX = 'bithumb';
