@@ -9,10 +9,10 @@ import App from '@/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <GlobalStyle />
-    <App />
-    {/* </Provider> */}
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
