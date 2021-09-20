@@ -19,6 +19,7 @@ export const getTickerAll = createAsyncAction(
 function* getTickerAllSaga() {
   try {
     const { data } = yield call(bithumbServices.fetchTickerAll);
+
     const _tickerList = getTickerList(data);
     const _tickerAllData = getTickerAllData(data);
 
