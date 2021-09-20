@@ -1,4 +1,4 @@
-import Client from '@apis/rest';
+import Client from '@apis/rest/client';
 
 const bithumbServices = {
   async fetchTickerAll() {
