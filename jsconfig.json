@@ -27,11 +27,16 @@
         "./src/styles/*",
         "./src/styles"
       ],
-      "@store": [
+      "@store/*": [
+        "./src/store/*",
         "./src/store"
       ],
       "@routes": [
         "./src/routes"
+      ],
+      "@utils/*": [
+        "./src/utils/*",
+        "./src/utils"
       ]
     }
   }
