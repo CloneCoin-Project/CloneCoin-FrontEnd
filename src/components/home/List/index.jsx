@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from '@components/home/List/style';
+import { OVERALL_YILED, BEST_YILED, WORST_YILED } from '@assets/string';
 
 const LeaderInfo = ({ text, number }) => (
   <S.Space>
@@ -8,11 +9,30 @@ const LeaderInfo = ({ text, number }) => (
   </S.Space>
 );
 
+const YieldList = () => {
+  return (
+    <S.YieldContainer>
+      <S.YieldContentContainer>
+        <S.YieldTitle type="ALL">{OVERALL_YILED}</S.YieldTitle>
+        <S.YieldNumber number={10}>+10.0%</S.YieldNumber>
+      </S.YieldContentContainer>
+      <S.YieldContentContainer>
+        <S.YieldTitle type="BEST">{BEST_YILED}</S.YieldTitle>
+        <S.YieldNumber number={10}>+32.0%</S.YieldNumber>
+      </S.YieldContentContainer>
+      <S.YieldContentContainer>
+        <S.YieldTitle type="WORST">{WORST_YILED}</S.YieldTitle>
+        <S.YieldNumber number={-7}>-7.2%</S.YieldNumber>
+      </S.YieldContentContainer>
+    </S.YieldContainer>
+  );
+};
+
 const List = () => {
   const listData = [];
-  for (let i = 0; i < 23; i++) {
+  for (let i = 0; i < 10; i++) {
     listData.push({
-      title: `Nick Name ${i}`,
+      nickName: `Nick Name ${i}`,
       avatar:
         'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       description:
@@ -24,7 +44,7 @@ const List = () => {
     <S.List
       dataSource={listData}
       renderItem={(item) => (
-        <S.List.Item key={item.title}>
+        <S.List.Item key={item.nickName}>
           <S.OuterCard
             hoverable
             bordered={false}
@@ -39,34 +59,35 @@ const List = () => {
                 number={156}
                 key="list-vertical-like-o"
               />,
-              <LeaderInfo
-                text="Clone Coin"
-                // number={156}
-                key="list-vertical-like-o"
-              />,
-              <LeaderInfo
-                text="Go to Portfolio"
-                // number={156}
-                key="list-vertical-like-o"
-              />,
+              <LeaderInfo text="Clone Coin" key="list-vertical-like-o" />,
+              <LeaderInfo text="Go to Portfolio" key="list-vertical-like-o" />,
             ]}
           >
-            <S.CardGrid>
-              <S.InnerCard>
-                <S.Meta
-                  avatar={<S.Avatar src={item.avatar} />}
-                  title={item.title}
-                  description={item.description}
-                />
-              </S.InnerCard>
-            </S.CardGrid>
-            <S.CardGrid>
-              <img
-                width={272}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-            </S.CardGrid>
+            <S.Row>
+              <S.Col xs={24} sm={12}>
+                <S.CardGrid>
+                  <S.InnerCard>
+                    <S.Meta
+                      avatar={<S.Avatar src={item.avatar} />}
+                      title={
+                        <S.NickNameContainer>
+                          {item.nickName}
+                          <S.Badge dot>
+                            <S.NotificationOutlined style={{ fontSize: 16 }} />
+                          </S.Badge>
+                        </S.NickNameContainer>
+                      }
+                      description={item.description}
+                    />
+                  </S.InnerCard>
+                </S.CardGrid>
+              </S.Col>
+              <S.Col xs={24} sm={12}>
+                <S.CardGrid>
+                  <YieldList />
+                </S.CardGrid>
+              </S.Col>
+            </S.Row>
           </S.OuterCard>
         </S.List.Item>
       )}

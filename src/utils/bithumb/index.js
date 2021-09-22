@@ -54,7 +54,7 @@ export const parseToDataSource = (currentTickers) => {
 
 export const tickerColumns = [
   {
-    title: '종목',
+    title: '종목 (KRW)',
     dataIndex: 'name',
     key: 'name',
     align: 'center',
@@ -77,7 +77,7 @@ export const tickerColumns = [
     },
   },
   {
-    title: '변동률',
+    title: '변동률 (%)',
     dataIndex: 'fluctuationRate',
     key: 'fluctuationRate',
     align: 'center',
