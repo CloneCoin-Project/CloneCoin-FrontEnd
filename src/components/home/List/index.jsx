@@ -12,8 +12,7 @@ const List = () => {
   const listData = [];
   for (let i = 0; i < 23; i++) {
     listData.push({
-      href: 'https://ant.design',
-      title: `ant design part ${i}`,
+      title: `Nick Name ${i}`,
       avatar:
         'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       description:
@@ -23,26 +22,12 @@ const List = () => {
 
   return (
     <S.List
-      itemLayout="vertical"
       dataSource={listData}
       renderItem={(item) => (
-        <S.List.Item
-          key={item.title}
-          extra={
-            <img
-              width={272}
-              alt="logo"
-              src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-            />
-          }
-        >
-          {/* <S.List.Item.Meta
-            avatar={<S.Avatar src={item.avatar} />}
-            title={<a href={item.href}>{item.title}</a>}
-            description={item.description}
-          /> */}
-          <S.Card
+        <S.List.Item key={item.title}>
+          <S.OuterCard
             hoverable
+            bordered={false}
             actions={[
               <LeaderInfo
                 text="Follower :"
@@ -54,14 +39,35 @@ const List = () => {
                 number={156}
                 key="list-vertical-like-o"
               />,
+              <LeaderInfo
+                text="Clone Coin"
+                // number={156}
+                key="list-vertical-like-o"
+              />,
+              <LeaderInfo
+                text="Go to Portfolio"
+                // number={156}
+                key="list-vertical-like-o"
+              />,
             ]}
           >
-            <S.Meta
-              avatar={<S.Avatar src={item.avatar} />}
-              title={<a href={item.href}>{item.title}</a>}
-              description={item.description}
-            />
-          </S.Card>
+            <S.CardGrid>
+              <S.InnerCard>
+                <S.Meta
+                  avatar={<S.Avatar src={item.avatar} />}
+                  title={item.title}
+                  description={item.description}
+                />
+              </S.InnerCard>
+            </S.CardGrid>
+            <S.CardGrid>
+              <img
+                width={272}
+                alt="logo"
+                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+              />
+            </S.CardGrid>
+          </S.OuterCard>
         </S.List.Item>
       )}
     />
