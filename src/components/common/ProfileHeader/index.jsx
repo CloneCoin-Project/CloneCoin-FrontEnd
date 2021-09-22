@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchOneUser } from '@apis/rest/user';
 import { ProfileHeaderSkeleton } from '@components/skeleton';
-import * as S from '@components/layout/content/ProfileHeader/style';
+import * as S from '@/components/common/ProfileHeader/style';
 import { COUNT_COPIED, COUNT_FOLLOWED, COUNT_FOLLOWING, COPY_BUTTON } from '@assets/string';
 
 const ProfileCard = ( props ) => {
@@ -37,10 +37,8 @@ const ProfileHeader = ({ userId }) => {
 	useEffect( async () => {
 		setIsLoading(true);
 		let user = await fetchOneUser(userId);
-		console.log('ProfileHeader data', user.data.results[0]);   // Delete
-		let data = user.data.results[0];   // Delete
 		setIsLoading(false);
-		setProfile(data);
+		setProfile(user.data);
 	}, []);
 
 	return (
