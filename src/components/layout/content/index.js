@@ -1,0 +1,1 @@
+export { default as ProfileHeader } from '@components/layout/content/ProfileHeader';
