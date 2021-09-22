@@ -1,4 +1,4 @@
-import List from '@components/home/List';
+import { List } from '@components/home';
 
 const HomePage = () => {
   return <List />;
