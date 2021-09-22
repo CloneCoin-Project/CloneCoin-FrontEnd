@@ -1,4 +1,4 @@
-import ProfileHeader from '@components/layout/content/ProfileHeader/';
+import ProfileHeader from '@/components/common/ProfileHeader';
 
 const LeaderPortFolioPage = () => {
 	return <ProfileHeader userId={0}/>;

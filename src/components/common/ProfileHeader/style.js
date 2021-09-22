@@ -43,14 +43,12 @@ export const UpperSection = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	padding: 5px 0;
-	background: lightgreen;
 `;
 
 // Under Section (Description)
 export const UnderSection = styled.div`
 	color: #666666;
 	padding: 5px 10px;
-	background: yellow;
 `;
 
 // ProfileCard
