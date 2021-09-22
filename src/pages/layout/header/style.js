@@ -15,7 +15,7 @@ export const LayoutPageHeader = styled(Header)`
   align-items: center;
   box-shadow: 0 2px 8px #f0f1f2;
   background-color: #ffffff;
-
+  z-index: 2;
   @media screen and (max-width: 480px) {
     padding: 0 20px;
   }
