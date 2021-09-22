@@ -26,4 +26,10 @@ export const RATE_30DAYS = "30일";
 export const RATE_ALL = "전체";
 
 export const INVEST_STATUS = "투자 현황";
-export const INVEST_STYLE = "투자 스타일";
+export const INVEST_TYPE = "투자 스타일";
+export const TYPE_A = "평균 보유일";
+export const TYPE_B = "월 평균 매매 횟수";
+export const TYPE_C = "주 평균 매매 횟수";
+
+export const DAY = "일";
+export const COUNT = "회";
