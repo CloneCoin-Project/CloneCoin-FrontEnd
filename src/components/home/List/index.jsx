@@ -1,10 +1,10 @@
 import React from 'react';
 import * as S from '@components/home/List/style';
 
-const IconText = ({ icon, text }) => (
+const LeaderInfo = ({ text, number }) => (
   <S.Space>
-    {React.createElement(icon)}
     {text}
+    {number}
   </S.Space>
 );
 
@@ -18,8 +18,6 @@ const List = () => {
         'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       description:
         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-      content:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
     });
   }
 
@@ -30,23 +28,6 @@ const List = () => {
       renderItem={(item) => (
         <S.List.Item
           key={item.title}
-          actions={[
-            <IconText
-              icon={S.StarOutlined}
-              text="156"
-              key="list-vertical-star-o"
-            />,
-            <IconText
-              icon={S.LikeOutlined}
-              text="156"
-              key="list-vertical-like-o"
-            />,
-            <IconText
-              icon={S.MessageOutlined}
-              text="2"
-              key="list-vertical-message"
-            />,
-          ]}
           extra={
             <img
               width={272}
@@ -55,12 +36,32 @@ const List = () => {
             />
           }
         >
-          <S.List.Item.Meta
+          {/* <S.List.Item.Meta
             avatar={<S.Avatar src={item.avatar} />}
             title={<a href={item.href}>{item.title}</a>}
             description={item.description}
-          />
-          {item.content}
+          /> */}
+          <S.Card
+            hoverable
+            actions={[
+              <LeaderInfo
+                text="Follower :"
+                number={156}
+                key="list-vertical-star-o"
+              />,
+              <LeaderInfo
+                text="Copier :"
+                number={156}
+                key="list-vertical-like-o"
+              />,
+            ]}
+          >
+            <S.Meta
+              avatar={<S.Avatar src={item.avatar} />}
+              title={<a href={item.href}>{item.title}</a>}
+              description={item.description}
+            />
+          </S.Card>
         </S.List.Item>
       )}
     />
