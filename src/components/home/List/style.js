@@ -1,4 +1,5 @@
-import { List, Avatar, Space } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { List, Avatar, Space, Card } from 'antd';
+import { LikeOutlined, StarOutlined } from '@ant-design/icons';
 
-export { List, Avatar, Space, MessageOutlined, LikeOutlined, StarOutlined };
+const { Meta } = Card;
+export { List, Avatar, Space, LikeOutlined, StarOutlined, Card, Meta };
