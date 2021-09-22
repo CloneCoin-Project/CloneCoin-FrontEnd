@@ -1,6 +1,6 @@
 import EarningRate from '@/components/leaderportfolio/Invest/EarningRate';
 import InvestStatus from '@/components/leaderportfolio/Invest/InvestStatus';
-import InvestStyle from '@/components/leaderportfolio/Invest/InvestStyle';
+import InvestType from '@/components/leaderportfolio/Invest/InvestType';
 import * as S from '@/components/leaderportfolio/Invest/style';
 
 const Invest = () => {
@@ -8,7 +8,7 @@ const Invest = () => {
 		<S.Container>
 			<EarningRate />
 			<InvestStatus />
-			<InvestStyle />
+			<InvestType />
 		</S.Container>
 	);
 }
