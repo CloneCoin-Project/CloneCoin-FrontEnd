@@ -5,15 +5,17 @@ import {
   Space,
   Badge as AntdBadge,
   Card as AntdCard,
+  Button as AntdButton,
+  Divider,
   Row,
   Col,
-  Button,
 } from 'antd';
 
 import {
   LikeOutlined,
-  StarOutlined,
   NotificationOutlined,
+  CopyrightOutlined,
+  ArrowRightOutlined,
 } from '@ant-design/icons';
 
 const { Meta, Grid } = AntdCard;
@@ -24,6 +26,10 @@ export const OuterCard = styled(AntdCard)`
   }
   & .ant-card-actions {
     border: none;
+    color: inherit;
+  }
+  & .ant-card-actions > li > span:hover {
+    color: inherit;
   }
 `;
 
@@ -59,6 +65,10 @@ export const YieldContainer = styled.div`
   flex-direction: column;
   margin: 0 1rem;
   font-size: 16px;
+
+  @media screen and (max-width: 575px) {
+    margin: 1rem 1rem 0;
+  }
 `;
 
 export const YieldContentContainer = styled.div`
@@ -73,11 +83,31 @@ export const YieldTitle = styled.div`
       ? '#E48701'
       : props.type === 'BEST'
       ? '#F75467'
-      : '#4386F9'};
+      : props.type === 'WORST'
+      ? '#4386F9'
+      : 'inherit'};
 `;
 
 export const YieldNumber = styled.div`
-  color: ${(props) => (props.number > 0 ? '#F75467' : '#4386F9')};
+  color: ${(props) =>
+    props.number ? (props.number > 0 ? '#F75467' : '#4386F9') : 'inherit'};
+`;
+
+export const LeaderInfoTitle = styled.div`
+  font-size: 13px;
+`;
+
+export const LeaderInfoNumber = styled.span`
+  font-size: 16px;
+`;
+
+export const Button = styled(AntdButton)`
+  color: rgba(0, 0, 0, 0.45);
+  &:hover,
+  &:focus {
+    background: inherit;
+    color: #1890ff;
+  }
 `;
 
 export {
@@ -85,10 +115,11 @@ export {
   Avatar,
   Space,
   LikeOutlined,
-  StarOutlined,
   NotificationOutlined,
+  CopyrightOutlined,
+  ArrowRightOutlined,
+  Divider,
   Meta,
   Row,
   Col,
-  Button,
 };
