@@ -14,6 +14,7 @@
 - React
 - 상태 관리 및 비동기 처리 : Redux, Redux-saga
 - UI: Antd UI, styled-components
+- Webpack Configuration : CRACO
 - Linter / Formatter: ESLint, Prettier
 - Language : JavaScript
 - 비즈니스 로직 처리: React Custom hooks
