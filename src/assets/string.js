@@ -5,8 +5,12 @@ export const MY_PORT_FOLIO = '나의 포트폴리오';
 export const LOGOUT = '로그아웃';
 export const LOGIN = '로그인';
 
-export const ICON_BITCOIN = "bitcoin";
+export const ICON_BITCOIN = 'bitcoin';
 export const DRAWER_TITLE = '현재 코인의 시세는?';
+
+export const OVERALL_YILED = '수익률 All';
+export const BEST_YILED = '수익률 Best';
+export const WORST_YILED = '수익률 Worst';
 
 export const COUNT_COPIED = 'copies';
 export const COUNT_FOLLOWED = 'followers';
