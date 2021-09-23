@@ -1,0 +1,1 @@
+export { default as ProfileHeaderSkeleton } from "@/components/skeleton/ProfileHeaderSkeleton";

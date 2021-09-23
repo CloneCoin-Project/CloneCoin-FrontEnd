@@ -10,6 +10,7 @@ const { Header } = Layout;
 export const LayoutPageHeader = styled(Header)`
   position: fixed;
   width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
