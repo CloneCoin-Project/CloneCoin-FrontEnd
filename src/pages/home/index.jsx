@@ -1,7 +1,13 @@
-import { List } from '@components/home';
+import List from '@components/home/List';
+import Filter from '@components/home/Filter';
 
 const HomePage = () => {
-  return <List />;
+  return (
+    <>
+      <Filter />
+      <List />
+    </>
+  );
 };
 
 export default HomePage;
