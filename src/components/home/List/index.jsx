@@ -2,31 +2,44 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
 import * as S from '@components/home/List/style';
-import { OVERALL_YILED, BEST_YILED, WORST_YILED } from '@assets/string';
+import {
+  OVERALL_YILED,
+  BEST_YILED,
+  WORST_YILED,
+  HEADER_DIVISION_YILED,
+  HEADER_CONTENT_YILED,
+} from '@assets/string';
 
-const LeaderInfo = ({ text, number, onClick }) => (
-  <S.Space>
-    <S.Button type="text" onClick={onClick}>
-      {text}
-      {number}
-    </S.Button>
-  </S.Space>
+const LeaderInfo = ({ icon, text, number, onClick }) => (
+  <S.Row align="center">
+    <S.Col span={24}>
+      <S.LeaderInfoTitle>{text}</S.LeaderInfoTitle>
+    </S.Col>
+    <S.Col span={24}>
+      <S.Button type="text" icon={icon} onClick={onClick} />
+      <S.LeaderInfoNumber>{number}</S.LeaderInfoNumber>
+    </S.Col>
+  </S.Row>
 );
 
 const YieldList = () => {
   return (
     <S.YieldContainer>
       <S.YieldContentContainer>
+        <S.YieldTitle type="HEADER">{HEADER_DIVISION_YILED}</S.YieldTitle>
+        <S.YieldNumber>{HEADER_CONTENT_YILED}</S.YieldNumber>
+      </S.YieldContentContainer>
+      <S.YieldContentContainer>
         <S.YieldTitle type="ALL">{OVERALL_YILED}</S.YieldTitle>
-        <S.YieldNumber number={10}>+10.0%</S.YieldNumber>
+        <S.YieldNumber number={10}>+10.0</S.YieldNumber>
       </S.YieldContentContainer>
       <S.YieldContentContainer>
         <S.YieldTitle type="BEST">{BEST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={10}>+32.0%</S.YieldNumber>
+        <S.YieldNumber number={10}>+32.0</S.YieldNumber>
       </S.YieldContentContainer>
       <S.YieldContentContainer>
         <S.YieldTitle type="WORST">{WORST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={-7}>-7.2%</S.YieldNumber>
+        <S.YieldNumber number={-7}>-7.2</S.YieldNumber>
       </S.YieldContentContainer>
     </S.YieldContainer>
   );
@@ -60,19 +73,21 @@ const List = () => {
             bordered={false}
             actions={[
               <LeaderInfo
-                text="Follower :"
+                text="Follower"
+                icon={<S.LikeOutlined style={{ fontSize: 18 }} />}
                 number={156}
-                key="list-vertical-star-o"
+                key="list-vertical-follow-o"
               />,
               <LeaderInfo
-                text="Copier :"
+                text="Copier"
+                icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
                 number={156}
-                key="list-vertical-like-o"
+                key="list-vertical-cory-o"
               />,
-              <LeaderInfo text="Clone Coin" key="list-vertical-like-o" />,
               <LeaderInfo
-                text="Go to Portfolio"
-                key="list-vertical-like-o"
+                text="More"
+                icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
+                key="list-vertical-more-o"
                 onClick={handlePortfolioClick}
               />,
             ]}
