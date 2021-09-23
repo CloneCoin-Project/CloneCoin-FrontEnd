@@ -1,5 +1,7 @@
+import { List } from '@components/home';
+
 const HomePage = () => {
-  return <div>Home</div>;
+  return <List />;
 };
 
 export default HomePage;

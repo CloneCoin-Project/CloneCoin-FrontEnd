@@ -17,8 +17,8 @@ const homeRoute = [
 
 const leaderPortfolioRoute = [
   {
-	path: 'leader',
-	element: <LeaderPortfolioPage />,
+    path: 'leader',
+    element: <LeaderPortfolioPage />,
   },
 ];
 
@@ -36,7 +36,7 @@ const RenderRouter = () =>
       element: <LayoutPage />,
       children: [
         ...homeRoute,
-		...leaderPortfolioRoute,
+        ...leaderPortfolioRoute,
         ...myPortfolioRoute,
         {
           path: '*',
