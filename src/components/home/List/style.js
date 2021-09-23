@@ -7,7 +7,9 @@ import {
   Card as AntdCard,
   Row,
   Col,
+  Button,
 } from 'antd';
+
 import {
   LikeOutlined,
   StarOutlined,
@@ -75,10 +77,7 @@ export const YieldTitle = styled.div`
 `;
 
 export const YieldNumber = styled.div`
-  color: ${(props) =>
-    props.number > 0
-      ? '#F75467'
-      : '#4386F9'};
+  color: ${(props) => (props.number > 0 ? '#F75467' : '#4386F9')};
 `;
 
 export {
@@ -91,4 +90,5 @@ export {
   Meta,
   Row,
   Col,
+  Button,
 };
