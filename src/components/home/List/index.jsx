@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router';
+
 import * as S from '@components/home/List/style';
 import { OVERALL_YILED, BEST_YILED, WORST_YILED } from '@assets/string';
 
-const LeaderInfo = ({ text, number }) => (
+const LeaderInfo = ({ text, number, onClick }) => (
   <S.Space>
-    {text}
-    {number}
+    <S.Button type="text" onClick={onClick}>
+      {text}
+      {number}
+    </S.Button>
   </S.Space>
 );
 
@@ -29,6 +33,8 @@ const YieldList = () => {
 };
 
 const List = () => {
+  const navigate = useNavigate();
+
   const listData = [];
   for (let i = 0; i < 10; i++) {
     listData.push({
@@ -39,6 +45,10 @@ const List = () => {
         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
     });
   }
+
+  const handlePortfolioClick = useCallback(() => {
+    navigate({ pathname: '/leader' });
+  }, [navigate]);
 
   return (
     <S.List
@@ -60,7 +70,11 @@ const List = () => {
                 key="list-vertical-like-o"
               />,
               <LeaderInfo text="Clone Coin" key="list-vertical-like-o" />,
-              <LeaderInfo text="Go to Portfolio" key="list-vertical-like-o" />,
+              <LeaderInfo
+                text="Go to Portfolio"
+                key="list-vertical-like-o"
+                onClick={handlePortfolioClick}
+              />,
             ]}
           >
             <S.Row>
