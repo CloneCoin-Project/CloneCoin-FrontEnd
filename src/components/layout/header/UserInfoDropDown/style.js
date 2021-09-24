@@ -2,6 +2,14 @@ import styled from 'styled-components';
 import { UserOutlined as AntdUserOutlined } from '@ant-design/icons';
 import { Button as AntdButton, Dropdown, Menu } from 'antd';
 
+const { Item } = Menu;
+
+export const MenuItem = styled(Item).attrs({
+  style: {
+    cursor: 'unset',
+  },
+})``;
+
 export const UserOutlined = styled(AntdUserOutlined)`
   font-size: 23px;
 `;

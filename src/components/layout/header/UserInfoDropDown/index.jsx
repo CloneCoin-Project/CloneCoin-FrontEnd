@@ -20,25 +20,21 @@ const UserInfoDropDown = () => {
         <S.Menu>
           {isLogin ? (
             <>
-              <S.Menu.Item
-                key="userInfo"
-                disabled
-                style={{ cursor: 'pointer' }}
-              >
+              <S.MenuItem key="userInfo" disabled>
                 <UserInfo />
-              </S.Menu.Item>
-              <S.Menu.Item key="myportfolio">
+              </S.MenuItem>
+              <S.MenuItem key="myportfolio">
                 <MyPortfolio />
-              </S.Menu.Item>
-              <S.Menu.Item key="logout" onClick={handleTempClick}>
-                <Logout />
-              </S.Menu.Item>
+              </S.MenuItem>
+              <S.MenuItem key="logout">
+                <Logout onClick={handleTempClick} />
+              </S.MenuItem>
             </>
           ) : (
             <>
-              <S.Menu.Item key="login" onClick={handleTempClick}>
-                <Login />
-              </S.Menu.Item>
+              <S.MenuItem key="login">
+                <Login onClick={handleTempClick} />
+              </S.MenuItem>
             </>
           )}
         </S.Menu>
