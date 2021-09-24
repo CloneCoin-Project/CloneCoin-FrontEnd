@@ -16,6 +16,8 @@ import {
   NotificationOutlined,
   CopyrightOutlined,
   ArrowRightOutlined,
+  LikeTwoTone,
+  CopyTwoTone,
 } from '@ant-design/icons';
 
 const { Meta, Grid } = AntdCard;
@@ -118,6 +120,8 @@ export {
   NotificationOutlined,
   CopyrightOutlined,
   ArrowRightOutlined,
+  LikeTwoTone,
+  CopyTwoTone,
   Divider,
   Meta,
   Row,
