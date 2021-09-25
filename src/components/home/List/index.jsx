@@ -101,9 +101,9 @@ const List = () => {
                       title={
                         <S.NickNameContainer>
                           {item.nickName}
-                          <S.Badge dot>
+                          {/* <S.Badge dot>
                             <S.NotificationOutlined style={{ fontSize: 16 }} />
-                          </S.Badge>
+                          </S.Badge> */}
                         </S.NickNameContainer>
                       }
                       description={item.description}
