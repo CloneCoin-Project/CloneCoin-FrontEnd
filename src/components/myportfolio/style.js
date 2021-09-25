@@ -21,12 +21,6 @@ import {
 
 const { Meta, Grid } = AntdCard;
 
-export const UserCardWrapper = styled(AntdCard)`
-  & .ant-card-body {
-    padding: 12px 24px;
-  }
-`;
-
 export const CardGrid = styled(Grid).attrs({
   hoverable: false,
 })`
@@ -65,17 +59,33 @@ export const Badge = styled(AntdBadge)``;
 export const BalanceHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   font-size: 16px;
   height: 28px;
 `;
 
-export const DescriptionContainer = styled.div`
+export const DescriptionContainer = styled.div``;
 
+export const DescriptionContent = styled.div``;
+
+export const PortfolioHeader = styled.h2``;
+
+export const YieldContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
 `;
 
-export const DescriptionContent = styled.div`
-`;
+export const YieldHeader = styled.div``;
 
+export const YieldContent = styled.div``;
+
+export const LineChartContainer = styled.div`
+  width: 100%;
+  height: 300px;
+  margin: 2rem 0;
+`;
 
 export { NotificationOutlined, UserOutlined, Avatar, Meta, Row, Col, Divider };

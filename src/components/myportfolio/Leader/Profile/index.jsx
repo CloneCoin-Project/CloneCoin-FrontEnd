@@ -30,7 +30,7 @@ const LeaderProfile = () => {
           </S.Row>
         </S.Col>
 
-        <S.Col xs={24} sm={9}>
+        <S.Col xs={24} sm={12}>
           <S.Row>
             <S.Col span={24}>
               <S.BalanceHeader>
@@ -53,6 +53,14 @@ const LeaderProfile = () => {
         <S.Divider orientation="left">한줄 소개</S.Divider>
         <S.DescriptionContent>
           안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+          안녕하세요 진수님입니다아ㅏㅏ
+
         </S.DescriptionContent>
       </S.DescriptionContainer>
     </>
