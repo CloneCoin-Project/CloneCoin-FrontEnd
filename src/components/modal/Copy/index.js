@@ -19,7 +19,7 @@ const Copy = (props) => {
 
 	const [inputValue, setInputValue] = useState(1);
 	const [isVisible, setIsVisible] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const onChange = value => {
 		setInputValue(value);
@@ -30,10 +30,10 @@ const Copy = (props) => {
 	};
   
 	const handleOk = () => {
-		setIsLoading(true);
+		setIsSubmitting(true);
 		setTimeout(() => {
 			setIsVisible(false);
-			setIsLoading(false);
+			setIsSubmitting(false);
 		}, 2000);
 	};
   
@@ -48,7 +48,7 @@ const Copy = (props) => {
 				title={ COPY_TITLE } visible={ isVisible } 
 				onOk={ handleOk } onCancel={ handleCancel }
 				footer={[
-					<CopyButton key="back" type="primary" shape="round" loading={isLoading} onClick={handleOk}>{ str }</CopyButton>
+					<CopyButton key="back" type="primary" shape="round" loading={isSubmitting} onClick={handleOk}>{ str }</CopyButton>
 				]}
 				>
 				<ProfileMini value={ value } />

@@ -3,26 +3,48 @@ import * as S from '@components/modal/Introduction/style';
 import { EditButton } from '@/components/common/ProfileHeader/style';
 import { EDIT_TITLE } from '@assets/string';
 
+const Editor = ({ onChange, value }) => {
+	return (
+		<S.Form>
+			<S.Input rows={ 4 } onChange={ onChange } value={ value } />
+		</S.Form>
+	)
+};
+
 const Introduction = (props) => {
 	const { str } = props;
 
 	const [isVisible, setIsVisible] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [inputValue, setInputValue] = useState("");
 
+	// setIsVisible, setIsLoading
 	const showModal = () => {
 		setIsVisible(true);
 	};
   
-	const handleOk = () => {
-		setIsLoading(true);
-		setTimeout(() => {
-			setIsVisible(false);
-			setIsLoading(false);
-		}, 2000);
-	};
-  
 	const handleCancel = () => {
 		setIsVisible(false);
+	};
+
+	// setInputValue
+	const handleChange = e => {
+		setInputValue(e.target.value);
+	}
+
+	// setIsSubmitting
+	const handleSubmit = () => {
+		if (inputValue.length <= 0) {
+			return;
+		}
+	
+		setIsSubmitting(true);
+	
+		setTimeout(() => {
+			setIsSubmitting(false);
+			setInputValue("");
+			setIsVisible(false);
+		}, 2000);
 	};
 
 	return(
@@ -30,11 +52,19 @@ const Introduction = (props) => {
 			<EditButton type="text" onClick={ showModal }>{ str }</EditButton>
 			<S.Modal
 				title={ EDIT_TITLE } visible={ isVisible } 
-				onOk={ handleOk } onCancel={ handleCancel }
+				onOk={ handleSubmit } onCancel={ handleCancel }
 				footer={[
-					<S.ConfirmButton key="back" loading={ isLoading } onClick={ handleOk }>{ str }</S.ConfirmButton>
+					<S.ConfirmButton key="back" shape="round" loading={ isSubmitting } onClick={ handleSubmit }>{ str }</S.ConfirmButton>
 				]}
 			>
+				<S.Comment
+					content={
+						<Editor
+							onChange={ handleChange }
+							value={ inputValue }
+						/>
+					}
+				/>
 			</S.Modal>
 		</>
 	)

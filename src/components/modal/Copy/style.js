@@ -33,7 +33,6 @@ export const Row = styled(AntdRow)`
 `;
 
 export const Col = styled(AntdCol)`
-
 	&.ant-col-4 {
 		max-width: none;
 	}
@@ -72,6 +71,7 @@ export const Modal = styled(AntdModal)`
 		border-top: none;
 
 		.ant-btn {
+			margin: 0 0 20px 0;
 			width: 50%;
 			height: 100%;
 			font-size: larger;
