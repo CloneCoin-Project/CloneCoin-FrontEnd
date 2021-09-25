@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { stringFormat, insertCommaToNumber } from '@/utils/stringFormat';
-import { COPY_TITLE, COPY_VOLUME, CURRENT_MONEY, AVERAGE_EARNING, EARNING_BEST, COPY_RESULT, MONTH, UNIT } from '@assets/string';
+import { COPY_TITLE, COPY_VOLUME, CURRENT_MONEY, COPY_RESULT } from '@assets/string';
+import ProfileMini from '@components/modal/Copy/ProfileMini';
+import Slider from '@components/modal/Copy/Slider';
 import { CopyButton } from '@/components/common/ProfileHeader/style';
 import * as S from '@components/modal/Copy/style';
 
@@ -10,51 +12,6 @@ const value = {
 	COPY_VOLUME: 40,
 	CURRENT_MONEY: 500000,
 	COPY_RESULT: 200000
-}
-
-const ProfileMini = () => {
-	return (
-		<S.ProfileCard>
-			<S.Avatar size={64} />
-			<S.RightSection>
-				<S.Info>
-					{ 'famous leader' }
-				</S.Info>
-				<S.Info>
-					{ AVERAGE_EARNING } <S.Percentage positive={ value.AVERAGE_EARNING > 0 }>{ value.AVERAGE_EARNING } { UNIT } ({ MONTH })</S.Percentage>
-				</S.Info>
-				<S.Info>
-					{ EARNING_BEST } <S.Percentage positive={ value.EARNING_BEST > 0 }>{ value.EARNING_BEST } { UNIT }</S.Percentage>
-				</S.Info>
-			</S.RightSection>
-		</S.ProfileCard>
-	)
-}
-
-const Slider = (props) => {
-	const { inputValue, onChange } = props;
-
-	return (
-		<S.Row>
-			<S.Col span={12}>
-			<S.Slider
-				min={1}
-				max={100}
-				onChange={onChange}
-				value={typeof inputValue === 'number' ? inputValue : 0}
-			/>
-			</S.Col>
-			<S.Col span={4}>
-			<S.InputNumber
-				min={1}
-				max={20}
-				style={{ margin: '0 16px' }}
-				value={inputValue}
-				onChange={onChange}
-			/>
-			</S.Col>
-      	</S.Row>
-	)
 }
 
 const Copy = (props) => {
@@ -94,7 +51,7 @@ const Copy = (props) => {
 					<CopyButton key="back" type="primary" shape="round" loading={isLoading} onClick={handleOk}>{ str }</CopyButton>
 				]}
 				>
-				<ProfileMini />
+				<ProfileMini value={ value } />
 				<S.Info>{ stringFormat(CURRENT_MONEY, insertCommaToNumber(value.CURRENT_MONEY)) }</S.Info>
 				<S.Info>{ COPY_VOLUME }</S.Info>
 				<Slider inputValue={ inputValue } onChange={ onChange }/>
