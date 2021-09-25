@@ -1,4 +1,5 @@
 import YiledLineChart from '@components/myportfolio/Leader/LineChart';
+import YiledPieChart from '@components/myportfolio/Leader/PieChart';
 import * as S from '@components/myportfolio/style';
 
 const YieldList = () => {
@@ -49,11 +50,12 @@ const YieldList = () => {
 const LeaderPortfolio = () => {
   return (
     <>
-      <S.Divider orientation="left">Portfolio</S.Divider>
+      <S.Divider orientation="left" style={{margin: "2rem 0"}}>Portfolio</S.Divider>
       <S.PortfolioHeader>수익률</S.PortfolioHeader>
       <YieldList />
       <YiledLineChart />
       <S.PortfolioHeader>투자현황</S.PortfolioHeader>
+      <YiledPieChart />
       <S.PortfolioHeader>투자 리스트</S.PortfolioHeader>
     </>
   );

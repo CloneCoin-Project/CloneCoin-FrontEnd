@@ -88,4 +88,10 @@ export const LineChartContainer = styled.div`
   margin: 2rem 0;
 `;
 
+export const PieChartContainer = styled.div`
+  width: 100%;
+  height: 300px;
+  margin: 0 0 2rem;
+`;
+
 export { NotificationOutlined, UserOutlined, Avatar, Meta, Row, Col, Divider };

@@ -50,7 +50,7 @@ const LeaderProfile = () => {
         </S.Col>
       </S.Row>
       <S.DescriptionContainer>
-        <S.Divider orientation="left">한줄 소개</S.Divider>
+        <S.Divider orientation="left" style={{margin: "2rem 0"}}>한줄 소개</S.Divider>
         <S.DescriptionContent>
           안녕하세요 진수님입니다아ㅏㅏ
           안녕하세요 진수님입니다아ㅏㅏ
