@@ -6,6 +6,7 @@ export const investColumns = [
     dataIndex: 'name',
     key: 'name',
     align: 'center',
+    fixed: 'left',
     render: (name) => name?.split('_')[0],
   },
   {
@@ -54,6 +55,7 @@ export const investColumns = [
 
 const tempDataSource = [
   {
+    key: 0,
     name: 'BTC',
     currentPrice: '10000000',
     fluctuationRate: 32.01,
@@ -61,6 +63,7 @@ const tempDataSource = [
     reserve: '1.231',
   },
   {
+    key: 4,
     name: 'BTC',
     currentPrice: '10000000',
     fluctuationRate: -32.01,
@@ -68,6 +71,7 @@ const tempDataSource = [
     reserve: '2.3231',
   },
   {
+    key: 1,
     name: 'XRP',
     currentPrice: '10000000',
     fluctuationRate: 2.01,
@@ -75,6 +79,7 @@ const tempDataSource = [
     reserve: '2.3231',
   },
   {
+    key: 2,
     name: 'ETH',
     currentPrice: '10000000',
     fluctuationRate: -32.01,
@@ -82,6 +87,7 @@ const tempDataSource = [
     reserve: '2.3231',
   },
   {
+    key: 3,
     name: 'ETC',
     currentPrice: '10000000',
     fluctuationRate: 3.01,
@@ -97,6 +103,7 @@ const InvestList = () => {
         columns={investColumns}
         dataSource={tempDataSource}
         pagination={false}
+        scroll={{ x: true }}
       />
     </S.TableContainer>
   );
