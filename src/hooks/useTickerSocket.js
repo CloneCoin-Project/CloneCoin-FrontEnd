@@ -25,13 +25,15 @@ const useTickerSocket = () => {
     );
   }, [tickerList]);
 
-  useEffect(() => {
-    if (!currentSocket) return;
-
+  if (currentSocket) {
     currentSocket.onopen = () => {
       const sendType = bithumbServices.sendTickerType;
       sendType.symbols = tickerList;
       currentSocket.send(JsonToString(sendType));
+    };
+
+    currentSocket.onclose = (event) => {
+      console.log('Socket Closed', event);
     };
 
     currentSocket.onmessage = (event) => {
@@ -46,18 +48,14 @@ const useTickerSocket = () => {
             [symbol]: {
               prevCloseingPrice: currentTickers[symbol]['prevCloseingPrice'],
               currentPrice: closePrice,
-              fluctuationRate: chgRate,
+              fluctuationRate: Number(chgRate).toFixed(2).toString(),
               accTradeValue: currentTickers[symbol]['accTradeValue'],
             },
           });
         }
       }
     };
-
-    currentSocket.onclose = (event) => {
-      console.log('Socket Closed', event);
-    };
-  }, [currentSocket]);
+  }
 
   return {
     currentTickers,

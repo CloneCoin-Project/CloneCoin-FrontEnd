@@ -6,11 +6,11 @@ import { useScrollToTop as ScrollToTop } from '@hooks';
 const LayoutPageContent = ({ children }) => {
   const contentBodyEl = useRef(null);
   return (
-    <S.LayoutPagContent>
+    <S.LayoutPageContent>
       <ScrollToTop targetElement={contentBodyEl.current}>
         {children}
       </ScrollToTop>
-    </S.LayoutPagContent>
+    </S.LayoutPageContent>
   );
 };
 
