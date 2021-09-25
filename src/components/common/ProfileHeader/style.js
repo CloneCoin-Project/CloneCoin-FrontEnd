@@ -66,8 +66,8 @@ export const EditButton = styled(AntdButton)`
 `;
 
 export const UnderSection = styled.div`
-	color: #666666;
 	padding: 5px 10px;
+	color: #666666;
 `;
 
 // ProfileCard

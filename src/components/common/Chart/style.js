@@ -1,14 +1,21 @@
 import styled from 'styled-components';
-import { PieChart, Pie, Cell } from 'recharts';
+import { 
+	ResponsiveContainer as RechartsResponsiveContainer, LineChart as RechartsLineChart, Line as Lines,   // Line
+	Tooltip, XAxis, YAxis, CartesianGrid, Legend,    // Line
+	PieChart, Pie, Cell   // Ring 
+} from 'recharts';
 
-export const Title = styled.h2`
+// Line
+export const LineChart = styled(RechartsLineChart)`
 `;
 
-export const Container = styled.div`
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	flex-wrap: wrap;
+export const ResponsiveContainer = styled(RechartsResponsiveContainer)`
+	&.recharts-responsive-container {
+		max-width: 600px;
+		max-height: 400px;
+		min-width: 90px;
+		min-height: 300px;
+	}
 `;
 
 // RingDetail
@@ -33,8 +40,20 @@ export const SmallCircle = styled.div`
 export const Name = styled.span`
 `;
 
+// Container
+export const Title = styled.h2`
+`;
+
+export const Container = styled.div`
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+`;
+
 // Basic
 export {
+	Tooltip, Lines, XAxis, YAxis, CartesianGrid, Legend,
 	PieChart, Pie, 
 	Cell
 };

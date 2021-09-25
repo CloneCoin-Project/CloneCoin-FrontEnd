@@ -48,7 +48,7 @@ const Copy = (props) => {
 				title={ COPY_TITLE } visible={ isVisible } 
 				onOk={ handleOk } onCancel={ handleCancel }
 				footer={[
-					<CopyButton key="back" type="primary" shape="round" loading={isSubmitting} onClick={handleOk}>{ str }</CopyButton>
+					<CopyButton key="back" type="primary" shape="round" loading={ isSubmitting } onClick={ handleOk }>{ str }</CopyButton>
 				]}
 				>
 				<ProfileMini value={ value } />
