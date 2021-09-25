@@ -7,6 +7,7 @@ import {
   Row,
   Col,
   Divider,
+  Table,
 } from 'antd';
 
 import {
@@ -94,4 +95,18 @@ export const PieChartContainer = styled.div`
   margin: 0 0 2rem;
 `;
 
-export { NotificationOutlined, UserOutlined, Avatar, Meta, Row, Col, Divider };
+export const TableContainer = styled.div`
+  width: 100%;
+  margin: 2rem 0;
+`;
+
+export {
+  NotificationOutlined,
+  UserOutlined,
+  Avatar,
+  Meta,
+  Row,
+  Col,
+  Divider,
+  Table,
+};

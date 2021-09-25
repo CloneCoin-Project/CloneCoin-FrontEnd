@@ -1,5 +1,7 @@
 import YiledLineChart from '@components/myportfolio/Leader/LineChart';
 import YiledPieChart from '@components/myportfolio/Leader/PieChart';
+import InvestList from '@components/myportfolio/Leader/InvestList';
+
 import * as S from '@components/myportfolio/style';
 
 const YieldList = () => {
@@ -57,6 +59,7 @@ const LeaderPortfolio = () => {
       <S.PortfolioHeader>투자현황</S.PortfolioHeader>
       <YiledPieChart />
       <S.PortfolioHeader>투자 리스트</S.PortfolioHeader>
+      <InvestList />
     </>
   );
 };
