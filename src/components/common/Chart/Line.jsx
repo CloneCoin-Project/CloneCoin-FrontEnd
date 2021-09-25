@@ -1,5 +1,5 @@
 import * as S from '@/components/common/Chart/style';
-import { LINE_COLOR } from '@assets/color';
+import { LINE_COLOR, BITHUMB_COLOR } from '@assets/color';
 import { LineChart, Line as Lines, Tooltip, XAxis, YAxis, CartesianGrid, Legend } from 'recharts';
 
 const data = [
@@ -47,7 +47,7 @@ const Line = () => {
 				<YAxis domain={[-100, 200]}/>
 				<Tooltip />
 				<Legend />
-				<Lines type="monotone" dataKey="percent" stroke={LINE_COLOR} activeDot={{ r: 8 }} />
+				<Lines type="monotone" dataKey="percent" stroke={BITHUMB_COLOR[0]} activeDot={{ r: 8 }} />
 			</LineChart>
 		</S.Container>
     );

@@ -64,7 +64,7 @@ const Ring = (props) => {
 	}, []);
 	
 	return (
-		<S.RingContainer>
+		<S.Container>
 			<S.PieChart width={200} height={200}>
 				<S.Pie
 					data={data}
@@ -80,7 +80,7 @@ const Ring = (props) => {
 				</S.Pie>
 			</S.PieChart>
 			<RingDetail data={data} color={color} style={{width:"400px"}}/>
-		</S.RingContainer>
+		</S.Container>
 	);
 }
 

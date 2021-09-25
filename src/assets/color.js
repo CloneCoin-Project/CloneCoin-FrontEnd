@@ -24,11 +24,11 @@ export const RING_COLOR = [
 	"#CCAC93",   // Taupe
 ]; 
 
-export const BITHUMB = [
+export const BITHUMB_COLOR = [
 	"#E48701",   // Orange (Logo)
 	"#F08833",   // White Orange (Logo)
 	"#C14224",   // Black Orange (Logo)
-	"#283248",    // Navy (Banner)
+	"#283248",   // Navy (Banner)
 	"#FFFFFF",   // White
 	"#F75467",   // Red Price
 	"#4386F9",   // Blue Price
