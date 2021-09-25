@@ -15,6 +15,8 @@ export const COUNT_FOLLOWING = 'followings';
 export const EDIT_BUTTON = "Edit";
 export const COPY_BUTTON = "Copy";
 
+export const EDIT_TITLE = "소개글 변경하기";
+
 export const COPY_TITLE = "리더 카피하기";
 export const COPY_VOLUME = "투자 금액 (%)";
 export const AVERAGE_EARNING = "평균 수익률";

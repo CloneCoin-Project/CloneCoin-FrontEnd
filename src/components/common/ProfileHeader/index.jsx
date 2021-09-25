@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fetchOneUser } from '@apis/rest/user';
 import { ProfileHeaderSkeleton } from '@components/skeleton';
 import { COUNT_COPIED, COUNT_FOLLOWED, COUNT_FOLLOWING, COPY_BUTTON, EDIT_BUTTON } from '@assets/string';
-import { CopyModal } from '@/components/modal';
+import { CopyModal, IntroductionModal } from '@/components/modal';
 import * as S from '@/components/common/ProfileHeader/style';
 
 const ProfileCard = ( props ) => {
@@ -25,7 +25,9 @@ const ProfileCard = ( props ) => {
 			</S.UpperSection>
 
 			<S.UnderSection>
-				<S.Introduction>{ introduction }<S.EditButton type="text">{ EDIT_BUTTON }</S.EditButton></S.Introduction>
+				<S.Introduction>{ introduction }
+					<IntroductionModal str={ EDIT_BUTTON }/>
+				</S.Introduction>
 			</S.UnderSection>
 		</S.ProfileCard>
 	)
