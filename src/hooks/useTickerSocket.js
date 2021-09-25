@@ -48,7 +48,7 @@ const useTickerSocket = () => {
             [symbol]: {
               prevCloseingPrice: currentTickers[symbol]['prevCloseingPrice'],
               currentPrice: closePrice,
-              fluctuationRate: chgRate,
+              fluctuationRate: Number(chgRate).toFixed(2).toString(),
               accTradeValue: currentTickers[symbol]['accTradeValue'],
             },
           });
