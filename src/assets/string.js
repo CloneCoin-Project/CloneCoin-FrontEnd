@@ -37,6 +37,7 @@ export const EARNING_RATE = "수익률";
 export const EARNING_BEST = "수익 Best";
 export const EARNING_WORST = "수익 Wort";
 export const RATE_24HOURS = "24시간";
+export const RATE_1DAY = "1일";
 export const RATE_7DAYS = "7일";
 export const RATE_30DAYS = "30일";
 export const RATE_ALL = "전체";

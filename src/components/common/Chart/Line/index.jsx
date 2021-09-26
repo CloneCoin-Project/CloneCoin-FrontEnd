@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { RATE_1DAY, RATE_7DAYS, RATE_30DAYS } from '@assets/string';
 import * as S from '@/components/common/Chart/style';
 import { BITHUMB_COLOR } from '@assets/color';
 
@@ -32,9 +34,20 @@ const data = [
 	},
 ];
 
+const ButtonSet = () => {
+	return (
+		<S.ButtonContainer>
+			<S.Button shape="round">{ RATE_1DAY }</S.Button>
+			<S.Button shape="round">{ RATE_7DAYS }</S.Button>
+			<S.Button shape="round">{ RATE_30DAYS }</S.Button>
+		</S.ButtonContainer>
+	);
+}
+
 const Line = () => {
     return (
 		<S.Container>
+			<ButtonSet/>
 			<S.ResponsiveContainer
 				width="90%" height="90%"
 			>

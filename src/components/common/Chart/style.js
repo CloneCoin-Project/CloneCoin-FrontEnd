@@ -4,6 +4,19 @@ import {
 	Tooltip, XAxis, YAxis, CartesianGrid, Legend,    // Line
 	PieChart, Pie, Cell   // Ring 
 } from 'recharts';
+import { Button as AntdButton } from 'antd';
+import { BITHUMB_COLOR } from '@assets/color';
+
+// ButtonSet
+export const Button = styled(AntdButton)`
+	margin: 5px;
+`;
+
+export const ButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	width: 90%;
+`;
 
 // Line
 export const LineChart = styled(RechartsLineChart)`
