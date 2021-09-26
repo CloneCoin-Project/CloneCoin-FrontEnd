@@ -46,13 +46,33 @@ export const UpperSection = styled.div`
 `;
 
 // Under Section (Description)
+export const Introduction = styled.span`
+`;
+
+export const EditButton = styled(AntdButton)`
+	display: inline-block;
+	color: #bcbcbc;
+
+	span {
+		border-bottom: 2px solid #bcbcbc;
+	}
+	span:hover {
+		border-bottom: 2px solid #1890FF !important;
+	}
+
+	&:hover {
+		color: #1890FF;
+	}
+`;
+
 export const UnderSection = styled.div`
+	padding: 5px 20px;
 	color: #666666;
-	padding: 5px 10px;
 `;
 
 // ProfileCard
 export const ProfileCard = styled.div`
+	padding: 24px;
 	width: 100%;
 `;
 

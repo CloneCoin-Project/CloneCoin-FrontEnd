@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchOneUser } from '@apis/rest/user';
 import { ProfileHeaderSkeleton } from '@components/skeleton';
+import { COUNT_COPIED, COUNT_FOLLOWED, COUNT_FOLLOWING, COPY_BUTTON, EDIT_BUTTON } from '@assets/string';
+import { CopyModal, IntroductionModal } from '@/components/modal';
 import * as S from '@/components/common/ProfileHeader/style';
-import { COUNT_COPIED, COUNT_FOLLOWED, COUNT_FOLLOWING, COPY_BUTTON } from '@assets/string';
 
 const ProfileCard = ( props ) => {
 	let { nickname, introduction, profile_image, count_copied, count_followed, count_following } = props;
@@ -20,11 +21,13 @@ const ProfileCard = ( props ) => {
 						{ count_copied } { COUNT_COPIED } { count_followed } { COUNT_FOLLOWED } { count_following } { COUNT_FOLLOWING }
 					</S.Count>
 				</S.InnerSection>
-				<S.CopyButton type="primary" shape="round">{ COPY_BUTTON }</S.CopyButton>
+				<CopyModal parent='ProfileCard' str={ COPY_BUTTON } />
 			</S.UpperSection>
 
 			<S.UnderSection>
-				{ introduction }
+				<S.Introduction>{ introduction }
+					<IntroductionModal str={ EDIT_BUTTON }/>
+				</S.Introduction>
 			</S.UnderSection>
 		</S.ProfileCard>
 	)
