@@ -6,7 +6,7 @@ export const Skeleton = styled(AntdSkeleton)`
 `;
 
 export const Card = styled(AntdCard)`
-  width: 30rem;
+  width: 39rem;
   margin-bottom: 24px;
   border: 1px solid #ffffff;
 `;

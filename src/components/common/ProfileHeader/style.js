@@ -66,12 +66,13 @@ export const EditButton = styled(AntdButton)`
 `;
 
 export const UnderSection = styled.div`
-	padding: 5px 10px;
+	padding: 5px 20px;
 	color: #666666;
 `;
 
 // ProfileCard
 export const ProfileCard = styled.div`
+	padding: 24px;
 	width: 100%;
 `;
 
