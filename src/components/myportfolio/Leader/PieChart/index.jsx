@@ -25,7 +25,7 @@ const YieldPieChart = () => {
         <PieChart width={300} height={300}>
           <Pie
             data={data}
-            cx="50%"
+            cx="40%"
             cy="50%"
             labelLine={false}
             label={({
@@ -66,7 +66,7 @@ const YieldPieChart = () => {
               );
             })}
           </Pie>
-          <Legend align="center" iconType="circle" iconSize={9} />
+          <Legend layout="vertical" verticalAlign="bottom" align="right" iconType="circle" iconSize={10} />
         </PieChart>
       </ResponsiveContainer>
     </S.PieChartContainer>

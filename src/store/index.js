@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -10,21 +10,22 @@ import rootReducer, { rootSaga } from '@store/modules';
 const sagaMiddleware = createSagaMiddleware();
 
 const initStore = (preloadedState) => {
-  const middleware = [
-    ...getDefaultMiddleware({
-      thunk: false,
-      serializableCheck: false,
-    }),
-    sagaMiddleware,
-  ];
-
-  if (process.env.NODE_ENV === 'development') {
-    middleware.push(logger);
-  }
 
   const store = configureStore({
     reducer: rootReducer,
-    middleware,
+    middleware: (getDefaultMiddleware) => {
+      let _middleware = [
+        ...getDefaultMiddleware({
+          thunk: false,
+          serializableCheck: false,
+        }),
+        sagaMiddleware,
+      ];
+      if (process.env.NODE_ENV === 'development') {
+        _middleware.push(logger);
+      }
+      return _middleware;
+    },
     devTools: process.env.NODE_ENV === 'development',
     preloadedState,
   });
