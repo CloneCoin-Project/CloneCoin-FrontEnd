@@ -5,4 +5,5 @@ export const UserCardWrapper = styled(AntdCard)`
   & .ant-card-body {
     padding: 12px 24px;
   }
+  cursor: inherit;
 `;
