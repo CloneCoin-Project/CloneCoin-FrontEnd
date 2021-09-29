@@ -5,7 +5,7 @@ const useModal = () => {
 
   const handleToggle = useCallback(() => {
     setIsModalVisible(!isModalVisible);
-  }, []);
+  }, [isModalVisible]);
 
   return {
     isModalVisible,
