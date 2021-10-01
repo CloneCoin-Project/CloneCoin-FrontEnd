@@ -33,7 +33,7 @@ const UserInfoDropDown = () => {
           ) : (
             <>
               <S.MenuItem key="login">
-                <Login onClick={handleTempClick} />
+                <Login />
               </S.MenuItem>
             </>
           )}
