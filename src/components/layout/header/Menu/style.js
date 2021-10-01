@@ -26,5 +26,6 @@ export const Modal = styled(AntdModal)`
 `;
 
 export const LoginFormContainer = styled.div``;
+export const RegisterFormContainer = styled.div``;
 
 export { MailTwoTone, LockTwoTone, Form, Input, Checkbox };

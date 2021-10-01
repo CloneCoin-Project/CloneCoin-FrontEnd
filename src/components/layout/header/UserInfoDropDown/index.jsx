@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { MyPortfolio, Logout, Login } from '@components/layout/header/Menu';
+import {
+  MyPortfolio,
+  Logout,
+  Login,
+  Register,
+} from '@components/layout/header/Menu';
 import UserInfo from '@components/layout/header/UserInfo';
 
 import * as S from '@components/layout/header/UserInfoDropDown/style';
@@ -34,6 +39,9 @@ const UserInfoDropDown = () => {
             <>
               <S.MenuItem key="login">
                 <Login />
+              </S.MenuItem>
+              <S.MenuItem key="register">
+                <Register />
               </S.MenuItem>
             </>
           )}
