@@ -62,6 +62,9 @@ export const Badge = styled(AntdBadge)`
   margin-right: 1rem;
 `;
 
+export const Ribbon = styled(AntdBadge.Ribbon)`
+`;
+
 export const YieldContainer = styled.div`
   display: flex;
   flex-direction: column;

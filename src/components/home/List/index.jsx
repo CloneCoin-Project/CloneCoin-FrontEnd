@@ -9,7 +9,8 @@ import {
   WORST_YILED,
   HEADER_DIVISION_YILED,
   HEADER_CONTENT_YILED,
-  LEADERS_TITLE
+  LEADERS_TITLE,
+  VIEW_MORE
 } from '@assets/string';
 
 const LeaderInfo = ({ icon, text, number, onClick }) => (
@@ -67,7 +68,7 @@ const List = () => {
 
   return (
 	<>
-		<Divider orientation="left">{ LEADERS_TITLE }</Divider>
+		<S.Ribbon text={ VIEW_MORE } color="#E8D5A3"><Divider orientation="left">{ LEADERS_TITLE }</Divider></S.Ribbon>
 		<S.List
 		dataSource={listData}
 		renderItem={(item) => (

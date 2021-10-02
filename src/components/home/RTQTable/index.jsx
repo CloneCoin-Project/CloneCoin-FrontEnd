@@ -3,14 +3,17 @@ import { parseToDataSource, tickerColumns } from '@utils/bithumb';
 
 import * as S from '@components/home/RTQTable/style';
 import { Divider } from '@components/home/Filter/style';
-import { TABLE_TITLE } from '@assets/string';
+import { 
+	TABLE_TITLE, 
+	SCROLL_DOWN 
+} from '@assets/string';
 
 const RTQTable = () => {
 	const { currentTickers } = useTickerSocket();
 
 	return (
 		<>
-			<Divider orientation="left">{ TABLE_TITLE }</Divider>
+			<S.Ribbon text={ SCROLL_DOWN } color="#E8D5A3"><Divider orientation="left">{ TABLE_TITLE }</Divider></S.Ribbon>
 			<S.TableContainer>
 				<S.Table
 					columns={tickerColumns}

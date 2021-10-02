@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Table as AntdTable } from 'antd';
+import { Table as AntdTable, Badge as AntdBadge, } from 'antd';
 
 export const Table = styled(AntdTable)`
     & thead tr th {
@@ -13,4 +13,7 @@ export const TableContainer = styled.div`
     position: relative;
     max-height: 500px;
     overflow: auto;
+`;
+
+export const Ribbon = styled(AntdBadge.Ribbon)`
 `;
