@@ -3,6 +3,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router';
 
 import LayoutPageHeader from '@pages/layout/header';
 import LayoutPageContent from '@pages/layout/content';
+import LayoutPageFooter from '@pages/layout/footer';
 import FallbackLoading from '@components/common/FallbackLoading';
 
 import * as S from '@pages/layout/style';
@@ -23,6 +24,7 @@ const LayoutPage = () => {
           <Outlet />
         </Suspense>
       </LayoutPageContent>
+	  <LayoutPageFooter />
     </S.LayoutPageContainer>
   );
 };
