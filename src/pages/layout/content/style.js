@@ -8,4 +8,8 @@ export const LayoutPageContent = styled(Content)`
   padding: 1.24875rem 1.21875rem;
   max-width: 39rem;
   width: 100%;
+
+  @media screen and (max-width: 480px) {
+    margin: 60px auto 0;
+  }
 `;

@@ -17,6 +17,12 @@ export const UserOutlined = styled(AntdUserOutlined)`
 export const Button = styled(AntdButton)`
   font-size: 16px;
   font-weight: 500;
+
+  @media screen and (max-width: 480px) {
+	span:last-child {
+		display: none;
+	}
+  }
 `;
 
 export { Dropdown, Menu };

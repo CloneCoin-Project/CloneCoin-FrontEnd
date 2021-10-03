@@ -16,6 +16,8 @@ export const TableContainer = styled.div`
 `;
 
 export const Ribbon = styled(AntdBadge.Ribbon)`
+  margin: 0 10px 0 0;
+`;
 
 export const DividerContainer = styled.div`
 `;

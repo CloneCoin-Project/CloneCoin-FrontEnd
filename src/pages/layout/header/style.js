@@ -31,6 +31,7 @@ export const LayoutPageHeader = styled(Header)`
   z-index: 2;
   @media screen and (max-width: 480px) {
     padding: 0 20px;
+	height: 60px;
   }
 `;
 
@@ -62,6 +63,14 @@ export const LogoTitle = styled.span.attrs({
 
   &::before {
     content: attr(title);
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 380px) {
+    font-size: 16px;
   }
 `;
 
