@@ -6,7 +6,7 @@ import {
   Input,
   Checkbox,
 } from 'antd';
-import { MailTwoTone, LockTwoTone } from '@ant-design/icons';
+import { MailTwoTone, LockTwoTone, UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 
 export const Button = styled(AntdButton)`
   font-size: 16px;
@@ -28,4 +28,4 @@ export const Modal = styled(AntdModal)`
 export const LoginFormContainer = styled.div``;
 export const RegisterFormContainer = styled.div``;
 
-export { MailTwoTone, LockTwoTone, Form, Input, Checkbox };
+export { MailTwoTone, LockTwoTone, UserOutlined, MailOutlined, LockOutlined, Form, Input, Checkbox };
