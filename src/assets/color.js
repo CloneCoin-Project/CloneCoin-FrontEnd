@@ -33,3 +33,22 @@ export const BITHUMB_COLOR = [
 	"#F75467",   // Red Price
 	"#4386F9",   // Blue Price
 ]
+
+export const GOLD_COLOR = [
+	/* Dark to Light */
+	"#AE8625",
+	"#BD9A3F",
+	"#D2AC47",
+	"#DFBD69",
+	"#E8D5A3",
+	"#EDC967",
+	"#F7EF8A",
+]
+
+export const BLACK_WHITE = [
+	/* Dark to Light */
+	"#000000",
+	"#AAAAAA",
+	"#F0F1F2",
+	"#FFFFFF",
+]
