@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
 	  <Intro />
-      <List />
+      <List count={2}/>
 	  <RTQTable />
     </>
   );

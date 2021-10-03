@@ -48,11 +48,13 @@ const YieldList = () => {
   );
 };
 
-const List = () => {
+const List = (props) => {
+  const { count } = props; 
+
   const navigate = useNavigate();
 
   const listData = [];
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < count; i++) {
     listData.push({
       nickName: `Nick Name ${i}`,
       avatar:
@@ -66,9 +68,19 @@ const List = () => {
     navigate({ pathname: '/leader' });
   }, [navigate]);
 
+  const handleLeaderListClick = useCallback(() => {
+    navigate({ pathname: '/leaderlist' });
+  }, [navigate]);
+
   return (
 	<>
-		<S.Ribbon text={ VIEW_MORE } color="#E8D5A3"><Divider orientation="left">{ LEADERS_TITLE }</Divider></S.Ribbon>
+		{ !(count > 2) &&
+			<S.DividerContainer onClick={handleLeaderListClick}>
+				<S.Ribbon text={ VIEW_MORE } color="#E8D5A3">
+					<Divider orientation="left">{ LEADERS_TITLE }</Divider>
+				</S.Ribbon>
+			</S.DividerContainer>
+		}
 		<S.List
 		dataSource={listData}
 		renderItem={(item) => (

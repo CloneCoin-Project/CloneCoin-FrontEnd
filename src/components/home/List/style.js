@@ -63,6 +63,11 @@ export const Badge = styled(AntdBadge)`
 `;
 
 export const Ribbon = styled(AntdBadge.Ribbon)`
+
+export const DividerContainer = styled.div`
+  &:hover {
+	cursor: pointer;
+  }
 `;
 
 export const YieldContainer = styled.div`
