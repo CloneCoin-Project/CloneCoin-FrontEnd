@@ -6,7 +6,7 @@ import { LOGIN } from '@assets/string';
 
 const Login = () => {
   const { isModalVisible, handleToggle } = useModal();
-  const { signIn } = useUserData();
+  const { signIn, loginStatusLoading } = useUserData();
   const onFinished = useCallback(({ userId, password }) => {
     signIn({ userId, password });
   }, []);
@@ -55,7 +55,7 @@ const Login = () => {
             <S.Form.Item
               children={
                 <S.LoginButton
-                  // loading={loginStatusLoading}
+                  loading={loginStatusLoading}
                   block
                   htmlType="submit"
                   type="primary"

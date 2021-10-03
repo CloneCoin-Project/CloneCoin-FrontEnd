@@ -1,8 +1,8 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { useAppSelector, useAppDispatch } from '@store';
 import { userAsyncAction } from '@store/modules/user/saga';
-import { LoginStatusSelector } from '@store/modules/user';
+import { LoginStatusSelector, userAction } from '@store/modules/user';
 
 const useUserData = () => {
   const dispatch = useAppDispatch();
@@ -21,7 +21,23 @@ const useUserData = () => {
     [dispatch],
   );
 
-  return { signIn, loginStatusLoading, loginStatusData, loginStatusError };
+  const logout = useCallback(() => {
+    dispatch(userAction.logout());
+  }, [dispatch]);
+
+  const isLogged = useMemo(
+    () => (loginStatusData?.userId ? true : false),
+    [loginStatusData],
+  );
+
+  return {
+    signIn,
+    logout,
+    loginStatusLoading,
+    loginStatusData,
+    loginStatusError,
+    isLogged,
+  };
 };
 
 export default useUserData;

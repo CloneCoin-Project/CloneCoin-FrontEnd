@@ -19,7 +19,11 @@ const initialState = {
 const userSlice = createSlice({
   name: USER,
   initialState,
-  reducers: {},
+  reducers: {
+    logout(state) {
+      state.loginStatus = initialState.loginStatus;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(`${userAsyncAction.signIn.request}`, (state) => {
