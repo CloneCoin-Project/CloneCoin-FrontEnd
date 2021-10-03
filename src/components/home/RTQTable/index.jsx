@@ -14,7 +14,7 @@ const RTQTable = () => {
 	return (
 		<>
 			<S.DividerContainer>
-				<S.Ribbon text={ SCROLL_DOWN } color="#E8D5A3">
+				<S.Ribbon text={ SCROLL_DOWN }>
 					<Divider orientation="left">{ TABLE_TITLE }</Divider>
 				</S.Ribbon>
 			</S.DividerContainer>

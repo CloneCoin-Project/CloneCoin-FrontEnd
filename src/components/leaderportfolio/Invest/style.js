@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BLACK_WHITE } from '@assets/color';
 
 export const Title = styled.h2`
 `;
@@ -12,7 +13,7 @@ export const Count = styled.h3`
 `;
 
 export const Name = styled.span`
-	color: #aaaaaa;
+	color: ${BLACK_WHITE[1]};
 `;
 
 export const Type = styled.div`

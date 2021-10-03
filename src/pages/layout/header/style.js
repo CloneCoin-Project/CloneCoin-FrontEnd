@@ -4,16 +4,17 @@ import { Layout } from 'antd';
 
 import BithumbGold from '@assets/images/bithumb_1.png';
 import { PROJECT_TITLE } from '@assets/string';
+import { GOLD_COLOR, BLACK_WHITE } from '@assets/color';
 
 const neon = keyframes`
 	0%,
 	100% {
-		text-shadow: 0 0 9px #EDC967, 0 0 9px #EDC967, 0 0 19px #EDC967, 0 0 3px #EDC967, 9px 1px 1px #FFFFFF;
-		color: #D2AC47;
+		text-shadow: 0 0 9px ${GOLD_COLOR[5]}, 0 0 9px ${GOLD_COLOR[5]}, 0 0 19px ${GOLD_COLOR[5]}, 0 0 3px ${GOLD_COLOR[5]}, 9px 1px 1px ${BLACK_WHITE[3]};
+		color: ${GOLD_COLOR[2]} ${GOLD_COLOR[2]};
 	}
 	50% {
-		text-shadow: 0 0 9px #E8D5A3, 0 0 9px #E8D5A3, 0 0 9px #E8D5A3, 0 0 3px #E8D5A3, 9px 1px 1px #FFFFFF;
-		color: #BD9A3F;
+		text-shadow: 0 0 9px ${GOLD_COLOR[4]}, 0 0 9px ${GOLD_COLOR[4]}, 0 0 9px ${GOLD_COLOR[4]}, 0 0 3px ${GOLD_COLOR[4]}, 9px 1px 1px ${BLACK_WHITE[3]};
+		color: ${GOLD_COLOR[1]} ${GOLD_COLOR[2]};
 	}
 `;
 
@@ -26,8 +27,8 @@ export const LayoutPageHeader = styled(Header)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 8px #f0f1f2;
-  background-color: #ffffff;
+  box-shadow: 0 2px 8px ${BLACK_WHITE[2]};
+  background-color: ${BLACK_WHITE[3]};
   z-index: 2;
   @media screen and (max-width: 480px) {
     padding: 0 20px;
@@ -58,7 +59,7 @@ export const LogoTitle = styled.span.attrs({
   font-size: 24px;
   font-weight: 700;
   font-style: italic;
-  color: #AE8625;
+  color: ${GOLD_COLOR[0]};
   animation: ${ neon } infinite 4s linear;
 
   &::before {

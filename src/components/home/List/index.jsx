@@ -76,7 +76,7 @@ const List = (props) => {
 	<>
 		{ !(count > 2) &&
 			<S.DividerContainer onClick={handleLeaderListClick}>
-				<S.Ribbon text={ VIEW_MORE } color="#E8D5A3">
+				<S.Ribbon text={ VIEW_MORE }>
 					<Divider orientation="left">{ LEADERS_TITLE }</Divider>
 				</S.Ribbon>
 			</S.DividerContainer>
