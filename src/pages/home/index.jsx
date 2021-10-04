@@ -1,11 +1,13 @@
+import RTQTable from '@/components/home/RTQTable';
 import List from '@components/home/List';
-import Filter from '@components/home/Filter';
+import Intro from '@components/home/Intro';
 
 const HomePage = () => {
   return (
     <>
-      <Filter />
-      <List />
+	  <Intro />
+      <List count={2}/>
+	  <RTQTable />
     </>
   );
 };

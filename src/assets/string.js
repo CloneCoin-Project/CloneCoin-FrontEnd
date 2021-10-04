@@ -1,5 +1,9 @@
 export const PROJECT_TITLE = 'Clone Coin';
 
+export const INTRO_DESC = '수익률 높은 리더를 팔로우하고, 카피 트레이딩 해보세요!';
+export const INTRO_CLOSE_TEMP = '닫기';
+export const INTRO_CLOSE_EVER = '더 이상 보지 않기';
+
 export const MY_INFO = '나의 정보';
 export const MY_PORT_FOLIO = '나의 포트폴리오';
 export const LOGOUT = '로그아웃';
@@ -9,6 +13,11 @@ export const RETURN = '취소';
 
 export const ICON_BITCOIN = 'bitcoin';
 export const DRAWER_TITLE = '현재 코인의 시세는?';
+export const TABLE_TITLE = 'bithumb 마켓 시세';
+export const LEADERS_TITLE = 'Leaders';
+
+export const VIEW_MORE = 'Click Here';
+export const SCROLL_DOWN = 'Scroll Down';
 
 export const HEADER_DIVISION_YILED = '구분'
 export const HEADER_CONTENT_YILED = '수익률 (%)'
