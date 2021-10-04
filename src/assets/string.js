@@ -13,6 +13,11 @@ export const RETURN = '취소';
 
 export const ICON_BITCOIN = 'bitcoin';
 export const DRAWER_TITLE = '현재 코인의 시세는?';
+export const TABLE_TITLE = 'bithumb 마켓 시세';
+export const LEADERS_TITLE = 'Leaders';
+
+export const VIEW_MORE = 'Click Here';
+export const SCROLL_DOWN = 'Scroll Down';
 
 export const HEADER_DIVISION_YILED = '구분'
 export const HEADER_CONTENT_YILED = '수익률 (%)'

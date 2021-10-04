@@ -19,6 +19,7 @@ import {
   LikeTwoTone,
   CopyTwoTone,
 } from '@ant-design/icons';
+import { GOLD_COLOR } from '@assets/color';
 
 const { Meta, Grid } = AntdCard;
 
@@ -60,6 +61,18 @@ export const NickNameContainer = styled.div`
 
 export const Badge = styled(AntdBadge)`
   margin-right: 1rem;
+`;
+
+export const Ribbon = styled(AntdBadge.Ribbon).attrs({
+  color: GOLD_COLOR[4]
+})`
+  margin: 0 10px 0 0;
+`;
+
+export const DividerContainer = styled.div`
+  &:hover {
+	cursor: pointer;
+  }
 `;
 
 export const YieldContainer = styled.div`

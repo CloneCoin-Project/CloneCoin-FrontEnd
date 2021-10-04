@@ -1,4 +1,4 @@
-import { UserInfoDropDown, RTQDrawer } from '@components/layout/header';
+import { UserInfoDropDown } from '@components/layout/header';
 
 import * as S from '@pages/layout/header/style';
 
@@ -10,7 +10,6 @@ const LayoutPageHeader = () => {
         <S.LogoTitle />
       </S.LogoContainer>
       <S.InfoContainer>
-        <RTQDrawer />
         <UserInfoDropDown />
       </S.InfoContainer>
     </S.LayoutPageHeader>

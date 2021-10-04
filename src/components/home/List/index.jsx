@@ -2,12 +2,15 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
 import * as S from '@components/home/List/style';
+import { Divider } from '@components/home/Filter/style';
 import {
   OVERALL_YILED,
   BEST_YILED,
   WORST_YILED,
   HEADER_DIVISION_YILED,
   HEADER_CONTENT_YILED,
+  LEADERS_TITLE,
+  VIEW_MORE
 } from '@assets/string';
 
 const LeaderInfo = ({ icon, text, number, onClick }) => (
@@ -45,11 +48,13 @@ const YieldList = () => {
   );
 };
 
-const List = () => {
+const List = (props) => {
+  const { count } = props; 
+
   const navigate = useNavigate();
 
   const listData = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < count; i++) {
     listData.push({
       nickName: `Nick Name ${i}`,
       avatar:
@@ -63,64 +68,77 @@ const List = () => {
     navigate({ pathname: '/leader' });
   }, [navigate]);
 
+  const handleLeaderListClick = useCallback(() => {
+    navigate({ pathname: '/leaderlist' });
+  }, [navigate]);
+
   return (
-    <S.List
-      dataSource={listData}
-      renderItem={(item) => (
-        <S.List.Item key={item.nickName}>
-          <S.OuterCard
-            hoverable
-            bordered={false}
-            actions={[
-              <LeaderInfo
-                text="Follower"
-                icon={<S.LikeOutlined style={{ fontSize: 18 }} />}
-                number={156}
-                key="list-vertical-follow-o"
-              />,
-              <LeaderInfo
-                text="Copier"
-                icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
-                number={156}
-                key="list-vertical-cory-o"
-              />,
-              <LeaderInfo
-                text="More"
-                icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
-                key="list-vertical-more-o"
-                onClick={handlePortfolioClick}
-              />,
-            ]}
-          >
-            <S.Row>
-              <S.Col xs={24} sm={12}>
-                <S.CardGrid>
-                  <S.InnerCard>
-                    <S.Meta
-                      avatar={<S.Avatar src={item.avatar} />}
-                      title={
-                        <S.NickNameContainer>
-                          {item.nickName}
-                          {/* <S.Badge dot>
-                            <S.NotificationOutlined style={{ fontSize: 16 }} />
-                          </S.Badge> */}
-                        </S.NickNameContainer>
-                      }
-                      description={item.description}
-                    />
-                  </S.InnerCard>
-                </S.CardGrid>
-              </S.Col>
-              <S.Col xs={24} sm={12}>
-                <S.CardGrid>
-                  <YieldList />
-                </S.CardGrid>
-              </S.Col>
-            </S.Row>
-          </S.OuterCard>
-        </S.List.Item>
-      )}
-    />
+	<>
+		{ !(count > 2) &&
+			<S.DividerContainer onClick={handleLeaderListClick}>
+				<S.Ribbon text={ VIEW_MORE }>
+					<Divider orientation="left">{ LEADERS_TITLE }</Divider>
+				</S.Ribbon>
+			</S.DividerContainer>
+		}
+		<S.List
+		dataSource={listData}
+		renderItem={(item) => (
+			<S.List.Item key={item.nickName}>
+			<S.OuterCard
+				hoverable
+				bordered={false}
+				actions={[
+				<LeaderInfo
+					text="Follower"
+					icon={<S.LikeOutlined style={{ fontSize: 18 }} />}
+					number={156}
+					key="list-vertical-follow-o"
+				/>,
+				<LeaderInfo
+					text="Copier"
+					icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
+					number={156}
+					key="list-vertical-cory-o"
+				/>,
+				<LeaderInfo
+					text="More"
+					icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
+					key="list-vertical-more-o"
+					onClick={handlePortfolioClick}
+				/>,
+				]}
+			>
+				<S.Row>
+				<S.Col xs={24} sm={12}>
+					<S.CardGrid>
+					<S.InnerCard>
+						<S.Meta
+						avatar={<S.Avatar src={item.avatar} />}
+						title={
+							<S.NickNameContainer>
+							{item.nickName}
+							{/* <S.Badge dot>
+								<S.NotificationOutlined style={{ fontSize: 16 }} />
+							</S.Badge> */}
+							</S.NickNameContainer>
+						}
+						description={item.description}
+						/>
+					</S.InnerCard>
+					</S.CardGrid>
+				</S.Col>
+				<S.Col xs={24} sm={12}>
+					<S.CardGrid>
+					<YieldList />
+					</S.CardGrid>
+				</S.Col>
+				</S.Row>
+			</S.OuterCard>
+			</S.List.Item>
+		)}
+		/>
+	</>
   );
 };
 
