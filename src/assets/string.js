@@ -11,6 +11,10 @@ export const LOGIN = '로그인';
 export const REGISTER = '회원가입';
 export const RETURN = '취소';
 
+export const STATUS_LEADER = 'leader';
+export const STATUS_NORMAL = 'normal';
+export const TEXT_LEADER = 'Leader';
+
 export const ICON_BITCOIN = 'bitcoin';
 export const DRAWER_TITLE = '현재 코인의 시세는?';
 export const TABLE_TITLE = 'bithumb 마켓 시세';

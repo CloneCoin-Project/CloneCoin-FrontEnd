@@ -6,9 +6,9 @@ const userServices = {
     //   `${Client.path.bithumbPublicApi}/ALL_KRW`,
     // );
     const data = {
-      userId: 1,
+      userId: "binary",
       userName: '진수',
-      status: '리더',
+      status: 'leader',
       email: 'admin@binary01.me',
     };
     return { data };
