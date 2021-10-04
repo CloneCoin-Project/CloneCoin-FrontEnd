@@ -63,3 +63,8 @@ export const MONTH = "월";
 export const DAY = "일";
 export const COUNT = "회";
 export const UNIT = "%";
+
+export const COPYRIGHT = "©";
+export const BUILT = "Built With";
+export const ACADEMY = "Bithumb Tech Academy";
+export const THIS_YEAR = "2021";
