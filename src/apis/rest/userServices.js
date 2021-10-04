@@ -11,7 +11,18 @@ const userServices = {
       status: '리더',
       email: 'admin@binary01.me',
     };
-    return {data};
+    return { data };
+  },
+  async signUp({ userId, userName, password, email }) {
+    const data = {
+      userId,
+      userName,
+      password,
+      email,
+    };
+    console.log(data);
+
+    return
   },
 };
 

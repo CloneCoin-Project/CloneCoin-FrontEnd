@@ -21,6 +21,13 @@ const useUserData = () => {
     [dispatch],
   );
 
+  const signUp = useCallback(
+    (signUpRequest) => {
+      dispatch(userAsyncAction.signUp.request(signUpRequest));
+    },
+    [dispatch],
+  );
+
   const logout = useCallback(() => {
     dispatch(userAction.logout());
   }, [dispatch]);
@@ -32,6 +39,7 @@ const useUserData = () => {
 
   return {
     signIn,
+    signUp,
     logout,
     loginStatusLoading,
     loginStatusData,

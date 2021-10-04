@@ -1,18 +1,16 @@
 import { useCallback } from 'react';
-import { useModal } from '@hooks';
+import { useModal, useUserData } from '@hooks';
 
 import * as S from '@components/layout/header/Menu/style';
 import { REGISTER } from '@assets/string';
 
 const Register = () => {
   const { isModalVisible, handleToggle } = useModal();
+  const { signUp } = useUserData();
 
-  const onFinished = useCallback(
-    ({ userId, email, name, password, passwordCheck }) => {
-      // signIn({ username, password });
-    },
-    [],
-  );
+  const onFinished = useCallback(({ userId, email, userName, password }) => {
+    signUp({ userId, email, userName, password });
+  }, []);
 
   return (
     <>
@@ -110,13 +108,20 @@ const Register = () => {
             />
             <S.Form.Item
               children={
-                <S.LoginButton
-                  // loading={loginStatusLoading}
-                  block
-                  htmlType="submit"
-                  type="primary"
-                  children={'Register'}
-                />
+                <S.RegisterButtonContainer>
+                  <S.RegisterButton
+                    // loading={registerLoading}
+                    htmlType="submit"
+                    type="primary"
+                    children={'Register'}
+                  />
+                  <S.NormalButton
+                    // loading={registerLoading}
+                    onClick={handleToggle}
+                    style={{ margin: '0 8px' }}
+                    children={'Cancel'}
+                  />
+                </S.RegisterButtonContainer>
               }
             />
           </S.Form>

@@ -29,10 +29,32 @@ function* signInSaga(action) {
   }
 }
 
+export const SIGN_UP = `${PREFIX}/SIGN_UP`;
+export const SIGN_UP_SUCCESS = `${PREFIX}/SIGN_UP_SUCCESS`;
+export const SIGN_UP_FAILURE = `${PREFIX}/SIGN_UP_FAILURE`;
+
+export const signUp = createAsyncAction(
+  SIGN_UP,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
+)();
+
+function* signUpSaga(action) {
+  try {
+    yield call(userServices.signUp, action.payload);
+
+    yield put(signUp.success());
+  } catch (e) {
+    yield put(signUp.failure());
+  }
+}
+
 export const userAsyncAction = {
   signIn,
+  signUp,
 };
 
 export default function* userSaga() {
   yield takeLatest(SIGN_IN, signInSaga);
+  yield takeLatest(SIGN_UP, signUpSaga);
 }
