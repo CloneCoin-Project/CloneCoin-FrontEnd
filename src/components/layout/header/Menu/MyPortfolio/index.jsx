@@ -8,7 +8,7 @@ const MyPortfolio = () => {
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => {
-    navigate({ pathname: `/my` });
+    navigate({ pathname: `/myportfolio` });
   }, [navigate]);
 
   return (

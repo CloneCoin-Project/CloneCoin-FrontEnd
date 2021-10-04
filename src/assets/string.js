@@ -14,6 +14,14 @@ export const RETURN = '취소';
 export const STATUS_LEADER = 'leader';
 export const STATUS_NORMAL = 'normal';
 export const TEXT_LEADER = 'Leader';
+export const TEXT_LEADER_KR = '리더';
+export const TEXT_NORAML_KR = '일반';
+
+export const DESC_TITLE = '한줄 소개';
+export const HOLDING_KRW = '보유 KRW';
+export const HOLDING_TOTAL = '총 보유자산';
+
+export const TEXT_LEADER_DELETE = '리더를 탈퇴하시겠습니까?';
 
 export const ICON_BITCOIN = 'bitcoin';
 export const DRAWER_TITLE = '현재 코인의 시세는?';

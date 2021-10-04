@@ -8,6 +8,8 @@ import {
   Col,
   Divider,
   Table,
+  Popconfirm,
+  message,
 } from 'antd';
 
 import {
@@ -109,4 +111,6 @@ export {
   Col,
   Divider,
   Table,
+  Popconfirm,
+  message,
 };

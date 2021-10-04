@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { useRoutes, Navigate } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
 import LayoutPage from '@pages/layout';
 
@@ -18,8 +18,8 @@ const homeRoute = [
 
 const leaderListRoute = [
   {
-	path: 'leaderlist',
-	element: <LeaderListPage />,
+    path: 'leaderlist',
+    element: <LeaderListPage />,
   },
 ];
 
@@ -32,7 +32,7 @@ const leaderPortfolioRoute = [
 
 const myPortfolioRoute = [
   {
-    path: 'my',
+    path: 'myportfolio',
     element: <MyPortfolioPage />,
   },
 ];
@@ -44,7 +44,7 @@ const RenderRouter = () =>
       element: <LayoutPage />,
       children: [
         ...homeRoute,
-		...leaderListRoute,
+        ...leaderListRoute,
         ...leaderPortfolioRoute,
         ...myPortfolioRoute,
         {
