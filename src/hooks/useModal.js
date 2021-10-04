@@ -10,6 +10,7 @@ const useModal = () => {
   return {
     isModalVisible,
     handleToggle,
+    setIsModalVisible,
   };
 };
 

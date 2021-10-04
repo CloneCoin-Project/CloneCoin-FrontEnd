@@ -5,7 +5,10 @@ import storage from 'redux-persist/lib/storage';
 import { all } from 'redux-saga/effects';
 
 import { bithumbReducer, BITHUMB } from '@store/modules/bithumb';
+import { userReducer, USER } from '@store/modules/user';
+
 import bithumbSaga from '@store/modules/bithumb/saga';
+import userSaga from '@store/modules/user/saga';
 
 const rootPersistConfig = {
   key: 'root',
@@ -15,10 +18,11 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
   [BITHUMB]: bithumbReducer,
+  [USER]: userReducer,
 });
 
 export function* rootSaga() {
-  yield all([bithumbSaga()]);
+  yield all([bithumbSaga(), userSaga()]);
 }
 
 export default persistReducer(rootPersistConfig, rootReducer);

@@ -1,24 +1,24 @@
-import { useState } from 'react';
-import { MyPortfolio, Logout, Login } from '@components/layout/header/Menu';
+import {
+  MyPortfolio,
+  Logout,
+  Login,
+  Register,
+} from '@components/layout/header/Menu';
 import UserInfo from '@components/layout/header/UserInfo';
+import { useUserData } from '@hooks';
 
 import * as S from '@components/layout/header/UserInfoDropDown/style';
 import { MY_INFO } from '@assets/string';
 
 const UserInfoDropDown = () => {
-  const [isLogin, setIsLogin] = useState(false);
-
-  const handleTempClick = () =>
-    setTimeout(() => {
-      setIsLogin(!isLogin);
-    }, 500);
+  const { isLogged } = useUserData();
 
   return (
     <S.Dropdown
       trigger={['click']}
       overlay={
         <S.Menu>
-          {isLogin ? (
+          {isLogged ? (
             <>
               <S.MenuItem key="userInfo" disabled>
                 <UserInfo />
@@ -27,13 +27,16 @@ const UserInfoDropDown = () => {
                 <MyPortfolio />
               </S.MenuItem>
               <S.MenuItem key="logout">
-                <Logout onClick={handleTempClick} />
+                <Logout />
               </S.MenuItem>
             </>
           ) : (
             <>
               <S.MenuItem key="login">
                 <Login />
+              </S.MenuItem>
+              <S.MenuItem key="register">
+                <Register />
               </S.MenuItem>
             </>
           )}

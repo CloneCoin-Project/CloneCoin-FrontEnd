@@ -4,7 +4,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { bithumbServices } from '@apis/rest';
 import { getTickerAllData, getTickerList } from '@utils/bithumb';
 
-const PREFIX = 'bithumb';
+export const PREFIX = 'bithumb';
 
 export const GET_TICKER_ALL = `${PREFIX}/GET_TICKER_ALL`;
 export const GET_TICKER_ALL_SUCCESS = `${PREFIX}/GET_TICKER_ALL_SUCCESS`;

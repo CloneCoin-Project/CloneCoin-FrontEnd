@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
-import { useModal } from '@hooks';
+import { useModal, useUserData } from '@hooks';
 
 import * as S from '@components/layout/header/Menu/style';
 import { LOGIN } from '@assets/string';
 
 const Login = () => {
   const { isModalVisible, handleToggle } = useModal();
-
+  const { signIn, loginStatusLoading } = useUserData();
   const onFinished = useCallback(({ userId, password }) => {
-    // signIn({ username, password });
+    signIn({ userId, password });
   }, []);
 
   return (
@@ -29,8 +29,8 @@ const Login = () => {
               children={
                 <S.Input
                   autoComplete="userId"
-                  placeholder="Enter ID"
-                  suffix={<S.MailTwoTone twoToneColor="#e48701" />}
+                  placeholder="아이디"
+                  suffix={<S.UserOutlined />}
                 />
               }
             />
@@ -41,8 +41,8 @@ const Login = () => {
                 <S.Input
                   autoComplete="current-password"
                   type="password"
-                  placeholder="Password"
-                  suffix={<S.LockTwoTone twoToneColor="#e48701" />}
+                  placeholder="패스워드"
+                  suffix={<S.LockOutlined />}
                 />
               }
             />
@@ -55,7 +55,7 @@ const Login = () => {
             <S.Form.Item
               children={
                 <S.LoginButton
-                  // loading={loginStatusLoading}
+                  loading={loginStatusLoading}
                   block
                   htmlType="submit"
                   type="primary"
