@@ -22,8 +22,8 @@ const useUserData = () => {
   );
 
   const signUp = useCallback(
-    (signUpRequest) => {
-      dispatch(userAsyncAction.signUp.request(signUpRequest));
+    (value) => {
+      dispatch(userAsyncAction.signUp.request(value));
     },
     [dispatch],
   );
@@ -37,6 +37,16 @@ const useUserData = () => {
     [loginStatusData],
   );
 
+  const ID = useMemo(() => loginStatusData?.ID, [loginStatusData]);
+
+  const userName = useMemo(() => loginStatusData?.userName, [loginStatusData]);
+
+  const userId = useMemo(() => loginStatusData?.userId, [loginStatusData]);
+
+  const email = useMemo(() => loginStatusData?.email, [loginStatusData]);
+
+  const userStatus = useMemo(() => loginStatusData?.status, [loginStatusData]);
+
   return {
     signIn,
     signUp,
@@ -45,6 +55,11 @@ const useUserData = () => {
     loginStatusData,
     loginStatusError,
     isLogged,
+    ID,
+    userName,
+    userId,
+    email,
+    userStatus,
   };
 };
 

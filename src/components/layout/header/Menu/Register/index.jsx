@@ -5,11 +5,25 @@ import * as S from '@components/layout/header/Menu/style';
 import { REGISTER } from '@assets/string';
 
 const Register = () => {
-  const { isModalVisible, handleToggle } = useModal();
+  const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
   const { signUp } = useUserData();
 
   const onFinished = useCallback(({ userId, email, userName, password }) => {
-    signUp({ userId, email, userName, password });
+    signUp({
+      signUpRequest: {
+        userId,
+        email,
+        userName,
+        password,
+      },
+      onSuccess: () => {
+        S.message.info('회원가입이 완료되었습니다.');
+        setIsModalVisible(false);
+      },
+      onFailure: () => {
+        S.message.info('에러가 발생하였습니다.');
+      },
+    });
   }, []);
 
   return (

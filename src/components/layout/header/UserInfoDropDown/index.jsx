@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   MyPortfolio,
   Logout,
@@ -12,7 +11,7 @@ import * as S from '@components/layout/header/UserInfoDropDown/style';
 import { MY_INFO } from '@assets/string';
 
 const UserInfoDropDown = () => {
-  const { isLogged, logout } = useUserData();
+  const { isLogged } = useUserData();
 
   return (
     <S.Dropdown
@@ -28,7 +27,7 @@ const UserInfoDropDown = () => {
                 <MyPortfolio />
               </S.MenuItem>
               <S.MenuItem key="logout">
-                <Logout onClick={logout} />
+                <Logout />
               </S.MenuItem>
             </>
           ) : (

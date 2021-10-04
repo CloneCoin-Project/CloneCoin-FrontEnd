@@ -15,14 +15,27 @@ const userServices = {
   },
   async signUp({ userId, userName, password, email }) {
     const data = {
+      username: userId,
+      name: userName,
+      password,
+      email,
+      role: 'normal',
+    };
+
+    // const res = await Client.publicInstance.post(
+    //   `${Client.path.bithumbPublicApi}/ALL_KRW`,
+    //   data,
+    // );
+
+    const res = {
       userId,
       userName,
       password,
       email,
+      status: 'normal',
     };
-    console.log(data);
 
-    return
+    return res;
   },
 };
 

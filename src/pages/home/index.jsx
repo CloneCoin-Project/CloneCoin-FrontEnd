@@ -5,9 +5,9 @@ import Intro from '@components/home/Intro';
 const HomePage = () => {
   return (
     <>
-	  <Intro />
-      <List count={2}/>
-	  <RTQTable />
+      <Intro />
+      <List count={2} />
+      <RTQTable />
     </>
   );
 };

@@ -5,6 +5,7 @@ import {
   Form,
   Input,
   Checkbox,
+  message,
 } from 'antd';
 import {
   MailTwoTone,
@@ -49,4 +50,5 @@ export {
   Form,
   Input,
   Checkbox,
+  message,
 };

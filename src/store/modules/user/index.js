@@ -7,6 +7,7 @@ const initialState = {
   loginStatus: {
     loading: false,
     data: {
+      ID: '',
       userId: '',
       userName: '',
       status: '',

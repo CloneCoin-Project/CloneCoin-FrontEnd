@@ -1,6 +1,6 @@
 import { createAsyncAction } from 'typesafe-actions';
 
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import { userServices } from '@apis/rest';
 
 export const PREFIX = 'user';
@@ -40,12 +40,14 @@ export const signUp = createAsyncAction(
 )();
 
 function* signUpSaga(action) {
+  const { signUpRequest, onSuccess, onFailure } = action.payload;
   try {
-    yield call(userServices.signUp, action.payload);
-
+    yield call(userServices.signUp, signUpRequest);
     yield put(signUp.success());
+    yield fork(onSuccess);
   } catch (e) {
     yield put(signUp.failure());
+    yield fork(onFailure);
   }
 }
 
