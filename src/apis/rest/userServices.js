@@ -8,7 +8,8 @@ const userServices = {
     );
 
     console.log(res);
-    return res.data;
+    const { id, username, email, name, role } = res.data;
+    return { ID: id, userId: username, userName: name, email, status: role };
   },
 
   async signUp({ userId, userName, password, email }) {
