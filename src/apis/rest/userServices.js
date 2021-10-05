@@ -2,40 +2,24 @@ import Client from '@apis/rest/client';
 
 const userServices = {
   async signIn({ userId, password }) {
-    // const data = await Client.publicInstance.get(
-    //   `${Client.path.bithumbPublicApi}/ALL_KRW`,
-    // );
-    const data = {
-      userId: "binary",
-      userName: '진수',
-      status: 'leader',
-      email: 'admin@binary01.me',
-    };
-    return { data };
+    const res = await Client.publicInstance.post(
+      `${Client.path.cloneCoinApi}/user/login`,
+      { usename: userId, password },
+    );
+
+    console.log(res);
+    return res.data;
   },
+
   async signUp({ userId, userName, password, email }) {
-    const data = {
-      username: userId,
-      name: userName,
-      password,
-      email,
-      role: 'normal',
-    };
+    const res = await Client.publicInstance.post(
+      `${Client.path.cloneCoinApi}/user/users`,
+      { usename: userId, name: userName, password, email, role: 'normal' },
+    );
 
-    // const res = await Client.publicInstance.post(
-    //   `${Client.path.bithumbPublicApi}/ALL_KRW`,
-    //   data,
-    // );
+    console.log(res);
 
-    const res = {
-      userId,
-      userName,
-      password,
-      email,
-      status: 'normal',
-    };
-
-    return res;
+    return;
   },
 };
 

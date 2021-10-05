@@ -3,6 +3,7 @@ import axios from 'axios';
 const Client = {
   path: {
     bithumbPublicApi: process.env.REACT_APP_BITHUMB_PUBLIC_API_PATH,
+    cloneCoinApi: process.env.REACT_APP_CLONECOIN_API_PATH,
   },
   credentialsInstance: axios.create({ withCredentials: true }),
   publicInstance: axios.create(),

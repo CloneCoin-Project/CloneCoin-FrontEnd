@@ -16,16 +16,20 @@ export const signIn = createAsyncAction(
 )();
 
 function* signInSaga(action) {
+  const { signInRequest, onSuccess, onFailure } = action.payload;
+
   try {
-    const { data } = yield call(userServices.signIn, action.payload);
+    const data = yield call(userServices.signIn, signInRequest);
 
     yield put(
       signIn.success({
         data,
       }),
     );
+    yield fork(onSuccess);
   } catch (e) {
     yield put(signIn.failure());
+    yield fork(onFailure);
   }
 }
 

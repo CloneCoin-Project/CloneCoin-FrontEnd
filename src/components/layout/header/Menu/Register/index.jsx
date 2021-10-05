@@ -21,7 +21,7 @@ const Register = () => {
         setIsModalVisible(false);
       },
       onFailure: () => {
-        S.message.info('에러가 발생하였습니다.');
+        S.message.error('에러가 발생하였습니다.');
       },
     });
   }, []);
