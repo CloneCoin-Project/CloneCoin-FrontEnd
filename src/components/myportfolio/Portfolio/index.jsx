@@ -1,8 +1,11 @@
-import YiledLineChart from '@/components/myportfolio/LineChart';
-import YiledPieChart from '@/components/myportfolio/PieChart';
-import InvestList from '@/components/myportfolio/InvestList';
+import { useUserData } from '@hooks';
+
+import YiledLineChart from '@components/myportfolio/LineChart';
+import YiledPieChart from '@components/myportfolio/PieChart';
+import InvestList from '@components/myportfolio/InvestList';
 
 import * as S from '@components/myportfolio/style';
+import { STATUS_LEADER } from '@assets/string';
 
 const YieldList = () => {
   return (
@@ -49,13 +52,21 @@ const YieldList = () => {
   );
 };
 
-const LeaderPortfolio = () => {
+const MyPortfolio = () => {
+  const { userStatus } = useUserData();
+
   return (
     <>
-      <S.Divider orientation="left" style={{margin: "2rem 0"}}>Portfolio</S.Divider>
-      <S.PortfolioHeader>수익률</S.PortfolioHeader>
-      <YieldList />
-      <YiledLineChart />
+      <S.Divider orientation="left" style={{ margin: '2rem 0' }}>
+        Portfolio
+      </S.Divider>
+      {userStatus === STATUS_LEADER && (
+        <>
+          <S.PortfolioHeader>수익률</S.PortfolioHeader>
+          <YieldList />
+          <YiledLineChart />
+        </>
+      )}
       <S.PortfolioHeader>투자현황</S.PortfolioHeader>
       <YiledPieChart />
       <S.PortfolioHeader>투자 리스트</S.PortfolioHeader>
@@ -64,4 +75,4 @@ const LeaderPortfolio = () => {
   );
 };
 
-export default LeaderPortfolio;
+export default MyPortfolio;

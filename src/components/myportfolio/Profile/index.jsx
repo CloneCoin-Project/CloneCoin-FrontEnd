@@ -1,4 +1,7 @@
+import { useCallback } from 'react';
 import { useUserData } from '@hooks';
+import LeaderRegisterModal from "@components/myportfolio/LeaderRegisterModal";
+
 import * as S from '@components/myportfolio/style';
 import {
   TEXT_LEADER_KR,
@@ -6,13 +9,16 @@ import {
   HOLDING_KRW,
   HOLDING_TOTAL,
   STATUS_LEADER,
-  STATUS_NORMAL,
-  TEXT_NORAML_KR,
   TEXT_LEADER_DELETE,
 } from '@assets/string';
 
 const MyProfile = () => {
   const { userName, userStatus } = useUserData();
+
+
+  const handleLeaderDeleteClick = useCallback(() => {
+    S.message.info('현재 비활성화된 기능입니다.');
+  }, [userStatus]);
 
   return (
     <>
@@ -27,14 +33,19 @@ const MyProfile = () => {
                 {userName}
                 {userStatus === STATUS_LEADER ? (
                   <S.Popconfirm title={TEXT_LEADER_DELETE}>
-                    <S.Button color="#e48701" type="text">
+                    <S.Button
+                      color="#e48701"
+                      type="text"
+                      onClick={handleLeaderDeleteClick}
+                    >
                       {TEXT_LEADER_KR}
                     </S.Button>
                   </S.Popconfirm>
                 ) : (
-                  <S.Button color="#e48701" type="text">
-                    {TEXT_NORAML_KR}
-                  </S.Button>
+                  // <S.Button color="#e48701" type="text">
+                  //   {TEXT_NORAML_KR}
+                  // </S.Button>
+                  <LeaderRegisterModal />
                 )}
               </S.NickNameContainer>
             </S.Col>

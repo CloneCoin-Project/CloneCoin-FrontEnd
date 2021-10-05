@@ -55,12 +55,36 @@ function* signUpSaga(action) {
   }
 }
 
+export const LEADER_REGISTER = `${PREFIX}/LEADER_REGISTER`;
+export const LEADER_REGISTER_SUCCESS = `${PREFIX}/LEADER_REGISTER_SUCCESS`;
+export const LEADER_REGISTER_FAILURE = `${PREFIX}/LEADER_REGISTER_FAILURE`;
+
+export const leaderRegister = createAsyncAction(
+  LEADER_REGISTER,
+  LEADER_REGISTER_SUCCESS,
+  LEADER_REGISTER_FAILURE,
+)();
+
+function* leaderRegisterSaga(action) {
+  const { leaderRegisterRequest, onSuccess, onFailure } = action.payload;
+  try {
+    yield call(userServices.leaderRegister, leaderRegisterRequest);
+    yield put(leaderRegister.success());
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(leaderRegister.failure());
+    yield fork(onFailure);
+  }
+}
+
 export const userAsyncAction = {
   signIn,
   signUp,
+  leaderRegister,
 };
 
 export default function* userSaga() {
   yield takeLatest(SIGN_IN, signInSaga);
   yield takeLatest(SIGN_UP, signUpSaga);
+  yield takeLatest(LEADER_REGISTER, leaderRegisterSaga);
 }
