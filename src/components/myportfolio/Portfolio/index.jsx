@@ -1,6 +1,6 @@
-import YiledLineChart from '@components/myportfolio/Leader/LineChart';
-import YiledPieChart from '@components/myportfolio/Leader/PieChart';
-import InvestList from '@components/myportfolio/Leader/InvestList';
+import YiledLineChart from '@/components/myportfolio/LineChart';
+import YiledPieChart from '@/components/myportfolio/PieChart';
+import InvestList from '@/components/myportfolio/InvestList';
 
 import * as S from '@components/myportfolio/style';
 

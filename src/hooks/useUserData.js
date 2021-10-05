@@ -14,15 +14,16 @@ const useUserData = () => {
   ];
 
   const signIn = useCallback(
-    (signInRequest) => {
-      //userId, password
-      dispatch(userAsyncAction.signIn.request(signInRequest));
+    (value) => {
+      //signInRequest {userId, password} onSuccess, onFailure
+      dispatch(userAsyncAction.signIn.request(value));
     },
     [dispatch],
   );
 
   const signUp = useCallback(
     (value) => {
+      //signUpRequest {...} onSuccess, onFailure
       dispatch(userAsyncAction.signUp.request(value));
     },
     [dispatch],

@@ -46,15 +46,15 @@ const ProfileHeader = ({ userId }) => {
 
 	return (
 		<>
-		{ isLoading 
+		{ isLoading
 			? <ProfileHeaderSkeleton />
-			: <ProfileCard 
+			: <ProfileCard
 				nickname={'nickname'}
 				introduction={'description description description description description description description description'}
 				profile_image={''}
-				count_copied={0} 
-				count_followed={0} 
-				count_following={0} 
+				count_copied={0}
+				count_followed={0}
+				count_following={0}
 			/>
 		}
 		</>
