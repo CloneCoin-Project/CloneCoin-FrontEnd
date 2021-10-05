@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import {
   Avatar,
+  Modal as AntdModal,
+  Form,
+  Input,
   Card as AntdCard,
   Badge as AntdBadge,
   Button as AntdButton,
@@ -54,6 +57,14 @@ export const Button = styled(AntdButton)`
   &:focus {
     background: inherit;
     color: #1890ff;
+  }
+`;
+
+export const LeaderRegisterButton = styled(AntdButton)``;
+
+export const Modal = styled(AntdModal)`
+  & .ant-modal-header {
+    text-align: center;
   }
 `;
 
@@ -113,4 +124,6 @@ export {
   Table,
   Popconfirm,
   message,
+  Form,
+  Input,
 };

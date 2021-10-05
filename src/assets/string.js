@@ -27,6 +27,7 @@ export const ICON_BITCOIN = 'bitcoin';
 export const DRAWER_TITLE = '현재 코인의 시세는?';
 export const TABLE_TITLE = 'bithumb 마켓 시세';
 export const LEADERS_TITLE = 'Leaders';
+export const LEADER_REGISTER = '리더 신청';
 
 export const VIEW_MORE = 'Click Here';
 export const SCROLL_DOWN = 'Scroll Down';
