@@ -2,7 +2,11 @@ import { useCallback, useMemo } from 'react';
 
 import { useAppSelector, useAppDispatch } from '@store';
 import { userAsyncAction } from '@store/modules/user/saga';
-import { LoginStatusSelector, userAction } from '@store/modules/user';
+import {
+  LoginStatusSelector,
+  LeaderRegisterSelector,
+  userAction,
+} from '@store/modules/user';
 
 const useUserData = () => {
   const dispatch = useAppDispatch();
@@ -11,6 +15,11 @@ const useUserData = () => {
     useAppSelector(LoginStatusSelector.loading),
     useAppSelector(LoginStatusSelector.data),
     useAppSelector(LoginStatusSelector.error),
+  ];
+
+  const [leaderRegisterLoading, leaderRegisterError] = [
+    useAppSelector(LeaderRegisterSelector.loading),
+    useAppSelector(LeaderRegisterSelector.error),
   ];
 
   const signIn = useCallback(
@@ -29,6 +38,14 @@ const useUserData = () => {
     [dispatch],
   );
 
+  const leaderRegister = useCallback(
+    (value) => {
+      //leaderRegisterRequest {ID, apiKey, secretKey} onSuccess, onFailure
+      dispatch(userAsyncAction.leaderRegister.request(value));
+    },
+    [dispatch],
+  );
+
   const logout = useCallback(() => {
     dispatch(userAction.logout());
   }, [dispatch]);
@@ -39,22 +56,21 @@ const useUserData = () => {
   );
 
   const ID = useMemo(() => loginStatusData?.ID, [loginStatusData]);
-
   const userName = useMemo(() => loginStatusData?.userName, [loginStatusData]);
-
   const userId = useMemo(() => loginStatusData?.userId, [loginStatusData]);
-
   const email = useMemo(() => loginStatusData?.email, [loginStatusData]);
-
   const userStatus = useMemo(() => loginStatusData?.status, [loginStatusData]);
 
   return {
     signIn,
     signUp,
+    leaderRegister,
     logout,
     loginStatusLoading,
     loginStatusData,
     loginStatusError,
+    leaderRegisterLoading,
+    leaderRegisterError,
     isLogged,
     ID,
     userName,

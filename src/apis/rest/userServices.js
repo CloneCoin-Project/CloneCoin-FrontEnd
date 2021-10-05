@@ -27,6 +27,19 @@ const userServices = {
 
     return;
   },
+
+  async leaderRegister({ ID, apiKey, secretKey }) {
+    const res = await Client.publicInstance.post(
+      `${Client.path.cloneCoinApi}/user/leader`,
+      {
+        userId: ID,
+        apiKey,
+        secretKey,
+      },
+    );
+    console.log(res.data);
+    return;
+  },
 };
 
 export default userServices;

@@ -15,6 +15,10 @@ const initialState = {
     },
     error: null,
   },
+  leaderRegister: {
+    loading: false,
+    error: null,
+  },
 };
 
 const userSlice = createSlice({
@@ -34,9 +38,19 @@ const userSlice = createSlice({
         state.loginStatus.loading = false;
         state.loginStatus.data = action.payload.data;
       })
-      .addCase(`${userAsyncAction.signIn.failure}`, (state, action) => {
+      .addCase(`${userAsyncAction.signIn.failure}`, (state) => {
         state.loginStatus.loading = false;
         state.loginStatus.data = initialState.loginStatus.data;
+      })
+      .addCase(`${userAsyncAction.leaderRegister.request}`, (state) => {
+        state.leaderRegister.loading = true;
+      })
+      .addCase(`${userAsyncAction.leaderRegister.success}`, (state) => {
+        state.leaderRegister.loading = false;
+        state.loginStatus.data.status = 'leader';
+      })
+      .addCase(`${userAsyncAction.leaderRegister.failure}`, (state) => {
+        state.leaderRegister.loading = false;
       });
   },
 });
@@ -57,6 +71,22 @@ export const LoginStatusSelector = {
   error: createSelector(
     loginStatusSelector,
     (loginStatus) => loginStatus.error,
+  ),
+};
+
+const leaderRegisterSelector = createSelector(
+  selfSelector,
+  (state) => state.leaderRegister,
+);
+
+export const LeaderRegisterSelector = {
+  loading: createSelector(
+    leaderRegisterSelector,
+    (leaderRegister) => leaderRegister.loading,
+  ),
+  error: createSelector(
+    leaderRegisterSelector,
+    (leaderRegister) => leaderRegister.error,
   ),
 };
 
