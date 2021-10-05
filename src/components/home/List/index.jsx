@@ -20,7 +20,8 @@ const LeaderInfo = ({ icon, text, number, onClick }) => (
     </S.Col>
     <S.Col span={24}>
       <S.Button type="text" icon={icon} onClick={onClick} />
-      <S.LeaderInfoNumber>{number}</S.LeaderInfoNumber>
+      {/* <S.LeaderInfoNumber>{number}</S.LeaderInfoNumber> API 나오기전까지 임시 disabled */}
+
     </S.Col>
   </S.Row>
 );
