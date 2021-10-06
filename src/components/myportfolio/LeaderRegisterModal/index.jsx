@@ -5,15 +5,14 @@ import * as S from '@components/myportfolio/style';
 import { TEXT_NORAML_KR, LEADER_REGISTER } from '@assets/string';
 
 const LeaderRegisterModal = () => {
-  const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
-  const { ID, leaderRegisterLoading, leaderRegister } = useUserData();
+  const { isModalVisible, handleToggle } = useModal();
+  const { ID, leaderRegister, leaderRegisterLoading } = useUserData();
 
   const onFinished = useCallback(({ apiKey, secretKey }) => {
     leaderRegister({
       leaderRegisterRequest: { ID, apiKey, secretKey },
       onSuccess: () => {
-        S.message.info('리더 등록이 완료되었습니다.');
-        setIsModalVisible(false);
+        S.message.success('리더 등록이 완료되었습니다.');
       },
       onFailure: () => {
         S.message.error('에러가 발생하였습니다.');
@@ -42,21 +41,17 @@ const LeaderRegisterModal = () => {
           <S.Form.Item
             name="secretKey"
             rules={[{ required: true, message: 'SECRET KEY를 입력해주세요!' }]}
-            children={
-              <S.Input
-                // type="password"
-                placeholder="SECRET KEY"
-              />
-            }
+            children={<S.Input placeholder="SECRET KEY" />}
           />
           <S.Form.Item
             children={
               <S.LeaderRegisterButton
-                loading={leaderRegisterLoading}
                 block
+                loading={leaderRegisterLoading}
                 htmlType="submit"
+                shape="round"
                 type="primary"
-                children={'Leader Register'}
+                children={'리더 등록'}
               />
             }
           />

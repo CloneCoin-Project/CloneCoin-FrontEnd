@@ -89,3 +89,7 @@ export const tickerColumns = [
       ),
   },
 ];
+
+export const isObjectEmpty = (param) => {
+  return Object.keys(param).length === 0;
+};

@@ -17,7 +17,7 @@ const Register = () => {
         password,
       },
       onSuccess: () => {
-        S.message.info('회원가입이 완료되었습니다.');
+        S.message.success('회원가입이 완료되었습니다.');
         setIsModalVisible(false);
       },
       onFailure: () => {
@@ -124,16 +124,16 @@ const Register = () => {
               children={
                 <S.RegisterButtonContainer>
                   <S.RegisterButton
-                    // loading={registerLoading}
                     htmlType="submit"
                     type="primary"
-                    children={'Register'}
+                    shape="round"
+                    children={'회원가입'}
                   />
                   <S.NormalButton
-                    // loading={registerLoading}
                     onClick={handleToggle}
                     style={{ margin: '0 8px' }}
-                    children={'Cancel'}
+                    shape="round"
+                    children={'취소'}
                   />
                 </S.RegisterButtonContainer>
               }

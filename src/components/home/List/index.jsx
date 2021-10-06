@@ -1,12 +1,12 @@
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router';
+import { useCallback, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router';
+import { useWalletData } from '@hooks';
+
+import { isHome, yieldArr } from '@utils/listUtil';
 
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
 import {
-  OVERALL_YILED,
-  BEST_YILED,
-  WORST_YILED,
   HEADER_DIVISION_YILED,
   HEADER_CONTENT_YILED,
   LEADERS_TITLE,
@@ -21,49 +21,42 @@ const LeaderInfo = ({ icon, text, number, onClick }) => (
     <S.Col span={24}>
       <S.Button type="text" icon={icon} onClick={onClick} />
       {/* <S.LeaderInfoNumber>{number}</S.LeaderInfoNumber> API 나오기전까지 임시 disabled */}
-
     </S.Col>
   </S.Row>
 );
 
-const YieldList = () => {
+const YieldList = ({ all, best, worst }) => {
+  //not counted
   return (
     <S.YieldContainer>
       <S.YieldContentContainer>
         <S.YieldTitle type="HEADER">{HEADER_DIVISION_YILED}</S.YieldTitle>
         <S.YieldNumber>{HEADER_CONTENT_YILED}</S.YieldNumber>
       </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="ALL">{OVERALL_YILED}</S.YieldTitle>
-        <S.YieldNumber number={10}>+10.0</S.YieldNumber>
-      </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="BEST">{BEST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={10}>+32.0</S.YieldNumber>
-      </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="WORST">{WORST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={-7}>-7.2</S.YieldNumber>
-      </S.YieldContentContainer>
+      {yieldArr(all, best, worst).map((value) => {
+        const { type, title, number } = value;
+        return (
+          <S.YieldContentContainer key={`${type}`}>
+            <S.YieldTitle type={type}>{title}</S.YieldTitle>
+            <S.YieldNumber number={number}>{number}</S.YieldNumber>
+          </S.YieldContentContainer>
+        );
+      })}
     </S.YieldContainer>
   );
 };
 
-const List = (props) => {
-  const { count } = props;
-
+const List = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
 
-  const listData = [];
-  for (let i = 0; i < count; i++) {
-    listData.push({
-      nickName: `Nick Name ${i}`,
-      avatar:
-        'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    });
-  }
+  const { getAllLeader, LeaderListLoading, refinedLeaderList } =
+    useWalletData();
+
+  useEffect(() => {
+    getAllLeader();
+  }, []);
 
   const handlePortfolioClick = useCallback(() => {
     navigate({ pathname: '/leader' });
@@ -75,7 +68,7 @@ const List = (props) => {
 
   return (
     <>
-      {!(count > 2) && (
+      {isHome(pathname) && (
         <S.DividerContainer onClick={handleLeaderListClick}>
           <S.Ribbon text={VIEW_MORE}>
             <Divider orientation="left">{LEADERS_TITLE}</Divider>
@@ -83,11 +76,12 @@ const List = (props) => {
         </S.DividerContainer>
       )}
       <S.List
-        dataSource={listData}
+        dataSource={refinedLeaderList}
         renderItem={(item) => (
-          <S.List.Item key={item.nickName}>
+          <S.List.Item key={item.leaderName}>
             <S.OuterCard
               hoverable
+              loading={LeaderListLoading}
               bordered={false}
               actions={[
                 <LeaderInfo
@@ -115,20 +109,26 @@ const List = (props) => {
                   <S.CardGrid>
                     <S.InnerCard>
                       <S.Meta
-                        avatar={<S.Avatar src={item.avatar} />}
+                        avatar={
+                          <S.Avatar size={40} icon={<S.UserOutlined />} />
+                        }
                         title={
                           <S.NickNameContainer>
-                            {item.nickName}
+                            {item.leaderName}
                           </S.NickNameContainer>
                         }
-                        description={item.description}
+                        description={item.description ?? ''}
                       />
                     </S.InnerCard>
                   </S.CardGrid>
                 </S.Col>
                 <S.Col xs={24} sm={12}>
                   <S.CardGrid>
-                    <YieldList />
+                    <YieldList
+                      all={item.all}
+                      best={item.best}
+                      worst={item.worst}
+                    />
                   </S.CardGrid>
                 </S.Col>
               </S.Row>

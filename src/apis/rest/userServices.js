@@ -2,14 +2,12 @@ import Client from '@apis/rest/client';
 
 const userServices = {
   async signIn({ userId, password }) {
-    const req = {
-      username: userId,
-      password,
-    };
-
     const res = await Client.publicInstance.post(
       `${Client.path.cloneCoinApi}/user/login`,
-      req,
+      {
+        username: userId,
+        password,
+      },
     );
 
     const { id, username, email, name, role } = res.data;
@@ -29,7 +27,7 @@ const userServices = {
   },
 
   async leaderRegister({ ID, apiKey, secretKey }) {
-    const res = await Client.publicInstance.post(
+    await Client.publicInstance.post(
       `${Client.path.cloneCoinApi}/user/leader`,
       {
         userId: ID,
@@ -37,7 +35,6 @@ const userServices = {
         secretKey,
       },
     );
-    console.log(res.data);
     return;
   },
 };

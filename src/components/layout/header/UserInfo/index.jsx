@@ -11,9 +11,15 @@ const UserInfo = () => {
         avatar={<S.Avatar size={40} icon={<S.UserOutlined />} />}
         title={
           <S.TitleContainer>
-            {`${userId} | ${userName}`}
+            <div>
+              {`${userId}`}
+              <S.Divider type="vertical" />
+              {`${userName}`}
+            </div>
             {userStatus === STATUS_LEADER && (
-              <S.Tag color="gold">{TEXT_LEADER}</S.Tag>
+              <S.Tag color="gold" style={{ width: '57px' }}>
+                {TEXT_LEADER}
+              </S.Tag>
             )}
           </S.TitleContainer>
         }

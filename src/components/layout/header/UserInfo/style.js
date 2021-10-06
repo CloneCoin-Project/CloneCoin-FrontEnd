@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card as AntdCard, Avatar, Tag } from 'antd';
+import { Card as AntdCard, Avatar, Tag, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const { Meta } = AntdCard;
@@ -16,12 +16,12 @@ export const Card = styled(AntdCard)`
 
 export const TitleContainer = styled.div`
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 5px;
+  flex-direction: column;
 `;
 
 export const Paragraph = styled.p`
   margin: 0;
 `;
 
-export { Meta, Avatar, UserOutlined, Tag };
+export { Meta, Avatar, UserOutlined, Tag, Divider };
