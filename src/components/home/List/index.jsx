@@ -2,14 +2,11 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { useWalletData } from '@hooks';
 
-import { isHome } from '@utils/listUtil';
+import { isHome, yieldArr } from '@utils/listUtil';
 
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
 import {
-  OVERALL_YILED,
-  BEST_YILED,
-  WORST_YILED,
   HEADER_DIVISION_YILED,
   HEADER_CONTENT_YILED,
   LEADERS_TITLE,
@@ -36,18 +33,15 @@ const YieldList = ({ all, best, worst }) => {
         <S.YieldTitle type="HEADER">{HEADER_DIVISION_YILED}</S.YieldTitle>
         <S.YieldNumber>{HEADER_CONTENT_YILED}</S.YieldNumber>
       </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="ALL">{OVERALL_YILED}</S.YieldTitle>
-        <S.YieldNumber number={all}>{all}</S.YieldNumber>
-      </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="BEST">{BEST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={best}>{best}</S.YieldNumber>
-      </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="WORST">{WORST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={worst}>{worst}</S.YieldNumber>
-      </S.YieldContentContainer>
+      {yieldArr(all, best, worst).map((value) => {
+        const { type, title, number } = value;
+        return (
+          <S.YieldContentContainer key={`${type}`}>
+            <S.YieldTitle type={type}>{title}</S.YieldTitle>
+            <S.YieldNumber number={number}>{number}</S.YieldNumber>
+          </S.YieldContentContainer>
+        );
+      })}
     </S.YieldContainer>
   );
 };
