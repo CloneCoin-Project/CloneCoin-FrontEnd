@@ -6,7 +6,7 @@ import { TEXT_NORAML_KR, LEADER_REGISTER } from '@assets/string';
 
 const LeaderRegisterModal = () => {
   const { isModalVisible, handleToggle } = useModal();
-  const { ID, leaderRegister } = useUserData();
+  const { ID, leaderRegister, leaderRegisterLoading } = useUserData();
 
   const onFinished = useCallback(({ apiKey, secretKey }) => {
     leaderRegister({
@@ -47,9 +47,11 @@ const LeaderRegisterModal = () => {
             children={
               <S.LeaderRegisterButton
                 block
+                loading={leaderRegisterLoading}
                 htmlType="submit"
+                shape="round"
                 type="primary"
-                children={'Leader Register'}
+                children={'리더 등록'}
               />
             }
           />

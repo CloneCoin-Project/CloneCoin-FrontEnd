@@ -63,10 +63,11 @@ const Login = () => {
               children={
                 <S.LoginButton
                   loading={loginStatusLoading}
+                  shape="round"
+                  type="primary"
                   block
                   htmlType="submit"
-                  type="primary"
-                  children={'Login'}
+                  children={'로그인'}
                 />
               }
             />

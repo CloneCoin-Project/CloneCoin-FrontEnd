@@ -57,8 +57,8 @@ export const LogoTitle = styled.span.attrs({
   font-size: 24px;
   font-weight: 700;
   font-style: italic;
-  color: ${GOLD_COLOR[0]};
-  animation: ${ neon } infinite 4s linear;
+  color: #D2AC47;
+  /* animation: ${ neon } infinite 4s linear; */
 
   &::before {
     content: attr(title);

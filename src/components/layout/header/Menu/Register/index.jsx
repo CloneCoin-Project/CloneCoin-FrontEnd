@@ -126,12 +126,14 @@ const Register = () => {
                   <S.RegisterButton
                     htmlType="submit"
                     type="primary"
-                    children={'Register'}
+                    shape="round"
+                    children={'회원가입'}
                   />
                   <S.NormalButton
                     onClick={handleToggle}
                     style={{ margin: '0 8px' }}
-                    children={'Cancel'}
+                    shape="round"
+                    children={'취소'}
                   />
                 </S.RegisterButtonContainer>
               }
