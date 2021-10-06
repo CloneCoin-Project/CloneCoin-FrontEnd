@@ -6,13 +6,13 @@ import { TEXT_NORAML_KR, LEADER_REGISTER } from '@assets/string';
 
 const LeaderRegisterModal = () => {
   const { isModalVisible, handleToggle } = useModal();
-  const { ID, leaderRegisterLoading, leaderRegister } = useUserData();
+  const { ID, leaderRegister } = useUserData();
 
   const onFinished = useCallback(({ apiKey, secretKey }) => {
     leaderRegister({
       leaderRegisterRequest: { ID, apiKey, secretKey },
       onSuccess: () => {
-        S.message.info('리더 등록이 완료되었습니다.');
+        S.message.success('리더 등록이 완료되었습니다.');
       },
       onFailure: () => {
         S.message.error('에러가 발생하였습니다.');
@@ -41,12 +41,7 @@ const LeaderRegisterModal = () => {
           <S.Form.Item
             name="secretKey"
             rules={[{ required: true, message: 'SECRET KEY를 입력해주세요!' }]}
-            children={
-              <S.Input
-                // type="password"
-                placeholder="SECRET KEY"
-              />
-            }
+            children={<S.Input placeholder="SECRET KEY" />}
           />
           <S.Form.Item
             children={

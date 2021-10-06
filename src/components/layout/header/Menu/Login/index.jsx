@@ -10,7 +10,7 @@ const Login = () => {
   const onFinished = useCallback(({ userId, password }) => {
     signIn({signInRequest : { userId, password },
       onSuccess: () => {
-        S.message.info('로그인이 완료되었습니다.');
+        S.message.success('로그인이 완료되었습니다.');
       },
       onFailure: () => {
         S.message.error('에러가 발생하였습니다.');

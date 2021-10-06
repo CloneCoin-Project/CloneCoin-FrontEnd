@@ -17,7 +17,7 @@ const Register = () => {
         password,
       },
       onSuccess: () => {
-        S.message.info('회원가입이 완료되었습니다.');
+        S.message.success('회원가입이 완료되었습니다.');
         setIsModalVisible(false);
       },
       onFailure: () => {
