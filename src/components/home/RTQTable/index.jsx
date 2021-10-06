@@ -1,5 +1,9 @@
 import { useTickerSocket } from '@hooks';
-import { parseToDataSource, tickerColumns } from '@utils/bithumb';
+import {
+  parseToDataSource,
+  tickerColumns,
+  isObjectEmpty,
+} from '@utils/bithumb';
 
 import * as S from '@components/home/RTQTable/style';
 
@@ -16,11 +20,13 @@ const RTQTable = () => {
         </S.Ribbon>
       </S.DividerContainer>
       <S.TableContainer>
-        <S.Table
-          columns={tickerColumns}
-          dataSource={parseToDataSource(currentTickers)}
-          pagination={false}
-        />
+        {!isObjectEmpty(currentTickers) && (
+          <S.Table
+            columns={tickerColumns}
+            dataSource={parseToDataSource(currentTickers)}
+            pagination={false}
+          />
+        )}
       </S.TableContainer>
     </>
   );

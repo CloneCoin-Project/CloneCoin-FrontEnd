@@ -5,13 +5,12 @@ import * as S from '@components/layout/header/Menu/style';
 import { LOGIN } from '@assets/string';
 
 const Login = () => {
-  const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
+  const { isModalVisible, handleToggle } = useModal();
   const { signIn, loginStatusLoading } = useUserData();
   const onFinished = useCallback(({ userId, password }) => {
     signIn({signInRequest : { userId, password },
       onSuccess: () => {
         S.message.info('로그인이 완료되었습니다.');
-        setIsModalVisible(false);
       },
       onFailure: () => {
         S.message.error('에러가 발생하였습니다.');

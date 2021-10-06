@@ -13,7 +13,9 @@ const UserInfo = () => {
           <S.TitleContainer>
             {`${userId} | ${userName}`}
             {userStatus === STATUS_LEADER && (
-              <S.Tag color="gold">{TEXT_LEADER}</S.Tag>
+              <S.Tag color="gold" style={{ width: '57px' }}>
+                {TEXT_LEADER}
+              </S.Tag>
             )}
           </S.TitleContainer>
         }

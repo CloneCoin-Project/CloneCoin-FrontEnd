@@ -5,7 +5,7 @@ import * as S from '@components/myportfolio/style';
 import { TEXT_NORAML_KR, LEADER_REGISTER } from '@assets/string';
 
 const LeaderRegisterModal = () => {
-  const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
+  const { isModalVisible, handleToggle } = useModal();
   const { ID, leaderRegisterLoading, leaderRegister } = useUserData();
 
   const onFinished = useCallback(({ apiKey, secretKey }) => {
@@ -13,7 +13,6 @@ const LeaderRegisterModal = () => {
       leaderRegisterRequest: { ID, apiKey, secretKey },
       onSuccess: () => {
         S.message.info('리더 등록이 완료되었습니다.');
-        setIsModalVisible(false);
       },
       onFailure: () => {
         S.message.error('에러가 발생하였습니다.');
@@ -52,7 +51,6 @@ const LeaderRegisterModal = () => {
           <S.Form.Item
             children={
               <S.LeaderRegisterButton
-                loading={leaderRegisterLoading}
                 block
                 htmlType="submit"
                 type="primary"

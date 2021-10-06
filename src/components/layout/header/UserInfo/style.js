@@ -16,8 +16,8 @@ export const Card = styled(AntdCard)`
 
 export const TitleContainer = styled.div`
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 5px;
+  flex-direction: column;
 `;
 
 export const Paragraph = styled.p`

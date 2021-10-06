@@ -124,13 +124,11 @@ const Register = () => {
               children={
                 <S.RegisterButtonContainer>
                   <S.RegisterButton
-                    // loading={registerLoading}
                     htmlType="submit"
                     type="primary"
                     children={'Register'}
                   />
                   <S.NormalButton
-                    // loading={registerLoading}
                     onClick={handleToggle}
                     style={{ margin: '0 8px' }}
                     children={'Cancel'}
