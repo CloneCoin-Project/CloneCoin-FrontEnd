@@ -26,7 +26,6 @@ const LeaderInfo = ({ icon, text, number, onClick }) => (
 );
 
 const YieldList = ({ all, best, worst }) => {
-  //not counted
   return (
     <S.YieldContainer>
       <S.YieldContentContainer>
