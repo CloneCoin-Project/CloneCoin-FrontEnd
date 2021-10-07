@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'binary01.me',
+  name: 'CloneCoin',
   script: 'http-server',
   interpreter: 'none',
-  args: 'public/ -p 80',
+  args: 'public/ -p 3000',
 };
