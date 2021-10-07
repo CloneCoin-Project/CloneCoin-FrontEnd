@@ -29,7 +29,6 @@
   "scripts": {
     "start": "craco start",
     "build": "CI= craco build",
-    "deploy": "cp ./.env.dev ./.env && craco build && pm2 start deploy.config.js",
     "test": "craco test",
     "eject": "craco eject"
   },
