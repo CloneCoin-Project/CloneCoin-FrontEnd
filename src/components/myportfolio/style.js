@@ -78,6 +78,13 @@ export const BalanceHeader = styled.div`
   height: 28px;
 `;
 
+export const BalanceContent = styled.div`
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+  height: 28px;
+`;
+
 export const DescriptionContainer = styled.div``;
 
 export const DescriptionContent = styled.div``;

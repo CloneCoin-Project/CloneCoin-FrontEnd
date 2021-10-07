@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useUserData } from '@hooks';
 import LeaderRegisterModal from '@components/myportfolio/LeaderRegisterModal';
+import LeaderDescription from '@components/myportfolio/Profile/Description';
 
 import * as S from '@components/myportfolio/style';
 import {
@@ -59,34 +60,20 @@ const MyProfile = () => {
           <S.Row>
             <S.Col span={24}>
               <S.BalanceHeader>
-                {HOLDING_KRW}
-                <S.Divider type="vertical" />
-                {HOLDING_TOTAL}
+                <span>{HOLDING_KRW}</span>
+                <span>{HOLDING_TOTAL}</span>
               </S.BalanceHeader>
             </S.Col>
             <S.Col span={24}>
-              <S.BalanceHeader>
-                {'1,000,000'}
-                <S.Divider type="vertical" />
-                {'2,000,000'}
-              </S.BalanceHeader>
+              <S.BalanceContent>
+                <span>{'1,000,000'}</span>
+                <span>{'1,000,000'}</span>
+              </S.BalanceContent>
             </S.Col>
           </S.Row>
         </S.Col>
       </S.Row>
-      {userStatus === STATUS_LEADER && (
-        <S.DescriptionContainer>
-          <S.Divider orientation="left" style={{ margin: '2rem 0' }}>
-            {DESC_TITLE}
-          </S.Divider>
-          <S.DescriptionContent>
-            안녕하세요 진수님입니다아ㅏㅏ 안녕하세요 진수님입니다아ㅏㅏ
-            안녕하세요 진수님입니다아ㅏㅏ 안녕하세요 진수님입니다아ㅏㅏ
-            안녕하세요 진수님입니다아ㅏㅏ 안녕하세요 진수님입니다아ㅏㅏ
-            안녕하세요 진수님입니다아ㅏㅏ 안녕하세요 진수님입니다아ㅏㅏ
-          </S.DescriptionContent>
-        </S.DescriptionContainer>
-      )}
+      {userStatus === STATUS_LEADER && <LeaderDescription />}
     </>
   );
 };

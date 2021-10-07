@@ -77,14 +77,42 @@ function* leaderRegisterSaga(action) {
   }
 }
 
+export const FETCH_DESC = `${PREFIX}/FETCH_DESC`;
+export const FETCH_DESC_SUCCESS = `${PREFIX}/FETCH_DESC_SUCCESS`;
+export const FETCH_DESC_FAILURE = `${PREFIX}/FETCH_DESC_FAILURE`;
+
+export const getDescription = createAsyncAction(
+  FETCH_DESC,
+  FETCH_DESC_SUCCESS,
+  FETCH_DESC_FAILURE,
+)();
+
+function* getDescriptionSaga(action) {
+  const { getDescriptionRequest } = action.payload;
+
+  try {
+    const data = yield call(userServices.getDescription, getDescriptionRequest);
+
+    yield put(
+      getDescription.success({
+        data,
+      }),
+    );
+  } catch (e) {
+    yield put(getDescription.failure());
+  }
+}
+
 export const userAsyncAction = {
   signIn,
   signUp,
   leaderRegister,
+  getDescription,
 };
 
 export default function* userSaga() {
   yield takeLatest(SIGN_IN, signInSaga);
   yield takeLatest(SIGN_UP, signUpSaga);
   yield takeLatest(LEADER_REGISTER, leaderRegisterSaga);
+  yield takeLatest(FETCH_DESC, getDescriptionSaga);
 }

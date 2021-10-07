@@ -37,6 +37,15 @@ const userServices = {
     );
     return;
   },
+
+  async getDescription({ userId }) {
+    const res = await Client.publicInstance.get(
+      `${Client.path.cloneCoinApi}/user/users/${userId}`,
+    );
+    const { description } = res.data;
+
+    return description ? description : '';
+  },
 };
 
 export default userServices;
