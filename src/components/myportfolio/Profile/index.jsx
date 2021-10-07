@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useUserData } from '@hooks';
-import LeaderRegisterModal from "@components/myportfolio/LeaderRegisterModal";
+import LeaderRegisterModal from '@components/myportfolio/LeaderRegisterModal';
 
 import * as S from '@components/myportfolio/style';
 import {
@@ -14,7 +14,6 @@ import {
 
 const MyProfile = () => {
   const { userName, userStatus } = useUserData();
-
 
   const handleLeaderDeleteClick = useCallback(() => {
     S.message.info('현재 비활성화된 기능입니다.');
@@ -42,9 +41,6 @@ const MyProfile = () => {
                     </S.Button>
                   </S.Popconfirm>
                 ) : (
-                  // <S.Button color="#e48701" type="text">
-                  //   {TEXT_NORAML_KR}
-                  // </S.Button>
                   <LeaderRegisterModal />
                 )}
               </S.NickNameContainer>
