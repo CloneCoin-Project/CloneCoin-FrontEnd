@@ -37,6 +37,14 @@ const useUserData = () => {
     [dispatch],
   );
 
+  const postDescription = useCallback(
+    (value) => {
+      //postDescriptionRequest {userid: id, description: string}, onSuccess, onFailure
+      dispatch(userAsyncAction.postDescription.request(value));
+    },
+    [dispatch],
+  );
+
   const signIn = useCallback(
     (value) => {
       //signInRequest {userId, password} onSuccess, onFailure
@@ -96,6 +104,7 @@ const useUserData = () => {
     email,
     userStatus,
     getDescription,
+    postDescription,
   };
 };
 

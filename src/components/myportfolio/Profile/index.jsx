@@ -2,6 +2,10 @@ import { useCallback } from 'react';
 import { useUserData } from '@hooks';
 import LeaderRegisterModal from '@components/myportfolio/LeaderRegisterModal';
 import LeaderDescription from '@components/myportfolio/Profile/Description';
+import {
+  LeaderBalance,
+  NormalBalance,
+} from '@components/myportfolio/Profile/Balance';
 
 import * as S from '@components/myportfolio/style';
 import {
@@ -66,8 +70,11 @@ const MyProfile = () => {
             </S.Col>
             <S.Col span={24}>
               <S.BalanceContent>
-                <span>{'1,000,000'}</span>
-                <span>{'1,000,000'}</span>
+                {userStatus === STATUS_LEADER ? (
+                  <LeaderBalance />
+                ) : (
+                  <NormalBalance />
+                )}
               </S.BalanceContent>
             </S.Col>
           </S.Row>

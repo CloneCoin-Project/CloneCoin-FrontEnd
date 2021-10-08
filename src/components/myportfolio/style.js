@@ -16,16 +16,18 @@ import {
 } from 'antd';
 
 import {
-  LikeOutlined,
   NotificationOutlined,
+  LikeOutlined,
   UserOutlined,
   CopyrightOutlined,
   ArrowRightOutlined,
   LikeTwoTone,
   CopyTwoTone,
+  EditOutlined,
 } from '@ant-design/icons';
 
 const { Meta, Grid } = AntdCard;
+const { TextArea } = Input;
 
 export const CardGrid = styled(Grid).attrs({
   hoverable: false,
@@ -47,6 +49,8 @@ export const CopyFollowContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const NormalButton = styled(AntdButton)``;
 
 export const Button = styled(AntdButton)`
   color: ${(props) => (props.color ? props.color : 'inherit')};
@@ -83,6 +87,12 @@ export const BalanceContent = styled.div`
   justify-content: space-around;
   font-size: 16px;
   height: 28px;
+`;
+
+export const DividerContent = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
 `;
 
 export const DescriptionContainer = styled.div``;
@@ -123,6 +133,7 @@ export const TableContainer = styled.div`
 export {
   NotificationOutlined,
   UserOutlined,
+  EditOutlined,
   Avatar,
   Meta,
   Row,
@@ -133,4 +144,5 @@ export {
   message,
   Form,
   Input,
+  TextArea,
 };

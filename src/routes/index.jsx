@@ -18,7 +18,7 @@ const homeRoute = [
 
 const leaderListRoute = [
   {
-    path: 'leaderlist',
+    path: 'leaderlist/:leaderId',
     element: <LeaderListPage />,
   },
 ];

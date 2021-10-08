@@ -66,6 +66,16 @@ const userSlice = createSlice({
       })
       .addCase(`${userAsyncAction.getDescription.failure}`, (state) => {
         state.userDescription.loading = false;
+      })
+      .addCase(`${userAsyncAction.postDescription.request}`, (state) => {
+        state.userDescription.loading = true;
+      })
+      .addCase(`${userAsyncAction.postDescription.success}`, (state, action) => {
+        state.userDescription.loading = false;
+        state.userDescription.data = action.payload.data;
+      })
+      .addCase(`${userAsyncAction.postDescription.failure}`, (state) => {
+        state.userDescription.loading = false;
       });
   },
 });
