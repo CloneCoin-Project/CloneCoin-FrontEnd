@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { useWalletData } from '@hooks';
 
-import { isHome, yieldArr } from '@utils/listUtil';
+import { isHome, yieldArr, convertToFixed } from '@utils/listUtil';
 
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
@@ -124,9 +124,9 @@ const List = () => {
                 <S.Col xs={24} sm={12}>
                   <S.CardGrid>
                     <YieldList
-                      all={item.all}
-                      best={item.best}
-                      worst={item.worst}
+                      all={convertToFixed(item.all)}
+                      best={convertToFixed(item.best)}
+                      worst={convertToFixed(item.worst)}
                     />
                   </S.CardGrid>
                 </S.Col>

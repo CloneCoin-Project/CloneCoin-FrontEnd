@@ -9,7 +9,6 @@ const userServices = {
         password,
       },
     );
-
     const { id, username, email, name, role } = res.data;
     return { ID: id, userId: username, userName: name, email, status: role };
   },
@@ -22,7 +21,6 @@ const userServices = {
       email,
       role: 'normal',
     });
-
     return;
   },
 
@@ -36,6 +34,25 @@ const userServices = {
       },
     );
     return;
+  },
+
+  async getDescription({ userId }) {
+    const res = await Client.publicInstance.get(
+      `${Client.path.cloneCoinApi}/user/users/${userId}`,
+    );
+    const { description } = res.data;
+    return description ? description : '';
+  },
+
+  async postDescription({ userId, description }) {
+    const res = await Client.publicInstance.post(
+      `${Client.path.cloneCoinApi}/user/description`,
+      {
+        userId,
+        description,
+      },
+    );
+    return description;
   },
 };
 

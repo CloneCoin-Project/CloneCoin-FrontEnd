@@ -19,6 +19,11 @@ const initialState = {
     loading: false,
     error: null,
   },
+  userDescription: {
+    loading: false,
+    data: '',
+    error: null,
+  },
 };
 
 const userSlice = createSlice({
@@ -51,6 +56,26 @@ const userSlice = createSlice({
       })
       .addCase(`${userAsyncAction.leaderRegister.failure}`, (state) => {
         state.leaderRegister.loading = false;
+      })
+      .addCase(`${userAsyncAction.getDescription.request}`, (state) => {
+        state.userDescription.loading = true;
+      })
+      .addCase(`${userAsyncAction.getDescription.success}`, (state, action) => {
+        state.userDescription.loading = false;
+        state.userDescription.data = action.payload.data;
+      })
+      .addCase(`${userAsyncAction.getDescription.failure}`, (state) => {
+        state.userDescription.loading = false;
+      })
+      .addCase(`${userAsyncAction.postDescription.request}`, (state) => {
+        state.userDescription.loading = true;
+      })
+      .addCase(`${userAsyncAction.postDescription.success}`, (state, action) => {
+        state.userDescription.loading = false;
+        state.userDescription.data = action.payload.data;
+      })
+      .addCase(`${userAsyncAction.postDescription.failure}`, (state) => {
+        state.userDescription.loading = false;
       });
   },
 });
@@ -87,6 +112,26 @@ export const LeaderRegisterSelector = {
   error: createSelector(
     leaderRegisterSelector,
     (leaderRegister) => leaderRegister.error,
+  ),
+};
+
+const userDescriptionSelector = createSelector(
+  selfSelector,
+  (state) => state.userDescription,
+);
+
+export const UserDescriptionSelector = {
+  loading: createSelector(
+    userDescriptionSelector,
+    (userDescription) => userDescription.loading,
+  ),
+  data: createSelector(
+    userDescriptionSelector,
+    (userDescription) => userDescription.data,
+  ),
+  error: createSelector(
+    userDescriptionSelector,
+    (userDescription) => userDescription.error,
   ),
 };
 

@@ -5,6 +5,7 @@ import { userAsyncAction } from '@store/modules/user/saga';
 import {
   LoginStatusSelector,
   LeaderRegisterSelector,
+  UserDescriptionSelector,
   userAction,
 } from '@store/modules/user';
 
@@ -21,6 +22,28 @@ const useUserData = () => {
     useAppSelector(LeaderRegisterSelector.loading),
     useAppSelector(LeaderRegisterSelector.error),
   ];
+
+  const [userDescriptionLoading, userDescriptionData, userDescriptionError] = [
+    useAppSelector(UserDescriptionSelector.loading),
+    useAppSelector(UserDescriptionSelector.data),
+    useAppSelector(UserDescriptionSelector.error),
+  ];
+
+  const getDescription = useCallback(
+    (value) => {
+      //getDescriptionRequest {userid: id}
+      dispatch(userAsyncAction.getDescription.request(value));
+    },
+    [dispatch],
+  );
+
+  const postDescription = useCallback(
+    (value) => {
+      //postDescriptionRequest {userid: id, description: string}, onSuccess, onFailure
+      dispatch(userAsyncAction.postDescription.request(value));
+    },
+    [dispatch],
+  );
 
   const signIn = useCallback(
     (value) => {
@@ -71,12 +94,17 @@ const useUserData = () => {
     loginStatusError,
     leaderRegisterLoading,
     leaderRegisterError,
+    userDescriptionLoading,
+    userDescriptionData,
+    userDescriptionError,
     isLogged,
     ID,
     userName,
     userId,
     email,
     userStatus,
+    getDescription,
+    postDescription,
   };
 };
 

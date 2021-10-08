@@ -9,6 +9,15 @@ const initialState = {
     data: [],
     error: null,
   },
+  selectedLeader: {
+    loading: false,
+    data: {
+      leaderId: null,
+      balance: null,
+      coins: [],
+    },
+    error: null,
+  }
 };
 
 const walletSlice = createSlice({
