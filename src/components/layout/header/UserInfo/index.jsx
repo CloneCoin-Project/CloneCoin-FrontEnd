@@ -26,9 +26,9 @@ const UserInfo = () => {
         description={
           <>
             <S.Paragraph>{`Email: ${email}`}</S.Paragraph>
-            {userStatus === STATUS_LEADER && (
+            {/* {userStatus === STATUS_LEADER && (
               <S.Paragraph>description</S.Paragraph>
-            )}
+            )} */}
           </>
         }
       />

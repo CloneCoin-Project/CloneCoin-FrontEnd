@@ -18,14 +18,14 @@ const homeRoute = [
 
 const leaderListRoute = [
   {
-    path: 'leaderlist/:leaderId',
+    path: 'leaderlist',
     element: <LeaderListPage />,
   },
 ];
 
 const leaderPortfolioRoute = [
   {
-    path: 'leader',
+    path: 'leader/:leaderId',
     element: <LeaderPortfolioPage />,
   },
 ];

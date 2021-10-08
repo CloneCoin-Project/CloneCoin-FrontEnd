@@ -1,8 +1,24 @@
+import { useEffect } from 'react';
+
+import { useUserData, useWalletData } from '@hooks';
+import { convertToFloorLocaleString } from '@utils/parse';
+
 const LeaderBalance = () => {
+  const { ID } = useUserData();
+  const {
+    getSelectedLeader,
+    selectedLeaderLoading,
+    leaderBalance,
+    leaderTotalBalance,
+  } = useWalletData();
+
+  useEffect(() => {
+    getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
+  }, []);
   return (
     <>
-      <span>{'1,000,000'}</span>
-      <span>{'1,000,000'}</span>
+      <span>{`${convertToFloorLocaleString(leaderBalance)} 원`}</span>
+      <span>{`${convertToFloorLocaleString(leaderTotalBalance)} 원`}</span>
     </>
   );
 };
