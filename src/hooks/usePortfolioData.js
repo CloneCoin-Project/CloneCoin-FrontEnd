@@ -2,7 +2,10 @@ import { useCallback, useMemo } from 'react';
 
 import { useAppSelector, useAppDispatch } from '@store';
 import { portfolioAsyncAction } from '@store/modules/portfolio/saga';
-import { MyPortfolioSelector, CopyLeaderSelector } from '@store/modules/portfolio';
+import {
+  MyPortfolioSelector,
+  CopyLeaderSelector,
+} from '@store/modules/portfolio';
 
 const usePortfolioData = () => {
   const dispatch = useAppDispatch();
@@ -17,10 +20,7 @@ const usePortfolioData = () => {
     useAppSelector(MyPortfolioSelector.error),
   ];
 
-  const [
-    copyLeaderSelectorLoading,
-    copyLeaderSelectorError,
-  ] = [
+  const [copyLeaderSelectorLoading, copyLeaderSelectorError] = [
     useAppSelector(CopyLeaderSelector.loading),
     useAppSelector(CopyLeaderSelector.error),
   ];
@@ -33,10 +33,10 @@ const usePortfolioData = () => {
   );
 
   const startCopy = useCallback(
-	(value) => {
-		dispatch(portfolioAsyncAction.startCopy.request(value));
-	},
-	[dispatch],
+    (value) => {
+      dispatch(portfolioAsyncAction.startCopy.request(value));
+    },
+    [dispatch],
   );
 
   const normalUserBalance = useMemo(
@@ -57,12 +57,12 @@ const usePortfolioData = () => {
 
   return {
     getMyportfolio,
-	startCopy,
+    startCopy,
     myPortfolioSelectorLoading,
     myPortfolioSelectorData,
     myPortfolioSelectorError,
-	copyLeaderSelectorLoading,
-	copyLeaderSelectorError,
+    copyLeaderSelectorLoading,
+    copyLeaderSelectorError,
     normalUserBalance,
     normalUserTotalBalance,
   };

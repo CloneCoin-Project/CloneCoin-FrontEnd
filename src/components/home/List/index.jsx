@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
-import { useWalletData } from '@hooks';
+import { useWalletData, useUserData, usePortfolioData } from '@hooks';
 
 import { isHome, yieldArr } from '@utils/listUtil';
 import { convertToFixed } from '@utils/parse';
@@ -53,10 +53,20 @@ const List = () => {
 
   const { getAllLeader, LeaderListLoading, refinedLeaderList } =
     useWalletData();
+  const { isLogged, ID, userStatus } = useUserData();
+  const { normalUserBalance, getMyportfolio } = usePortfolioData();
+
+  console.log(normalUserBalance); //<- 로그인 한 상태면 밸런스가 나오고 그외의 상태에서는 0이 나옴
 
   useEffect(() => {
     getAllLeader();
   }, []);
+
+  useEffect(() => {
+    if (isLogged && userStatus === 'normal') {
+      getMyportfolio({ getMyportfolioRequest: { userId: ID } });
+    }
+  }, [userStatus, isLogged]);
 
   const handlePortfolioClick = useCallback(
     (leaderId) => {
@@ -93,18 +103,21 @@ const List = () => {
                   number={156}
                   key="list-vertical-follow-o"
                 />,
-				<CopyModal key={item.leaderName}
-					leaderId={item.leaderId} leaderName={item.leaderName} 
-					leaderEarningRate={item.all} leaderEarningBest={item.best} 
-					triggerButton={
-						<LeaderInfo
-							text="Copy"
-							icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
-							number={156}
-							key="list-vertical-cory-o"
-						/>
-					}
-				/>,
+                <CopyModal
+                  key={item.leaderName}
+                  leaderId={item.leaderId}
+                  leaderName={item.leaderName}
+                  leaderEarningRate={item.all}
+                  leaderEarningBest={item.best}
+                  triggerButton={
+                    <LeaderInfo
+                      text="Copy"
+                      icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
+                      number={156}
+                      key="list-vertical-cory-o"
+                    />
+                  }
+                />,
                 <LeaderInfo
                   text="More"
                   icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
