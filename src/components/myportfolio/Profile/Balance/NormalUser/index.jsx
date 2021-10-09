@@ -1,8 +1,20 @@
+import { useEffect } from 'react';
+
+import { useUserData, usePortfolioData } from '@hooks';
+import { convertToFloorLocaleString } from '@utils/parse';
+
 const NormalUserBalance = () => {
+  const { ID } = useUserData();
+  const { getMyportfolio, normalUserBalance, normalUserTotalBalance } = usePortfolioData();
+
+  useEffect(() => {
+    getMyportfolio({ getMyportfolioRequest: { userId: ID } });
+  }, []);
+
   return (
     <>
-      <span>{'1,000,000'}</span>
-      <span>{'1,000,000'}</span>
+      <span>{`${convertToFloorLocaleString(normalUserBalance)} 원`}</span>
+      <span>{`${convertToFloorLocaleString(normalUserTotalBalance)} 원`}</span>
     </>
   );
 };

@@ -2,7 +2,8 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { useWalletData } from '@hooks';
 
-import { isHome, yieldArr, convertToFixed } from '@utils/listUtil';
+import { isHome, yieldArr } from '@utils/listUtil';
+import { convertToFixed } from '@utils/parse';
 
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
@@ -13,14 +14,13 @@ import {
   VIEW_MORE,
 } from '@assets/string';
 
-const LeaderInfo = ({ icon, text, number, onClick }) => (
+const LeaderInfo = ({ icon, text, onClick }) => (
   <S.Row align="center">
     <S.Col span={24}>
       <S.LeaderInfoTitle>{text}</S.LeaderInfoTitle>
     </S.Col>
     <S.Col span={24}>
       <S.Button type="text" icon={icon} onClick={onClick} />
-      {/* <S.LeaderInfoNumber>{number}</S.LeaderInfoNumber> API 나오기전까지 임시 disabled */}
     </S.Col>
   </S.Row>
 );
@@ -57,9 +57,12 @@ const List = () => {
     getAllLeader();
   }, []);
 
-  const handlePortfolioClick = useCallback(() => {
-    navigate({ pathname: '/leader' });
-  }, [navigate]);
+  const handlePortfolioClick = useCallback(
+    (leaderId) => {
+      navigate({ pathname: `/leader/${leaderId}` });
+    },
+    [navigate],
+  );
 
   const handleLeaderListClick = useCallback(() => {
     navigate({ pathname: '/leaderlist' });
@@ -99,7 +102,9 @@ const List = () => {
                   text="More"
                   icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
                   key="list-vertical-more-o"
-                  onClick={handlePortfolioClick}
+                  onClick={() => {
+                    handlePortfolioClick(item.leaderId);
+                  }}
                 />,
               ]}
             >

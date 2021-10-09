@@ -7,6 +7,3 @@ export const yieldArr = (all, best, worst) => [
   { type: 'BEST', title: BEST_YILED, number: best },
   { type: 'WORST', title: WORST_YILED, number: worst },
 ];
-
-export const convertToFixed = (num) =>
-  typeof num === 'number' ? num.toFixed(2) : num;

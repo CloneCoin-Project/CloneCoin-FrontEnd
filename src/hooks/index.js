@@ -4,3 +4,4 @@ export { default as useTickerAllData } from '@/hooks/useTickerAllData';
 export { default as useModal } from '@/hooks/useModal';
 export { default as useUserData } from '@/hooks/useUserData';
 export { default as useWalletData } from '@/hooks/useWalletData';
+export { default as usePortfolioData } from '@/hooks/usePortfolioData';

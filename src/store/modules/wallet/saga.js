@@ -45,12 +45,12 @@ function* getSelectedLeaderSaga(action) {
     const data = yield call(walletServices.fetchLeaderInfo, getSelectedLeaderRequest);
 
     yield put(
-      getAllLeader.success({
+      getSelectedLeader.success({
         data,
       }),
     );
   } catch (e) {
-    yield put(getAllLeader.failure());
+    yield put(getSelectedLeader.failure());
   }
 }
 
