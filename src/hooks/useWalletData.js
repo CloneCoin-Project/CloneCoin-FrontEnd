@@ -66,6 +66,11 @@ const useWalletData = () => {
     [selectedLeaderData, selectedLeaderLoading],
   );
 
+  const leaderCoins = useMemo(
+    () => (selectedLeaderData?.coins ? selectedLeaderData.coins : []),
+    [selectedLeaderData, selectedLeaderLoading],
+  );
+
   const leaderTotalBalance = useMemo(() => {
     if (selectedLeaderData?.coins?.length > 0) {
       return selectedLeaderData.coins.reduce(
@@ -75,7 +80,23 @@ const useWalletData = () => {
     } else return 0;
   }, [selectedLeaderData, selectedLeaderLoading]);
 
-  const chartProfit = useMemo(
+  const leaderInvestRatio = useMemo(() => {
+    if (selectedLeaderData?.coins?.length > 0) {
+      const investCoinTotalBalance = selectedLeaderData.coins.reduce(
+        (acc, coin) => acc + coin.avgPrice * coin.coinQuantity,
+        0,
+      );
+
+      const InvestRatio = selectedLeaderData.coins.map((coin) => ({
+        coinName: coin.coinName,
+        ratio:
+          ((coin.avgPrice * coin.coinQuantity) / investCoinTotalBalance) * 100,
+      }));
+      return InvestRatio;
+    } else return null;
+  }, [selectedLeaderData, selectedLeaderLoading]);
+
+  const chartLeaderProfit = useMemo(
     () =>
       selectedLeaderProfitData?.profits ? selectedLeaderProfitData.profits : [],
     [selectedLeaderProfitLoading, selectedLeaderProfitData],
@@ -91,13 +112,15 @@ const useWalletData = () => {
     selectedLeaderLoading,
     selectedLeaderData,
     selectedLeaderError,
+    leaderCoins,
     leaderBalance,
     leaderTotalBalance,
+    leaderInvestRatio,
     getSelectedLeaderProfit,
     selectedLeaderProfitLoading,
     selectedLeaderProfitData,
     selectedLeaderProfitError,
-    chartProfit,
+    chartLeaderProfit,
   };
 };
 

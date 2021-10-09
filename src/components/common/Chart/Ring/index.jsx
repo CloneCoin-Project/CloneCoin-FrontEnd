@@ -1,71 +1,77 @@
 import { useEffect, useState } from 'react';
+
+import { useWalletData, useUserData, usePortfolioData } from '@hooks';
+import { convertToFixed } from '@utils/parse';
 import * as S from '@/components/common/Chart/style';
+
 import { RING_COLOR } from '@assets/color';
-import { shuffle } from '@utils/random';
-import axios from 'axios';
+import { STATUS_LEADER, STATUS_NORMAL } from '@assets/string';
 
-const RingDetail = ({ data, color }) => {
-	const [detail, setDetail] = useState([]);
-
-	useEffect(() => {
-		// setDetail
-		let result = [];
-		let sum = data.reduce(function (accumulator, currentValue) {
-			return accumulator + currentValue.value;
-		}, 0)
-
-		for (let i=0; i<data.length; i++) {
-			result.push({ ...data[i], percentage: (data[i].value / sum * 100).toFixed(2) + '%', color: color[i] })
-		}
-		setDetail(result);
-		
-	}, [data, color]);
-
-	return (
-		<S.DetailContainer>
-			{ detail.map(
-				(item, i) => 
-				<S.Detail key={i}>
-					<S.SmallCircle color={item.color} />
-					<S.Name>{item.name} {item.percentage}</S.Name>
-				</S.Detail> ) 
-			}
-		</S.DetailContainer>
-	);
-}
-
+const RingDetail = ({ data, status }) => {
+  return (
+    <S.DetailContainer>
+      {data.map((item, index) => (
+        <S.Detail key={index}>
+          <S.SmallCircle color={RING_COLOR[index % RING_COLOR.length]} />
+          <S.Name>
+            {status === STATUS_LEADER ? item.coinName : item.leaderName}
+          </S.Name>
+          <S.Ratio>
+            {status === STATUS_LEADER
+              ? `${convertToFixed(item.ratio)}%`
+              : `${item.copyRatio}%`}
+          </S.Ratio>
+        </S.Detail>
+      ))}
+    </S.DetailContainer>
+  );
+};
 
 const Ring = () => {
-	const [data, setData] = useState([
-		{ name: 'Group A', value: 400 },
-		{ name: 'Group B', value: 300 },
-		{ name: 'Group C', value: 300 },
-		{ name: 'Group D', value: 200 },
-	]);
-	const [color, setColor] = useState(RING_COLOR);
+  const [invertData, setInvertData] = useState();
+  const { userStatus } = useUserData();
+  const { leaderInvestRatio } = useWalletData();
+  const { myPortfolioRatioSelectorData } = usePortfolioData();
 
-	useEffect(() => {
-	}, []);
-	
-	return (
-		<S.Container>
-			<S.PieChart width={200} height={200}>
-				<S.Pie
-					data={data}
-					innerRadius={40}
-					outerRadius={80}
-					paddingAngle={0}
-					startAngle={90}
-					endAngle={450}
-				>
-					{data.map((entry, index) => (
-						<S.Cell key={`cell-${index}`} fill={color[index % color.length]} />
-					))}
-				</S.Pie>
-			</S.PieChart>
-			<RingDetail data={data} color={color} style={{width:"400px"}}/>
-		</S.Container>
-	);
-}
+  useEffect(() => {
+    if (userStatus === STATUS_LEADER) {
+      setInvertData(leaderInvestRatio);
+    } else if (userStatus === STATUS_NORMAL) {
+      setInvertData(myPortfolioRatioSelectorData);
+    }
+  }, [userStatus, leaderInvestRatio, myPortfolioRatioSelectorData]);
+
+  return (
+    <S.Container>
+      {invertData && (
+        <>
+          <S.PieChart width={200} height={200}>
+            <S.Pie
+              data={invertData}
+              innerRadius={40}
+              outerRadius={80}
+              paddingAngle={0}
+              startAngle={90}
+              endAngle={450}
+              dataKey={userStatus === STATUS_LEADER ? 'ratio' : 'copyRatio'}
+            >
+              {invertData.map((entry, index) => (
+                <S.Cell
+                  key={`cell-${index}`}
+                  fill={RING_COLOR[index % RING_COLOR.length]}
+                />
+              ))}
+            </S.Pie>
+          </S.PieChart>
+          <RingDetail
+            data={invertData}
+            status={userStatus}
+            style={{ width: '400px' }}
+          />
+        </>
+      )}
+    </S.Container>
+  );
+};
 
 export default Ring;
