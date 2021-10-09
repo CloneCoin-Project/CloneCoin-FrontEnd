@@ -6,6 +6,7 @@ import { walletAsyncAction } from '@store/modules/wallet/saga';
 import {
   LeaderListSelector,
   SelectedLeaderSelector,
+  SelectedLeaderProfitSelector,
 } from '@store/modules/wallet';
 
 const useWalletData = () => {
@@ -25,6 +26,16 @@ const useWalletData = () => {
     useAppSelector(SelectedLeaderSelector.error),
   ];
 
+  const [
+    selectedLeaderProfitLoading,
+    selectedLeaderProfitData,
+    selectedLeaderProfitError,
+  ] = [
+    useAppSelector(SelectedLeaderProfitSelector.loading),
+    useAppSelector(SelectedLeaderProfitSelector.data),
+    useAppSelector(SelectedLeaderProfitSelector.error),
+  ];
+
   const getAllLeader = useCallback(() => {
     dispatch(walletAsyncAction.getAllLeader.request());
   }, [dispatch]);
@@ -33,6 +44,14 @@ const useWalletData = () => {
     (value) => {
       //getSelectedLeaderRequest { leaderId }
       dispatch(walletAsyncAction.getSelectedLeader.request(value));
+    },
+    [dispatch],
+  );
+
+  const getSelectedLeaderProfit = useCallback(
+    (value) => {
+      //getSelectedLeaderProfitRequest { leaderId, profit }
+      dispatch(walletAsyncAction.getSelectedLeaderProfit.request(value));
     },
     [dispatch],
   );
@@ -56,6 +75,12 @@ const useWalletData = () => {
     } else return 0;
   }, [selectedLeaderData, selectedLeaderLoading]);
 
+  const chartProfit = useMemo(
+    () =>
+      selectedLeaderProfitData?.profits ? selectedLeaderProfitData.profits : [],
+    [selectedLeaderProfitLoading, selectedLeaderProfitData],
+  );
+
   return {
     getAllLeader,
     LeaderListLoading,
@@ -68,6 +93,11 @@ const useWalletData = () => {
     selectedLeaderError,
     leaderBalance,
     leaderTotalBalance,
+    getSelectedLeaderProfit,
+    selectedLeaderProfitLoading,
+    selectedLeaderProfitData,
+    selectedLeaderProfitError,
+    chartProfit,
   };
 };
 
