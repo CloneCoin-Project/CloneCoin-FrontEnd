@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Card as AntdCard, Button as AntdButton, Avatar as AntdAvatar } from 'antd';
 import { UserOutlined, StarOutlined, StarFilled } from '@ant-design/icons';
+import { BITHUMB_COLOR } from '@/assets/color';
 
 // Upper Section
 export const Avatar = styled(AntdAvatar)`
@@ -28,6 +29,22 @@ export const FollowButton = styled(AntdButton)`
 export const CopyButton = styled(AntdButton)`
 	flex-grow: 1;
 	margin: auto 10px;
+`;
+
+export const CopyChangeButton = styled(AntdButton)`
+	flex-grow: 1;
+	margin: auto 10px;
+	background: ${BITHUMB_COLOR[1]};
+	border-color: ${BITHUMB_COLOR[1]};
+
+	&:hover {
+		background: ${BITHUMB_COLOR[1]};
+		border-color: ${BITHUMB_COLOR[1]};
+	}
+	&:focus {
+		background: ${BITHUMB_COLOR[1]};
+		border-color: ${BITHUMB_COLOR[1]};
+	}
 `;
 
 export const InnerSection = styled.div`

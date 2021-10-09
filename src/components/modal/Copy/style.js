@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { Modal as AntdModal, Slider, InputNumber as AntdInputNumber, Row as AntdRow, Col as AntdCol, Avatar as AntdAvatar, message } from 'antd';
+import {
+	Modal as AntdModal, Slider, InputNumber as AntdInputNumber, 
+	Row as AntdRow, Col as AntdCol, Avatar as AntdAvatar, message,
+	Tabs as AntdTabs 
+} from 'antd';
 import { BITHUMB_COLOR } from '@assets/color';
 
 // ProfileMini
@@ -62,6 +66,24 @@ export const ResultInfo = styled.h3`
 export const Trigger = styled.div`
 `;
 
+// Tabs
+export const Tabs = styled(AntdTabs)`
+	.ant-tabs-nav-wrap {
+	}
+	.ant-tabs-nav-list {
+		width: 80%;
+	}
+	.ant-tabs-nav-list .ant-tabs-tab {
+		display: flex;
+		justify-content: space-evenly;
+		width: 50%;
+	}
+`;
+
+export const TabPane = styled(AntdTabs.TabPane)`
+`;
+
+// Modal
 export const Modal = styled(AntdModal)`
 	&.ant-modal {
 		width: 400px !important;

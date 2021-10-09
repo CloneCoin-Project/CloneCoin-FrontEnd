@@ -56,8 +56,6 @@ const List = () => {
   const { isLogged, ID, userStatus } = useUserData();
   const { normalUserBalance, getMyportfolio } = usePortfolioData();
 
-  console.log(normalUserBalance); //<- 로그인 한 상태면 밸런스가 나오고 그외의 상태에서는 0이 나옴
-
   useEffect(() => {
     getAllLeader();
   }, []);

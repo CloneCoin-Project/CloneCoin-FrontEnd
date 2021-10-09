@@ -7,6 +7,8 @@ import {
   CopyLeaderSelector,
 } from '@store/modules/portfolio';
 
+import { convertObjArrToPropArr } from '@utils/parse';
+
 const usePortfolioData = () => {
   const dispatch = useAppDispatch();
 
@@ -55,6 +57,14 @@ const usePortfolioData = () => {
     [myPortfolioSelectorData, myPortfolioSelectorLoading],
   );
 
+  const currentCopyingLeaders = useMemo(
+    () => 
+      myPortfolioSelectorData?.leaders
+        ? convertObjArrToPropArr(myPortfolioSelectorData.leaders, "leaderId")
+		: [],
+	[myPortfolioSelectorData, myPortfolioSelectorLoading, copyLeaderSelectorLoading]
+  );
+
   return {
     getMyportfolio,
     startCopy,
@@ -65,6 +75,7 @@ const usePortfolioData = () => {
     copyLeaderSelectorError,
     normalUserBalance,
     normalUserTotalBalance,
+	currentCopyingLeaders,
   };
 };
 
