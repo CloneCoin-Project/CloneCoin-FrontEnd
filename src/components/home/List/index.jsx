@@ -1,10 +1,11 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
-import { useWalletData } from '@hooks';
+import { useUserData, useWalletData } from '@hooks';
 
 import { isHome, yieldArr } from '@utils/listUtil';
 import { convertToFixed } from '@utils/parse';
 
+import { CopyModal } from '@/components/modal';
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
 import {
@@ -50,6 +51,8 @@ const List = () => {
   const location = useLocation();
   const { pathname } = location;
 
+  const { userStatus } = useUserData();
+
   const { getAllLeader, LeaderListLoading, refinedLeaderList } =
     useWalletData();
 
@@ -92,12 +95,16 @@ const List = () => {
                   number={156}
                   key="list-vertical-follow-o"
                 />,
-                <LeaderInfo
-                  text="Copier"
-                  icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
-                  number={156}
-                  key="list-vertical-cory-o"
-                />,
+				<CopyModal key={item.leaderName}
+					triggerButton={
+						<LeaderInfo
+							text="Copy"
+							icon={<S.CopyrightOutlined onClick={userStatus == 'leader' ? () => console.log('leader') : () =>console.log('normal')} style={{ fontSize: 18 }} />}
+							number={156}
+							key="list-vertical-cory-o"
+						/>
+					}
+				/>,
                 <LeaderInfo
                   text="More"
                   icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}

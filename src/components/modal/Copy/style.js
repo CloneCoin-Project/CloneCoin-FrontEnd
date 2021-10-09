@@ -59,6 +59,9 @@ export const ResultInfo = styled.h3`
 	color: #1890FF;
 `;
 
+export const Trigger = styled.div`
+`;
+
 export const Modal = styled(AntdModal)`
 	&.ant-modal {
 		width: 400px !important;
