@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 
 import { useAppSelector, useAppDispatch } from '@store';
 import { portfolioAsyncAction } from '@store/modules/portfolio/saga';
-import { MyPortfolioSelector } from '@store/modules/portfolio';
+import { MyPortfolioSelector, CopyLeaderSelector } from '@store/modules/portfolio';
 
 const usePortfolioData = () => {
   const dispatch = useAppDispatch();

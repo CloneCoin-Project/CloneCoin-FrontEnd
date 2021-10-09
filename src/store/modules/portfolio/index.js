@@ -69,7 +69,7 @@ const copyLeaderSelector = createSelector(
 	(state) => state.copyLeader,
 );
 
-export const copyLeaderSelector = {
+export const CopyLeaderSelector = {
 	loading: createSelector(
 		copyLeaderSelector,
 		(copyLeader) => copyLeader.loading,
