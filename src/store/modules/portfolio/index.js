@@ -35,7 +35,7 @@ const portfolioSlice = createSlice({
         state.myPortfolio.loading = false;
         state.myPortfolio.data = initialState.myPortfolio.data;
       })
-	  .addCase(`${portfolioAsyncAction.startCopy.request}`, (state) => {
+      .addCase(`${portfolioAsyncAction.startCopy.request}`, (state) => {
         state.copyLeader.loading = true;
       })
       .addCase(`${portfolioAsyncAction.startCopy.success}`, (state, action) => {
