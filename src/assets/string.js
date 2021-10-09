@@ -67,7 +67,9 @@ export const RATE_30DAYS = "30일";
 export const RATE_ALL = "전체";
 
 export const INVEST_STATUS = "투자 현황";
+export const INVEST_LIST = "투자 리스트";
 export const INVEST_TYPE = "투자 스타일";
+
 export const TYPE_A = "평균 보유일";
 export const TYPE_B = "월 평균 매매 횟수";
 export const TYPE_C = "주 평균 매매 횟수";
@@ -81,3 +83,7 @@ export const COPYRIGHT = "©";
 export const BUILT = "Built With";
 export const ACADEMY = "Bithumb Tech Academy";
 export const THIS_YEAR = "2021";
+
+export const ONE_DAY = '1일';
+export const SEVEN_DAY = '7일';
+export const THIRTY_DAY = '30일';

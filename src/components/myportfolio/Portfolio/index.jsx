@@ -1,22 +1,47 @@
 import { useEffect, useState } from 'react';
-import { useUserData, useWalletData } from '@hooks';
+import { useUserData, useWalletData, usePortfolioData } from '@hooks';
 
 import YieldLineChart from '@components/myportfolio/LineChart';
-import YiledPieChart from '@components/myportfolio/PieChart';
 import InvestList from '@components/myportfolio/InvestList';
-
 import * as S from '@components/myportfolio/style';
-import { STATUS_LEADER } from '@assets/string';
+import { Ring } from '@components/common/Chart';
+
+import {
+  STATUS_LEADER,
+  STATUS_NORMAL,
+  ONE_DAY,
+  SEVEN_DAY,
+  THIRTY_DAY,
+  PROFILE_TAB_LEFT,
+  EARNING_RATE,
+  INVEST_STATUS,
+  INVEST_LIST,
+} from '@assets/string';
 
 const MyPortfolio = () => {
   const [period, setPeriod] = useState(1);
   const { userStatus, ID } = useUserData();
-  const { getSelectedLeaderProfit } = useWalletData();
+  const { getSelectedLeader, getSelectedLeaderProfit } = useWalletData();
+  const { getMyportfolioProfit, getMyportfolioRatio } = usePortfolioData();
+
+  useEffect(() => {
+    if (userStatus === STATUS_LEADER) {
+      getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
+    } else if (userStatus === STATUS_NORMAL) {
+      getMyportfolioRatio({
+        getMyportfolioRatioRequest: { userId: ID },
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (userStatus === STATUS_LEADER) {
       getSelectedLeaderProfit({
         getSelectedLeaderProfitRequest: { leaderId: ID, period },
+      });
+    } else if (userStatus === STATUS_NORMAL) {
+      getMyportfolioProfit({
+        getMyportfolioProfitRequest: { userId: ID, period },
       });
     }
   }, [period]);
@@ -24,27 +49,33 @@ const MyPortfolio = () => {
   return (
     <>
       <S.Divider orientation="left" style={{ margin: '2rem 0' }}>
-        Portfolio
+        {PROFILE_TAB_LEFT}
       </S.Divider>
 
-      <S.PortfolioHeader>수익률</S.PortfolioHeader>
+      <S.PortfolioHeader>{EARNING_RATE}</S.PortfolioHeader>
       <S.Row justify="end">
         <S.ButtonContainer>
-          <S.NormalButton shape="round" onClick={() => setPeriod(1)}>
-            1일
-          </S.NormalButton>
-          <S.NormalButton shape="round" onClick={() => setPeriod(7)}>
-            7일
-          </S.NormalButton>
-          <S.NormalButton shape="round" onClick={() => setPeriod(30)}>
-            30일
-          </S.NormalButton>
+          <S.NormalButton
+            shape="round"
+            onClick={() => setPeriod(1)}
+            children={ONE_DAY}
+          />
+          <S.NormalButton
+            shape="round"
+            onClick={() => setPeriod(7)}
+            children={SEVEN_DAY}
+          />
+          <S.NormalButton
+            shape="round"
+            onClick={() => setPeriod(30)}
+            children={THIRTY_DAY}
+          />
         </S.ButtonContainer>
       </S.Row>
       <YieldLineChart />
-      <S.PortfolioHeader>투자현황</S.PortfolioHeader>
-      <YiledPieChart />
-      <S.PortfolioHeader>투자 리스트</S.PortfolioHeader>
+      <S.PortfolioHeader>{INVEST_STATUS}</S.PortfolioHeader>
+      <Ring />
+      <S.PortfolioHeader>{INVEST_LIST}</S.PortfolioHeader>
       <InvestList />
     </>
   );

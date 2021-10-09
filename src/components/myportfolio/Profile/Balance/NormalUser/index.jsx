@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
-
-import { useUserData, usePortfolioData } from '@hooks';
+import { usePortfolioData } from '@hooks';
 import { convertToFloorLocaleString } from '@utils/parse';
 
 const NormalUserBalance = () => {
-  const { ID } = useUserData();
-  const { getMyportfolio, normalUserBalance, normalUserTotalBalance } = usePortfolioData();
-
-  useEffect(() => {
-    getMyportfolio({ getMyportfolioRequest: { userId: ID } });
-  }, []);
+  const { normalUserBalance, normalUserTotalBalance } = usePortfolioData();
 
   return (
     <>
