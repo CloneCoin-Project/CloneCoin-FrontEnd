@@ -21,8 +21,8 @@ const usePortfolioData = () => {
     copyLeaderSelectorLoading,
     copyLeaderSelectorError,
   ] = [
-    useAppSelector(copyLeaderSelector.loading),
-    useAppSelector(copyLeaderSelector.error),
+    useAppSelector(CopyLeaderSelector.loading),
+    useAppSelector(CopyLeaderSelector.error),
   ];
 
   const getMyportfolio = useCallback(
