@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Modal as AntdModal, Slider, InputNumber as AntdInputNumber, Row as AntdRow, Col as AntdCol, Avatar as AntdAvatar } from 'antd';
+import { Modal as AntdModal, Slider, InputNumber as AntdInputNumber, Row as AntdRow, Col as AntdCol, Avatar as AntdAvatar, message } from 'antd';
 import { BITHUMB_COLOR } from '@assets/color';
 
 // ProfileMini
@@ -83,5 +83,6 @@ export const Modal = styled(AntdModal)`
 `;
 
 export {
-	Slider
+	Slider,
+	message
 };

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
-import { useUserData, useWalletData } from '@hooks';
+import { useWalletData } from '@hooks';
 
 import { isHome, yieldArr } from '@utils/listUtil';
 import { convertToFixed } from '@utils/parse';
@@ -51,8 +51,6 @@ const List = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  const { userStatus } = useUserData();
-
   const { getAllLeader, LeaderListLoading, refinedLeaderList } =
     useWalletData();
 
@@ -99,7 +97,7 @@ const List = () => {
 					triggerButton={
 						<LeaderInfo
 							text="Copy"
-							icon={<S.CopyrightOutlined onClick={userStatus == 'leader' ? () => console.log('leader') : () =>console.log('normal')} style={{ fontSize: 18 }} />}
+							icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
 							number={156}
 							key="list-vertical-cory-o"
 						/>

@@ -17,12 +17,26 @@ const usePortfolioData = () => {
     useAppSelector(MyPortfolioSelector.error),
   ];
 
+  const [
+    copyLeaderSelectorLoading,
+    copyLeaderSelectorError,
+  ] = [
+    useAppSelector(copyLeaderSelector.loading),
+    useAppSelector(copyLeaderSelector.error),
+  ];
+
   const getMyportfolio = useCallback(
     (value) => {
-      //getMyportfolioRequest {userId}
       dispatch(portfolioAsyncAction.getMyportfolio.request(value));
     },
     [dispatch],
+  );
+
+  const startCopy = useCallback(
+	(value) => {
+		dispatch(portfolioAsyncAction.startCopy.request(value));
+	},
+	[dispatch],
   );
 
   const normalUserBalance = useMemo(
@@ -43,9 +57,12 @@ const usePortfolioData = () => {
 
   return {
     getMyportfolio,
+	startCopy,
     myPortfolioSelectorLoading,
     myPortfolioSelectorData,
     myPortfolioSelectorError,
+	copyLeaderSelectorLoading,
+	copyLeaderSelectorError,
     normalUserBalance,
     normalUserTotalBalance,
   };
