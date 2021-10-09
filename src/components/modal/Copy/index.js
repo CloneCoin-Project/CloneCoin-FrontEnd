@@ -9,14 +9,8 @@ import Slider from '@components/modal/Copy/Slider';
 import { CopyButton } from '@/components/common/ProfileHeader/style';
 import * as S from '@components/modal/Copy/style';
 
-const value = {
-	AVERAGE_EARNING: 60.1,
-	EARNING_BEST: 200.1,
-	COPY_VOLUME: 40,
-}
-
 const Copy = (props) => {
-	const { triggerButton } = props;
+	const { triggerButton, leaderId, leaderName, leaderEarningRate, leaderEarningBest } = props;
 
 	const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
 	const { ID, isLogged, userStatus } = useUserData();
@@ -70,7 +64,7 @@ const Copy = (props) => {
 					<CopyButton key="back" type="primary" shape="round" loading={ copyLeaderSelectorLoading } onClick={ onFinished }>{ COPY_BUTTON }</CopyButton>
 				]}
 			>
-				<ProfileMini value={ value } />
+				<ProfileMini leaderEarningRate={ leaderEarningRate } leaderEarningBest={ leaderEarningBest }/>
 				<S.Info>{ stringFormat(CURRENT_MONEY, insertCommaToNumber(normalUserBalance)) }</S.Info>
 				<S.Info>{ COPY_VOLUME }</S.Info>
 				<Slider inputValue={ inputPercent } onChange={ onChange }/>

@@ -94,6 +94,8 @@ const List = () => {
                   key="list-vertical-follow-o"
                 />,
 				<CopyModal key={item.leaderName}
+					leaderId={item.leaderId} leaderName={item.leaderName} 
+					leaderEarningRate={item.all} leaderEarningBest={item.best} 
 					triggerButton={
 						<LeaderInfo
 							text="Copy"
