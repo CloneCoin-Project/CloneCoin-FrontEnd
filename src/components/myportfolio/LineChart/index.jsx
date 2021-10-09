@@ -8,9 +8,14 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+
+import { useWalletData } from '@hooks';
+
 import * as S from '@components/myportfolio/style';
 
-const YiledLineChart = () => {
+const YieldLineChart = () => {
+  const { chartProfit } = useWalletData();
+
   const data = [
     {
       name: 'Page A',
@@ -62,7 +67,7 @@ const YiledLineChart = () => {
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={chartProfit}
           margin={{
             top: 5,
             right: 30,
@@ -71,21 +76,19 @@ const YiledLineChart = () => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          {/* <Legend /> */}
           <Line
             type="monotone"
-            dataKey="pv"
+            dataKey="profit"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     </S.LineChartContainer>
   );
 };
 
-export default YiledLineChart;
+export default YieldLineChart;

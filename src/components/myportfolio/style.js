@@ -52,6 +52,11 @@ export const CopyFollowContainer = styled.div`
 
 export const NormalButton = styled(AntdButton)``;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
 export const Button = styled(AntdButton)`
   color: ${(props) => (props.color ? props.color : 'inherit')};
   border: none;
