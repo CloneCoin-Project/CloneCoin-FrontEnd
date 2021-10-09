@@ -1,7 +1,9 @@
 import { createAsyncAction } from 'typesafe-actions';
 
 import { call, put, fork, takeLatest } from 'redux-saga/effects';
-import { userServices } from '@apis/rest';
+import { userServices, portfolioServices } from '@apis/rest';
+import { STATUS_NORMAL } from '@assets/string';
+import { getMyportfolio, getMyCopyCoin } from '../portfolio/saga';
 
 export const PREFIX = 'user';
 
@@ -26,6 +28,27 @@ function* signInSaga(action) {
         data,
       }),
     );
+    const { ID, status } = data;
+    if (status === STATUS_NORMAL) {
+      const data = yield call(portfolioServices.fetchMyportfolio, {
+        userId: ID,
+      });
+      yield put(
+        getMyportfolio.success({
+          data,
+        }),
+      );
+
+      const myCopyCoinData = yield call(portfolioServices.fetchMyCopyCoin, {
+        userId: ID,
+      });
+
+      yield put(
+        getMyCopyCoin.success({
+          myCopyCoinData,
+        }),
+      );
+    }
     yield fork(onSuccess);
   } catch (e) {
     yield put(signIn.failure());
