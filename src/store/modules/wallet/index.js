@@ -17,6 +17,14 @@ const initialState = {
       coins: [],
     },
     error: null,
+  },
+  selectedLeaderProfit: {
+    loading: false,
+    data: {
+      leaderId: null,
+      profit: [],
+    },
+    error: null,
   }
 };
 
@@ -47,6 +55,17 @@ const walletSlice = createSlice({
       .addCase(`${walletAsyncAction.getSelectedLeader.failure}`, (state) => {
         state.selectedLeader.loading = false;
         state.selectedLeader.data = initialState.selectedLeader.data;
+      })
+      .addCase(`${walletAsyncAction.getSelectedLeaderProfit.request}`, (state) => {
+        state.selectedLeaderProfit.loading = true;
+      })
+      .addCase(`${walletAsyncAction.getSelectedLeaderProfit.success}`, (state, action) => {
+        state.selectedLeaderProfit.loading = false;
+        state.selectedLeaderProfit.data = action.payload.data;
+      })
+      .addCase(`${walletAsyncAction.getSelectedLeaderProfit.failure}`, (state) => {
+        state.selectedLeaderProfit.loading = false;
+        state.selectedLeaderProfit.data = initialState.selectedLeaderProfit.data;
       });
   },
 });
@@ -79,6 +98,20 @@ export const SelectedLeaderSelector = {
   ),
   data: createSelector(selectedLeaderSelector, (selectedLeader) => selectedLeader.data),
   error: createSelector(selectedLeaderSelector, (selectedLeader) => selectedLeader.error),
+};
+
+const selectedLeaderProfitSelector = createSelector(
+  selfSelector,
+  (state) => state.selectedLeaderProfit,
+);
+
+export const SelectedLeaderProfitSelector = {
+  loading: createSelector(
+    selectedLeaderProfitSelector,
+    (selectedLeaderProfit) => selectedLeaderProfit.loading,
+  ),
+  data: createSelector(selectedLeaderProfitSelector, (selectedLeaderProfit) => selectedLeaderProfit.data),
+  error: createSelector(selectedLeaderProfitSelector, (selectedLeaderProfit) => selectedLeaderProfit.error),
 };
 
 export const walletAction = walletSlice.actions;

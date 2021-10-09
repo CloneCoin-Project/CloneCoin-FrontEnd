@@ -54,12 +54,40 @@ function* getSelectedLeaderSaga(action) {
   }
 }
 
+
+export const FETCH_SELECTED_LEADER_PROFIT = `${PREFIX}/FETCH_SELECTED_LEADER_PROFIT`;
+export const FETCH_SELECTED_LEADER_PROFIT_SUCCESS = `${PREFIX}/FETCH_SELECTED_LEADER_PROFIT_SUCCESS`;
+export const FETCH_SELECTED_LEADER_PROFIT_FAILURE = `${PREFIX}/FETCH_SELECTED_LEADER_PROFIT_FAILURE`;
+
+export const getSelectedLeaderProfit = createAsyncAction(
+  FETCH_SELECTED_LEADER_PROFIT,
+  FETCH_SELECTED_LEADER_PROFIT_SUCCESS,
+  FETCH_SELECTED_LEADER_PROFIT_FAILURE,
+)();
+
+function* getSelectedLeaderProfitSaga(action) {
+  const { getSelectedLeaderProfitRequest } = action.payload;
+  try {
+    const data = yield call(walletServices.fetchLeaderYield, getSelectedLeaderProfitRequest);
+
+    yield put(
+      getSelectedLeaderProfit.success({
+        data,
+      }),
+    );
+  } catch (e) {
+    yield put(getSelectedLeaderProfit.failure());
+  }
+}
+
 export const walletAsyncAction = {
   getAllLeader,
   getSelectedLeader,
+  getSelectedLeaderProfit,
 };
 
 export default function* walletSaga() {
   yield takeLatest(FETCH_ALL_LEADER, getAllLeaderSaga);
   yield takeLatest(FETCH_SELECTED_LEADER, getSelectedLeaderSaga);
+  yield takeLatest(FETCH_SELECTED_LEADER_PROFIT, getSelectedLeaderProfitSaga);
 }
