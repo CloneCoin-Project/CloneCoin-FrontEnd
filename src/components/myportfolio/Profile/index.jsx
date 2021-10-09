@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { useUserData, useWalletData, usePortfolioData } from '@hooks';
+import { useUserData, useWalletData } from '@hooks';
 import LeaderRegisterModal from '@components/myportfolio/LeaderRegisterModal';
 import LeaderDescription from '@/components/myportfolio/Profile/LeaderDescription';
 import {
@@ -22,17 +22,10 @@ const MyProfile = () => {
   const {
     getSelectedLeader,
   } = useWalletData();
-  const {
-    getMyportfolio,
-    getMyCopyCoin,
-  } = usePortfolioData();
 
   useEffect(() => {
     if (userStatus === STATUS_LEADER) {
       getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
-    } else if(userStatus === STATUS_NORMAL) {
-      getMyportfolio({ getMyportfolioRequest: { userId: ID } });
-      getMyCopyCoin({ getMyCopyCoinRequest: { userId: ID } });
     }
   }, []);
 
