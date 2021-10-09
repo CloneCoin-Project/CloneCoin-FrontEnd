@@ -41,11 +41,6 @@ const MyPortfolio = () => {
           </S.NormalButton>
         </S.ButtonContainer>
       </S.Row>
-      {/* {userStatus === STATUS_LEADER ? (
-        <LeaderLineChart />
-      ) : (
-        <NormalUserLineChart />
-      )} */}
       <YieldLineChart />
       <S.PortfolioHeader>투자현황</S.PortfolioHeader>
       <YiledPieChart />
