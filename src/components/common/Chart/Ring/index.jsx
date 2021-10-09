@@ -35,32 +35,16 @@ const RingDetail = ({ data, color }) => {
 }
 
 
-const Ring = (props) => {
-	const { id } = props;
-	const [data, setData] = useState([]);
+const Ring = () => {
+	const [data, setData] = useState([
+		{ name: 'Group A', value: 400 },
+		{ name: 'Group B', value: 300 },
+		{ name: 'Group C', value: 300 },
+		{ name: 'Group D', value: 200 },
+	]);
 	const [color, setColor] = useState(RING_COLOR);
 
 	useEffect(() => {
-		// axios 요청은 Ring 컴포넌트가 아닌 상위에서 해야 함.
-		axios({
-			url: process.env.REACT_APP_CLONECOIN_API_PATH + `/wallet/leaders/${id}`, 
-			method: "get",
-			headers: {
-			},
-			data: {
-				apiKey: "b77a16ccfd3a08d45193cac6b9b9264d",
-				secretKey: "4e1d84ce42f01b4344ec899622d919c9",
-				currency: "ALL",
-			}
-		}).then((response) => {
-			console.log(response.data);
-			setData(response.data);
-			shuffle(color);
-			setColor(color.slice(0, data.length + 1));
-			
-		}).catch((error) => {
-			console.log(error);
-		});
 	}, []);
 	
 	return (

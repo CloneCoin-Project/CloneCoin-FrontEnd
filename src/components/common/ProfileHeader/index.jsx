@@ -37,13 +37,6 @@ const ProfileHeader = ({ userId }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [profile, setProfile] = useState(null);
 
-	useEffect( async () => {
-		setIsLoading(true);
-		let user = await fetchOneUser(userId);
-		setIsLoading(false);
-		setProfile(user.data);
-	}, []);
-
 	return (
 		<>
 		{ isLoading
