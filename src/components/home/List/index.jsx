@@ -5,6 +5,7 @@ import { useWalletData } from '@hooks';
 import { isHome, yieldArr } from '@utils/listUtil';
 import { convertToFixed } from '@utils/parse';
 
+import { CopyModal } from '@/components/modal';
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
 import {
@@ -92,12 +93,18 @@ const List = () => {
                   number={156}
                   key="list-vertical-follow-o"
                 />,
-                <LeaderInfo
-                  text="Copier"
-                  icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
-                  number={156}
-                  key="list-vertical-cory-o"
-                />,
+				<CopyModal key={item.leaderName}
+					leaderId={item.leaderId} leaderName={item.leaderName} 
+					leaderEarningRate={item.all} leaderEarningBest={item.best} 
+					triggerButton={
+						<LeaderInfo
+							text="Copy"
+							icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
+							number={156}
+							key="list-vertical-cory-o"
+						/>
+					}
+				/>,
                 <LeaderInfo
                   text="More"
                   icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
