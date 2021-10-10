@@ -147,9 +147,9 @@ const List = () => {
                 <S.Col xs={24} sm={12}>
                   <S.CardGrid>
                     <YieldList
-                      all={convertToFixed(item.all)}
-                      best={convertToFixed(item.best)}
-                      worst={convertToFixed(item.worst)}
+                      all={convertToFixed(item.all, 2)}
+                      best={convertToFixed(item.best, 2)}
+                      worst={convertToFixed(item.worst, 2)}
                     />
                   </S.CardGrid>
                 </S.Col>

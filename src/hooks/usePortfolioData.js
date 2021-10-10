@@ -91,6 +91,7 @@ const usePortfolioData = () => {
 
   const getMyCopyCoin = useCallback(
     (value) => {
+      // getMyCopyCoinRequest { userId }
       dispatch(portfolioAsyncAction.getMyCopyCoin.request(value));
     },
     [dispatch],
