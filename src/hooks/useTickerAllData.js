@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '@store/';
+import { useAppDispatch, useAppSelector } from '@store';
 import {
   TickerSelector,
   tickerAllDataSelector,

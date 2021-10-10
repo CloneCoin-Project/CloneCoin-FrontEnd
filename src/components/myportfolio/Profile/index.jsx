@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
-import { useUserData, useWalletData } from '@hooks';
+import { useUserData, useWalletData, usePortfolioData } from '@hooks';
 import LeaderRegisterModal from '@components/myportfolio/LeaderRegisterModal';
-import LeaderDescription from '@/components/myportfolio/Profile/LeaderDescription';
+import LeaderDescription from '@/components/common/LeaderDescription';
 import {
   LeaderBalance,
   NormalBalance,
@@ -19,16 +19,17 @@ import {
 
 const MyProfile = () => {
   const { ID, userName, userStatus } = useUserData();
-  const {
-    getSelectedLeader,
-  } = useWalletData();
+  const { getSelectedLeader } = useWalletData();
+  const { getMyportfolio, getMyCopyCoin } = usePortfolioData();
 
   useEffect(() => {
     if (userStatus === STATUS_LEADER) {
       getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
+    } else if (userStatus === STATUS_NORMAL) {
+      getMyportfolio({ getMyportfolioRequest: { userId: ID } });
+      getMyCopyCoin({ getMyCopyCoinRequest: { userId: ID } });
     }
-  }, []);
-
+  }, [userStatus]);
   const handleLeaderDeleteClick = useCallback(() => {
     S.message.info('현재 비활성화된 기능입니다.');
   }, [userStatus]);
