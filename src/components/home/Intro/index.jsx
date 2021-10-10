@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import * as S from '@components/home/Intro/style';
-import { PROJECT_TITLE, INTRO_DESC, INTRO_CLOSE_TEMP, INTRO_CLOSE_EVER } from '@assets/string';
+import { 
+	PROJECT_TITLE, 
+	INTRO_DESC_1, INTRO_DESC_2, INTRO_DESC_3, INTRO_DESC_4, 
+	INTRO_CLOSE_TEMP, INTRO_CLOSE_EVER
+} from '@assets/string';
 
 const Intro = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -32,7 +36,12 @@ const Intro = () => {
                         <S.CoinGold />
                         <S.CoinSilver />
                     </S.CoinWrapper>
-                    <S.Desc>{ INTRO_DESC }</S.Desc>
+					<S.DescWrapper>
+						<S.DescSilver>{ INTRO_DESC_1 }</S.DescSilver>
+						<S.DescSilver>{ INTRO_DESC_2 }</S.DescSilver>
+						<S.DescGold><S.DescTitle /> { INTRO_DESC_3 }</S.DescGold>
+						<S.DescGold>{ INTRO_DESC_4 }</S.DescGold>
+					</S.DescWrapper>
                 </S.Modal>
             : 
                 <></>

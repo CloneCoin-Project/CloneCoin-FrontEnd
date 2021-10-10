@@ -19,5 +19,5 @@ export const insertCommaToNumber = (num) => {
 	 * @param  {Number} num   A Number to be inserted
 	 * @return {String}       A String comma-inserted from Number
 	 */
-	return num.toLocaleString('ko-KR');
+	return (num == undefined) ? 0 : num.toLocaleString('ko-KR');
 }

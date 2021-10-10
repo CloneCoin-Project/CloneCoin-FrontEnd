@@ -6,9 +6,12 @@ import {
   MyPortfolioSelector,
   MyPortfolioProfitSelector,
   MyPortfolioRatioSelector,
-  CopyLeaderSelector,
   MyCopyCoinSelector,
+  CopyLeaderSelector,
+  ChangeCopyLeaderSelector
 } from '@store/modules/portfolio';
+
+import { convertObjArrToPropArr } from '@utils/parse';
 
 const usePortfolioData = () => {
   const dispatch = useAppDispatch();
@@ -43,11 +46,6 @@ const usePortfolioData = () => {
     useAppSelector(MyPortfolioRatioSelector.error),
   ];
 
-  const [copyLeaderSelectorLoading, copyLeaderSelectorError] = [
-    useAppSelector(CopyLeaderSelector.loading),
-    useAppSelector(CopyLeaderSelector.error),
-  ];
-
   const [
     myCopyCoinSelectorLoading,
     myCopyCoinSelectorData,
@@ -56,6 +54,16 @@ const usePortfolioData = () => {
     useAppSelector(MyCopyCoinSelector.loading),
     useAppSelector(MyCopyCoinSelector.data),
     useAppSelector(MyCopyCoinSelector.error),
+  ];
+
+  const [copyLeaderSelectorLoading, copyLeaderSelectorError] = [
+    useAppSelector(CopyLeaderSelector.loading),
+    useAppSelector(CopyLeaderSelector.error),
+  ];
+
+  const [changeCopyLeaderSelectorLoading, changeCopyLeaderSelectorError] = [
+    useAppSelector(ChangeCopyLeaderSelector.loading),
+    useAppSelector(ChangeCopyLeaderSelector.error),
   ];
 
   const getMyportfolio = useCallback(
@@ -81,6 +89,14 @@ const usePortfolioData = () => {
     [dispatch],
   );
 
+  const getMyCopyCoin = useCallback(
+    (value) => {
+      // getMyCopyCoinRequest { userId }
+      dispatch(portfolioAsyncAction.getMyCopyCoin.request(value));
+    },
+    [dispatch],
+  );
+
   const startCopy = useCallback(
     (value) => {
       dispatch(portfolioAsyncAction.startCopy.request(value));
@@ -88,10 +104,9 @@ const usePortfolioData = () => {
     [dispatch],
   );
 
-  const getMyCopyCoin = useCallback(
+  const changeCopy = useCallback(
     (value) => {
-      // getMyCopyCoinRequest { userId }
-      dispatch(portfolioAsyncAction.getMyCopyCoin.request(value));
+      dispatch(portfolioAsyncAction.changeCopy.request(value));
     },
     [dispatch],
   );
@@ -132,30 +147,42 @@ const usePortfolioData = () => {
     [myPortfolioProfitSelectorLoading, myPortfolioProfitSelectorData],
   );
 
+  const currentCopyingLeaders = useMemo(
+    () => 
+      myPortfolioSelectorData?.leaders
+        ? convertObjArrToPropArr(myPortfolioSelectorData.leaders, "leaderId")
+		: [],
+	[myPortfolioSelectorData, myPortfolioSelectorLoading, copyLeaderSelectorLoading]
+  );
+
   return {
     getMyportfolio,
     getMyportfolioProfit,
     getMyportfolioRatio,
-    startCopy,
+	getMyCopyCoin,
+	startCopy,
+	changeCopy,
     myPortfolioSelectorLoading,
     myPortfolioSelectorData,
     myPortfolioSelectorError,
     myPortfolioProfitSelectorLoading,
     myPortfolioProfitSelectorData,
     myPortfolioProfitSelectorError,
-    copyLeaderSelectorLoading,
-    copyLeaderSelectorError,
-    normalUserBalance,
-    normalUserTotalBalance,
-    chartNormalUserProfit,
     myPortfolioRatioSelectorLoading,
     myPortfolioRatioSelectorData,
     myPortfolioRatioSelectorError,
     myCopyCoinSelectorLoading,
     myCopyCoinSelectorData,
     myCopyCoinSelectorError,
-    getMyCopyCoin,
-    myCopyCoins,
+	copyLeaderSelectorLoading,
+    copyLeaderSelectorError,
+	changeCopyLeaderSelectorLoading,
+	changeCopyLeaderSelectorError,
+	myCopyCoins,
+	normalUserBalance,
+    normalUserTotalBalance,
+    chartNormalUserProfit,
+	currentCopyingLeaders,
   };
 };
 

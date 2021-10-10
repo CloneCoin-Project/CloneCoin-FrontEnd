@@ -56,8 +56,6 @@ const List = () => {
   const { isLogged, ID, userStatus } = useUserData();
   const { normalUserBalance, getMyportfolio } = usePortfolioData();
 
-  console.log(normalUserBalance); //<- 로그인 한 상태면 밸런스가 나오고 그외의 상태에서는 0이 나옴
-
   useEffect(() => {
     getAllLeader();
   }, []);
@@ -149,9 +147,9 @@ const List = () => {
                 <S.Col xs={24} sm={12}>
                   <S.CardGrid>
                     <YieldList
-                      all={convertToFixed(item.all)}
-                      best={convertToFixed(item.best)}
-                      worst={convertToFixed(item.worst)}
+                      all={convertToFixed(item.all, 2)}
+                      best={convertToFixed(item.best, 2)}
+                      worst={convertToFixed(item.worst, 2)}
                     />
                   </S.CardGrid>
                 </S.Col>
