@@ -43,16 +43,27 @@ export const COUNT_COPIED = 'copies';
 export const COUNT_FOLLOWED = 'followers';
 export const COUNT_FOLLOWING = 'followings';
 
+export const COPY_TYPE_PLUS = 'add';
+export const COPY_TYPE_MINUS = 'withdraw';
 export const EDIT_BUTTON = "Edit";
-export const COPY_BUTTON = "Copy";
+export const COPY_BUTTON = "Start Copy";
+export const COPY_ADD_BUTTON = "Add Copy";
+export const COPY_WITHDRAW_BUTTON = "Withdraw Copy";
 
 export const EDIT_TITLE = "소개글 변경하기";
 
 export const COPY_TITLE = "리더 카피하기";
+export const COPY_CHANGE_TITLE = "리더 카피금액 추가 / 삭제하기";
+export const CHANGE_TAB_ADD = "카피 추가 ⬆️"
+export const CHANGE_TAB_WITHDRAW = "카피 삭제 ⬇️"
+export const CURRENT_VOLUME = "보유 금액 (%)";
 export const COPY_VOLUME = "투자 금액 (%)";
 export const AVERAGE_EARNING = "평균 수익률";
 export const CURRENT_MONEY = "현재 가능 금액 {0} 원";
+export const CURRENT_COPY = "카피 투자 금액 {0} 원";
 export const COPY_RESULT = "보유중인 {0} 원을 카피하시겠습니까?";
+export const COPY_ADD_RESULT = "보유중인 {0} 원을 추가 카피하시겠습니까?";
+export const COPY_WITHDRAW_RESULT = "투자중인 {0} 원 중 {1} 원({2} %) 을 삭제하시겠습니까?";
 
 export const PROFILE_TAB_LEFT = "Portfolio";
 export const PROFILE_TAB_RIGHT = "Feed";

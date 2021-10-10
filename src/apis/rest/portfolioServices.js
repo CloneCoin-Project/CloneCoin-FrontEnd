@@ -44,6 +44,19 @@ const portfolioServices = {
     );
     return res.data;
   },
+
+  async ChangeCopy({ userId, leaderId, amount, type }) {
+    const res = await Client.publicInstance.put(
+      `${Client.path.cloneCoinApi}/portfolio/copy`,
+      {
+        userId,
+        leaderId,
+        amount,
+        type,
+      },
+    );
+    return res.data;
+  },
 };
 
 export default portfolioServices;

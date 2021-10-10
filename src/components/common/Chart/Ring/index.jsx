@@ -18,7 +18,7 @@ const RingDetail = ({ data, status }) => {
           </S.Name>
           <S.Ratio>
             {status === STATUS_LEADER
-              ? `${convertToFixed(item.ratio)}%`
+              ? `${convertToFixed(item.ratio, 2)}%`
               : `${item.copyRatio}%`}
           </S.Ratio>
         </S.Detail>
