@@ -1,6 +1,9 @@
 export const PROJECT_TITLE = 'Clone Coin';
 
-export const INTRO_DESC = '수익률 높은 리더를 팔로우하고, 카피 트레이딩 해보세요!';
+export const INTRO_DESC_1 = '암호화폐 투자가 어려우신가요?';
+export const INTRO_DESC_2 = '투자 리더를 따라하면 빠르게 쉽게 시작할 수 있습니다.';
+export const INTRO_DESC_3 = ' 에서 수익률 높은 리더를 팔로우하고';
+export const INTRO_DESC_4 = '카피 트레이딩 해보세요!';
 export const INTRO_CLOSE_TEMP = '닫기';
 export const INTRO_CLOSE_EVER = '더 이상 보지 않기';
 
