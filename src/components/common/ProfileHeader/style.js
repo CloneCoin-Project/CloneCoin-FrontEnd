@@ -33,9 +33,15 @@ export const CopyButton = styled(AntdButton)`
 
 export const CopyChangeButton = styled(AntdButton)`
 	flex-grow: 1;
-	margin: auto 10px;
+	margin: 15px 25%;
+	width: 50%;
+	font-size: larger;
 	background: ${BITHUMB_COLOR[1]};
 	border-color: ${BITHUMB_COLOR[1]};
+
+	&.ant-btn-round {
+		height: 36px;
+	}
 
 	&:hover {
 		background: ${BITHUMB_COLOR[1]};
