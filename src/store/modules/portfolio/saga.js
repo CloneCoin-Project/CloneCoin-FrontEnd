@@ -102,14 +102,14 @@ export const getMyCopyCoin = createAsyncAction(
 function* getMyCopyCoinSaga(action) {
   try {
     const { getMyCopyCoinRequest } = action.payload;
-    const data = yield call(
+    const myCopyCoinData = yield call(
       portfolioServices.fetchMyCopyCoin,
       getMyCopyCoinRequest,
     );
 
     yield put(
       getMyCopyCoin.success({
-        data,
+        myCopyCoinData,
       }),
     );
   } catch (e) {

@@ -1,4 +1,4 @@
-import { convertToFixed, convertToQuantityFixed } from '@utils/parse';
+import { convertToFixed } from '@utils/parse';
 
 export const leaderInvestColumns = [
   {
@@ -53,7 +53,7 @@ export const leaderInvestColumns = [
     dataIndex: 'coinQuantity',
     key: 'coinQuantity',
     align: 'right',
-    render: (coinQuantity) => convertToQuantityFixed(coinQuantity),
+    render: (coinQuantity) => convertToFixed(coinQuantity, 5),
   },
 ];
 
@@ -117,6 +117,6 @@ export const normalUserInvestColumns = [
     dataIndex: 'coinQuantity',
     key: 'coinQuantity',
     align: 'right',
-    render: (coinQuantity) => convertToQuantityFixed(coinQuantity),
+    render: (coinQuantity) => convertToFixed(coinQuantity, 5),
   },
 ];

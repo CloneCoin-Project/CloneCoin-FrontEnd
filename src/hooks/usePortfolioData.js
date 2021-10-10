@@ -8,7 +8,7 @@ import {
   MyPortfolioRatioSelector,
   MyCopyCoinSelector,
   CopyLeaderSelector,
-  ChangeCopyLeaderSelector
+  ChangeCopyLeaderSelector,
 } from '@store/modules/portfolio';
 
 import { convertObjArrToPropArr } from '@utils/parse';
@@ -148,20 +148,24 @@ const usePortfolioData = () => {
   );
 
   const currentCopyingLeaders = useMemo(
-    () => 
+    () =>
       myPortfolioSelectorData?.leaders
-        ? convertObjArrToPropArr(myPortfolioSelectorData.leaders, "leaderId")
-		: [],
-	[myPortfolioSelectorData, myPortfolioSelectorLoading, copyLeaderSelectorLoading]
+        ? convertObjArrToPropArr(myPortfolioSelectorData.leaders, 'leaderId')
+        : [],
+    [
+      myPortfolioSelectorData,
+      myPortfolioSelectorLoading,
+      copyLeaderSelectorLoading,
+    ],
   );
 
   return {
     getMyportfolio,
     getMyportfolioProfit,
     getMyportfolioRatio,
-	getMyCopyCoin,
-	startCopy,
-	changeCopy,
+    getMyCopyCoin,
+    startCopy,
+    changeCopy,
     myPortfolioSelectorLoading,
     myPortfolioSelectorData,
     myPortfolioSelectorError,
@@ -174,15 +178,15 @@ const usePortfolioData = () => {
     myCopyCoinSelectorLoading,
     myCopyCoinSelectorData,
     myCopyCoinSelectorError,
-	copyLeaderSelectorLoading,
+    copyLeaderSelectorLoading,
     copyLeaderSelectorError,
-	changeCopyLeaderSelectorLoading,
-	changeCopyLeaderSelectorError,
-	myCopyCoins,
-	normalUserBalance,
+    changeCopyLeaderSelectorLoading,
+    changeCopyLeaderSelectorError,
+    myCopyCoins,
+    normalUserBalance,
     normalUserTotalBalance,
     chartNormalUserProfit,
-	currentCopyingLeaders,
+    currentCopyingLeaders,
   };
 };
 

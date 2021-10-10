@@ -59,7 +59,7 @@ export const InnerSection = styled.div`
 	flex-grow: 5;
 	margin: auto 10px;
 	padding: auto 5px;
-	max-height: 
+	max-height:
 `;
 
 export const UpperSection = styled.div`
@@ -99,8 +99,8 @@ export const ProfileCard = styled.div`
 	width: 100%;
 `;
 
-export { 
+export {
 	UserOutlined,
-	StarOutlined, 
-	StarFilled 
+	StarOutlined,
+	StarFilled
 };

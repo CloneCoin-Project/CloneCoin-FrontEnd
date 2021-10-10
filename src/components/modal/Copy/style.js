@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import {
-	Modal as AntdModal, Slider, InputNumber as AntdInputNumber, 
+	Modal as AntdModal, Slider, InputNumber as AntdInputNumber,
 	Row as AntdRow, Col as AntdCol, Avatar as AntdAvatar, message,
-	Tabs as AntdTabs 
+	Tabs as AntdTabs
 } from 'antd';
 import { BITHUMB_COLOR } from '@assets/color';
+import { UserOutlined } from '@ant-design/icons';
 
 // ProfileMini
 export const Avatar = styled(AntdAvatar)`
@@ -106,5 +107,6 @@ export const Modal = styled(AntdModal)`
 
 export {
 	Slider,
-	message
+	message,
+  UserOutlined
 };

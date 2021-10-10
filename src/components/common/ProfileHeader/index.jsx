@@ -23,8 +23,8 @@ const ProfileCard = ( props ) => {
 				<CopyModal
 					triggerButton={
 						<S.CopyButton type="primary" shape="round">{ COPY_BUTTON }</S.CopyButton>
-					} 
-					str={ COPY_BUTTON } 
+					}
+					str={ COPY_BUTTON }
 				/>
 			</S.UpperSection>
 

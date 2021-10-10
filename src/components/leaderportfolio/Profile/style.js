@@ -18,7 +18,7 @@ export const CopyFollowContainer = styled.div`
 `;
 
 export const CopyButton = styled(AntdButton)`
-  width: 100px;
+  width: 120px;
 `;
 
 export const Button = styled(AntdButton)`
