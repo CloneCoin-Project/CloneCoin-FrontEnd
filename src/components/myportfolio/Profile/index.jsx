@@ -64,15 +64,15 @@ const MyProfile = () => {
               <S.CopyFollowContainer>
                 {userStatus === STATUS_LEADER ? (
                   <>
-                    <S.Button type="text">copied: 10</S.Button>
+                    <S.Button type="text">copied: 2</S.Button>
                     <S.Divider type="vertical" />
                     <S.Button type="text">follower: 3</S.Button>
                   </>
                 ) : (
                   <>
-                    <S.Button type="text">copying: 10</S.Button>
+                    <S.Button type="text">copying: 2</S.Button>
                     <S.Divider type="vertical" />
-                    <S.Button type="text">following: 3</S.Button>
+                    <S.Button type="text">following: 1</S.Button>
                   </>
                 )}
               </S.CopyFollowContainer>

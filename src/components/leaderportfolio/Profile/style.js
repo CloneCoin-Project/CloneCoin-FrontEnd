@@ -17,6 +17,10 @@ export const CopyFollowContainer = styled.div`
   justify-content: space-between;
 `;
 
+export const CopyButton = styled(AntdButton)`
+  width: 100px;
+`;
+
 export const Button = styled(AntdButton)`
   color: ${(props) => (props.color ? props.color : 'inherit')};
   border: none;
