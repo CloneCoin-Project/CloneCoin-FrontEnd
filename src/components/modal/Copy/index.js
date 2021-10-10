@@ -3,6 +3,7 @@ import { useModal, useUserData, usePortfolioData } from '@hooks';
 
 import { stringFormat, insertCommaToNumber } from '@/utils/stringFormat';
 import { 
+	STATUS_LEADER,
 	COPY_TITLE, COPY_CHANGE_TITLE, 
 	CHANGE_TAB_ADD, CHANGE_TAB_WITHDRAW,
 	CURRENT_VOLUME, COPY_VOLUME, CURRENT_MONEY, CURRENT_COPY, 
@@ -63,7 +64,7 @@ const Copy = (props) => {
 
 	return (
 		<>
-			<S.Trigger onClick={ (!isLogged | userStatus != 'leader') ? handleToggle : rejectModal }>{ triggerButton }</S.Trigger>
+			<S.Trigger onClick={ (isLogged && userStatus != STATUS_LEADER) ? handleToggle : rejectModal }>{ triggerButton }</S.Trigger>
 			
 			{ (currentCopyingLeaders.includes(leaderId))
 			?
