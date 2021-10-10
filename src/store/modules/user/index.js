@@ -24,6 +24,28 @@ const initialState = {
     data: '',
     error: null,
   },
+  // 리더일 경우에만 변경됨
+  userFollower: {
+    loading: false,
+    data: [],
+    error: null,
+  },
+  // 일반유저일 경우에만 변경됨
+  userFollowing: {
+	loading: false,
+	data: [],
+	error: null,
+  },
+  // 일반유저가 팔로우 요청할 때의 정보
+  followLeader: {
+    loading: false,
+    error: null,
+  },
+  // 일반유저가 팔로우 취소할 때의 정보
+  followDeleteLeader: {
+    loading: false,
+    error: null,
+  }
 };
 
 const userSlice = createSlice({
@@ -76,6 +98,44 @@ const userSlice = createSlice({
       })
       .addCase(`${userAsyncAction.postDescription.failure}`, (state) => {
         state.userDescription.loading = false;
+      })
+      .addCase(`${userAsyncAction.getMyFollower.request}`, (state) => {
+        state.userFollower.loading = true;
+      })
+      .addCase(`${userAsyncAction.getMyFollower.success}`, (state, action) => {
+        state.userFollower.loading = false;
+        state.userFollower.data = action.payload.data;
+      })
+      .addCase(`${userAsyncAction.getMyFollower.failure}`, (state) => {
+        state.userFollower.loading = false;
+      })
+      .addCase(`${userAsyncAction.getMyFollowing.request}`, (state) => {
+        state.userFollowing.loading = true;
+      })
+      .addCase(`${userAsyncAction.getMyFollowing.success}`, (state, action) => {
+        state.userFollowing.loading = false;
+        state.userFollowing.data = action.payload.data;
+      })
+      .addCase(`${userAsyncAction.getMyFollowing.failure}`, (state) => {
+        state.userFollowing.loading = false;
+      })
+      .addCase(`${userAsyncAction.startFollow.request}`, (state) => {
+        state.followLeader.loading = true;
+      })
+      .addCase(`${userAsyncAction.startFollow.success}`, (state, action) => {
+        state.followLeader.loading = false;
+      })
+      .addCase(`${userAsyncAction.startFollow.failure}`, (state) => {
+        state.followLeader.loading = false;
+      })
+      .addCase(`${userAsyncAction.deleteFollow.request}`, (state) => {
+        state.followDeleteLeader.loading = true;
+      })
+      .addCase(`${userAsyncAction.deleteFollow.success}`, (state, action) => {
+        state.followDeleteLeader.loading = false;
+      })
+      .addCase(`${userAsyncAction.deleteFollow.failure}`, (state) => {
+        state.followDeleteLeader.loading = false;
       });
   },
 });
@@ -132,6 +192,78 @@ export const UserDescriptionSelector = {
   error: createSelector(
     userDescriptionSelector,
     (userDescription) => userDescription.error,
+  ),
+};
+
+const userFollowerSelector = createSelector(
+  selfSelector,
+  (state) => state.userFollower,
+);
+  
+export const UserFollowerSelector = {
+  loading: createSelector(
+    userFollowerSelector,
+    (userFollower) => userFollower.loading,
+  ),
+  data: createSelector(
+    userFollowerSelector,
+    (userFollower) => userFollower.data,
+  ),
+  error: createSelector(
+    userFollowerSelector,
+    (userFollower) => userFollower.error,
+  ),
+};
+
+const userFollowingSelector = createSelector(
+  selfSelector,
+  (state) => state.userFollowing,
+);
+	
+export const UserFollowingSelector = {
+  loading: createSelector(
+	userFollowingSelector,
+	(userFollowing) => userFollowing.loading,
+  ),
+  data: createSelector(
+	userFollowingSelector,
+	(userFollowing) => userFollowing.data,
+  ),
+  error: createSelector(
+	userFollowingSelector,
+	(userFollowing) => userFollowing.error,
+  ),
+};
+
+const followLeaderSelector = createSelector(
+  selfSelector,
+  (state) => state.followLeader,
+);
+
+export const FollowLeaderSelector = {
+  loading: createSelector(
+    followLeaderSelector,
+	(followLeader) => followLeader.loading,
+  ),
+  error: createSelector(
+	followLeaderSelector,
+	(followLeader) => followLeader.error,
+  ),
+};
+
+const followDeleteLeaderSelector = createSelector(
+  selfSelector,
+  (state) => state.followDeleteLeader,
+);
+  
+export const FollowDeleteLeaderSelector = {
+  loading: createSelector(
+    followDeleteLeaderSelector,
+	(followDeleteLeader) => followDeleteLeader.loading,
+  ),
+  error: createSelector(
+	followDeleteLeaderSelector,
+    (followDeleteLeader) => followDeleteLeader.error,
   ),
 };
 

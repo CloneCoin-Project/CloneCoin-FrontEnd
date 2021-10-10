@@ -54,6 +54,44 @@ const userServices = {
     );
     return description;
   },
+
+  async fetchMyFollower({ leaderId }) {
+	// (리더) 팔로우 받고 있는 목록 불러오기
+    const res = await Client.publicInstance.get(
+      `${Client.path.cloneCoinApi}/user/followers?leaderId=${leaderId}`,
+    );
+    return res.data;
+  },
+
+  async fetchMyFollowing({ userId }) {
+	// (일반) 펄로우 하고 있는 목록 불러오기
+    const res = await Client.publicInstance.get(
+      `${Client.path.cloneCoinApi}/user/followings?userId=${userId}`,
+    );
+    return res.data;
+  },
+
+  async startFollow({ userId, leaderId }) {
+    await Client.publicInstance.post(
+      `${Client.path.cloneCoinApi}/user/follow`,
+      {
+        userId,
+        leaderId,
+      },
+    );
+    return;
+  },
+
+  async deleteFollow({ userId, leaderId }) {
+    await Client.publicInstance.delete(
+      `${Client.path.cloneCoinApi}/user/follow`,
+      {
+        userId,
+        leaderId,
+      },
+    );
+    return;
+  }
 };
 
 export default userServices;

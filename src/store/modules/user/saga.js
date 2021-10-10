@@ -157,12 +157,120 @@ function* postDescriptionSaga(action) {
   }
 }
 
+export const FETCH_MY_FOLLOWER = `${PREFIX}/FETCH_MY_FOLLOWER`;
+export const FETCH_MY_FOLLOWER_SUCCESS = `${PREFIX}/FETCH_MY_FOLLOWER_SUCCESS`;
+export const FETCH_MY_FOLLOWER_FAILURE = `${PREFIX}/FETCH_MY_FOLLOWER_FAILURE`;
+
+export const getMyFollower = createAsyncAction(
+  FETCH_MY_FOLLOWER,
+  FETCH_MY_FOLLOWER_SUCCESS,
+  FETCH_MY_FOLLOWER_FAILURE,
+)();
+
+function* getMyFollowerSaga(action) {
+  const { getMyFollowerRequest, onSuccess, onFailure } = action.payload;
+
+  try {
+    const data = yield call(userServices.fetchMyFollower, getMyFollowerRequest);
+
+    yield put(
+		getMyFollower.success({ data }),
+    );
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(getMyFollower.failure());
+    yield fork(onFailure);
+  }
+}
+
+export const FETCH_MY_FOLLOWING = `${PREFIX}/FETCH_MY_FOLLOWING`;
+export const FETCH_MY_FOLLOWING_SUCCESS = `${PREFIX}/FETCH_MY_FOLLOWING_SUCCESS`;
+export const FETCH_MY_FOLLOWING_FAILURE = `${PREFIX}/FETCH_MY_FOLLOWING_FAILURE`;
+
+export const getMyFollowing = createAsyncAction(
+  FETCH_MY_FOLLOWING,
+  FETCH_MY_FOLLOWING_SUCCESS,
+  FETCH_MY_FOLLOWING_FAILURE,
+)();
+
+function* getMyFollowingSaga(action) {
+  const { getMyFollowingRequest, onSuccess, onFailure } = action.payload;
+
+  try {
+    const data = yield call(userServices.fetchMyFollowing, getMyFollowingRequest);
+
+    yield put(
+		getMyFollowing.success({ data }),
+    );
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(getMyFollowing.failure());
+    yield fork(onFailure);
+  }
+}
+
+export const POST_FOLLOW = `${PREFIX}/POST_FOLLOW`;
+export const POST_FOLLOW_SUCCESS = `${PREFIX}/POST_FOLLOW_SUCCESS`;
+export const POST_FOLLOW_FAILURE = `${PREFIX}/POST_FOLLOW_FAILURE`;
+
+export const startFollow = createAsyncAction(
+  POST_FOLLOW,
+  POST_FOLLOW_SUCCESS,
+  POST_FOLLOW_FAILURE,
+)();
+
+function* startFollowSaga(action) {
+  const { followRequest, onSuccess, onFailure } = action.payload;
+
+  try {
+    const data = yield call(userServices.startFollow, followRequest);
+
+    yield put(
+		startFollow.success({ data }),
+    );
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(startFollow.failure());
+    yield fork(onFailure);
+  }
+}
+
+export const DELETE_FOLLOW = `${PREFIX}/DELETE_FOLLOW`;
+export const DELETE_FOLLOW_SUCCESS = `${PREFIX}/DELETE_FOLLOW_SUCCESS`;
+export const DELETE_FOLLOW_FAILURE = `${PREFIX}/DELETE_FOLLOW_FAILURE`;
+
+export const deleteFollow = createAsyncAction(
+  DELETE_FOLLOW,
+  DELETE_FOLLOW_SUCCESS,
+  DELETE_FOLLOW_FAILURE,
+)();
+
+function* deleteFollowSaga(action) {
+  const { followDeleteRequest, onSuccess, onFailure } = action.payload;
+
+  try {
+    const data = yield call(userServices.deleteFollow, followDeleteRequest);
+
+    yield put(
+		deleteFollow.success({ data }),
+    );
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(deleteFollow.failure());
+    yield fork(onFailure);
+  }
+}
+
 export const userAsyncAction = {
   signIn,
   signUp,
   leaderRegister,
   getDescription,
   postDescription,
+  getMyFollower,
+  getMyFollowing,
+  startFollow,
+  deleteFollow,
 };
 
 export default function* userSaga() {
@@ -171,4 +279,8 @@ export default function* userSaga() {
   yield takeLatest(LEADER_REGISTER, leaderRegisterSaga);
   yield takeLatest(FETCH_DESC, getDescriptionSaga);
   yield takeLatest(POST_DESC, postDescriptionSaga);
+  yield takeLatest(FETCH_MY_FOLLOWER, getMyFollowerSaga);
+  yield takeLatest(FETCH_MY_FOLLOWING, getMyFollowingSaga);
+  yield takeLatest(POST_FOLLOW, startFollowSaga);
+  yield takeLatest(DELETE_FOLLOW, deleteFollowSaga);
 }

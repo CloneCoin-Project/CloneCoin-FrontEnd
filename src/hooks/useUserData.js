@@ -6,6 +6,10 @@ import {
   LoginStatusSelector,
   LeaderRegisterSelector,
   UserDescriptionSelector,
+  UserFollowerSelector,
+  UserFollowingSelector,
+  FollowLeaderSelector,
+  FollowDeleteLeaderSelector,
   userAction,
 } from '@store/modules/user';
 
@@ -29,21 +33,27 @@ const useUserData = () => {
     useAppSelector(UserDescriptionSelector.error),
   ];
 
-  const getDescription = useCallback(
-    (value) => {
-      //getDescriptionRequest {userid: id}
-      dispatch(userAsyncAction.getDescription.request(value));
-    },
-    [dispatch],
-  );
+  const [userFollowerLoading, userFollowerData, userFollowerError] = [
+    useAppSelector(UserFollowerSelector.loading),
+    useAppSelector(UserFollowerSelector.data),
+    useAppSelector(UserFollowerSelector.error),
+  ];
 
-  const postDescription = useCallback(
-    (value) => {
-      //postDescriptionRequest {userid: id, description: string}, onSuccess, onFailure
-      dispatch(userAsyncAction.postDescription.request(value));
-    },
-    [dispatch],
-  );
+  const [userFollowingLoading, userFollowingData, userFollowingError] = [
+    useAppSelector(UserFollowingSelector.loading),
+    useAppSelector(UserFollowingSelector.data),
+    useAppSelector(UserFollowingSelector.error),
+  ];
+
+  const [followLeaderLoading, followLeaderError] = [
+    useAppSelector(FollowLeaderSelector.loading),
+    useAppSelector(FollowLeaderSelector.error),
+  ];
+
+  const [followDeleteLeaderLoading, followDeleteLeaderError] = [
+    useAppSelector(FollowDeleteLeaderSelector.loading),
+    useAppSelector(FollowDeleteLeaderSelector.error),
+  ];
 
   const signIn = useCallback(
     (value) => {
@@ -78,6 +88,50 @@ const useUserData = () => {
     [loginStatusData],
   );
 
+  const getDescription = useCallback(
+    (value) => {
+      //getDescriptionRequest {userid: id}
+      dispatch(userAsyncAction.getDescription.request(value));
+    },
+    [dispatch],
+  );
+
+  const postDescription = useCallback(
+    (value) => {
+      //postDescriptionRequest {userid: id, description: string}, onSuccess, onFailure
+      dispatch(userAsyncAction.postDescription.request(value));
+    },
+    [dispatch],
+  );
+
+  const getMyFollower = useCallback(
+    (value) => {
+      dispatch(userAsyncAction.getMyFollower.request(value));
+    },
+    [dispatch],
+  );
+
+  const getMyFollowing = useCallback(
+    (value) => {
+      dispatch(userAsyncAction.getMyFollowing.request(value));
+    },
+    [dispatch],
+  );
+
+  const startFollow = useCallback(
+    (value) => {
+      dispatch(userAsyncAction.startFollow.request(value));
+    },
+    [dispatch],
+  );
+
+  const deleteFollow = useCallback(
+    (value) => {
+      dispatch(userAsyncAction.deleteFollow.request(value));
+    },
+    [dispatch],
+  );
+
   const ID = useMemo(() => loginStatusData?.ID, [loginStatusData]);
   const userName = useMemo(() => loginStatusData?.userName, [loginStatusData]);
   const userId = useMemo(() => loginStatusData?.userId, [loginStatusData]);
@@ -97,6 +151,16 @@ const useUserData = () => {
     userDescriptionLoading,
     userDescriptionData,
     userDescriptionError,
+	userFollowerLoading,
+	userFollowerData,
+	userFollowerError,
+	userFollowingLoading,
+	userFollowingData,
+	userFollowingError,
+	followLeaderLoading,
+	followLeaderError,
+	followDeleteLeaderLoading,
+	followDeleteLeaderError,
     isLogged,
     ID,
     userName,
