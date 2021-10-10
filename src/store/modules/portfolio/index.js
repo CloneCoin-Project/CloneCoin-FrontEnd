@@ -34,6 +34,10 @@ const initialState = {
     loading: false,
     error: null,
   },
+  copyChangeLeader: {
+    loading: false,
+    error: null,
+  },
 };
 
 const portfolioSlice = createSlice({
@@ -84,16 +88,6 @@ const portfolioSlice = createSlice({
         state.myPortfolioRatio.loading = false;
         state.myPortfolioRatio.data = initialState.myPortfolioRatio.data;
       })
-      .addCase(`${portfolioAsyncAction.startCopy.request}`, (state) => {
-        state.copyLeader.loading = true;
-      })
-      .addCase(`${portfolioAsyncAction.startCopy.success}`, (state, action) => {
-        state.copyLeader.loading = false;
-        state.myPortfolio.data.balance = action.payload.data.resultBalance;
-      })
-      .addCase(`${portfolioAsyncAction.startCopy.failure}`, (state) => {
-        state.copyLeader.loading = false;
-      })
       .addCase(`${portfolioAsyncAction.getMyCopyCoin.request}`, (state) => {
         state.myCopyCoin.loading = true;
       })
@@ -107,6 +101,26 @@ const portfolioSlice = createSlice({
       .addCase(`${portfolioAsyncAction.getMyCopyCoin.failure}`, (state) => {
         state.myCopyCoin.loading = false;
         state.myCopyCoin.data = initialState.myCopyCoin.data;
+      })
+      .addCase(`${portfolioAsyncAction.startCopy.request}`, (state) => {
+        state.copyLeader.loading = true;
+      })
+      .addCase(`${portfolioAsyncAction.startCopy.success}`, (state, action) => {
+        state.copyLeader.loading = false;
+        state.myPortfolio.data.balance = action.payload.data.resultBalance;
+      })
+      .addCase(`${portfolioAsyncAction.startCopy.failure}`, (state) => {
+        state.copyLeader.loading = false;
+      })
+      .addCase(`${portfolioAsyncAction.changeCopy.request}`, (state) => {
+        state.copyChangeLeader.loading = true;
+      })
+      .addCase(`${portfolioAsyncAction.changeCopy.success}`, (state, action) => {
+        state.copyChangeLeader.loading = false;
+        state.myPortfolio.data.balance = action.payload.data.resultBalance;
+      })
+      .addCase(`${portfolioAsyncAction.changeCopy.failure}`, (state) => {
+        state.copyChangeLeader.loading = false;
       })
   },
 });
@@ -164,6 +178,23 @@ export const MyPortfolioRatioSelector = {
   ),
 };
 
+const myCopyCoinSelector = createSelector(
+  selfSelector,
+  (state) => state.myCopyCoin,
+);
+  
+export const MyCopyCoinSelector = {
+  loading: createSelector(
+    myCopyCoinSelector,
+    (myCopyCoin) => myCopyCoin.loading,
+  ),
+  data: createSelector(myCopyCoinSelector, (myCopyCoin) => myCopyCoin.data),
+  error: createSelector(
+    myCopyCoinSelector,
+    (myCopyCoin) => myCopyCoin.error,
+  ),
+};
+
 const copyLeaderSelector = createSelector(
   selfSelector,
   (state) => state.copyLeader,
@@ -177,21 +208,17 @@ export const CopyLeaderSelector = {
   error: createSelector(copyLeaderSelector, (copyLeader) => copyLeader.error),
 };
 
-const myCopyCoinSelector = createSelector(
+const copyChangeLeaderSelector = createSelector(
   selfSelector,
-  (state) => state.myCopyCoin,
+  (state) => state.copyChangeLeader,
 );
-
-export const MyCopyCoinSelector = {
+  
+export const ChangeCopyLeaderSelector = {
   loading: createSelector(
-    myCopyCoinSelector,
-    (myCopyCoin) => myCopyCoin.loading,
+    copyChangeLeaderSelector,
+    (copyChangeLeader) => copyChangeLeader.loading,
   ),
-  data: createSelector(myCopyCoinSelector, (myCopyCoin) => myCopyCoin.data),
-  error: createSelector(
-    myCopyCoinSelector,
-    (myCopyCoin) => myCopyCoin.error,
-  ),
+  error: createSelector(copyChangeLeaderSelector, (copyChangeLeader) => copyChangeLeader.error),
 };
 
 export const portfolioAction = portfolioSlice.actions;

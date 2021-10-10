@@ -43,9 +43,12 @@ export const COUNT_COPIED = 'copies';
 export const COUNT_FOLLOWED = 'followers';
 export const COUNT_FOLLOWING = 'followings';
 
+export const COPY_TYPE_PLUS = 'add';
+export const COPY_TYPE_MINUS = 'withdraw';
 export const EDIT_BUTTON = "Edit";
 export const COPY_BUTTON = "Start Copy";
-export const COPY_CHANGE_BUTTON = "Change Copy";
+export const COPY_ADD_BUTTON = "Add Copy";
+export const COPY_WITHDRAW_BUTTON = "Withdraw Copy";
 
 export const EDIT_TITLE = "소개글 변경하기";
 
