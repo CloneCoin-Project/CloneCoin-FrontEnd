@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useModal, useUserData, usePortfolioData } from '@hooks';
 
 import { stringFormat, insertCommaToNumber } from '@/utils/stringFormat';
@@ -21,7 +21,11 @@ const Copy = (props) => {
 
 	const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
 	const { ID, isLogged, userStatus } = useUserData();
-	const { startCopy, changeCopy, copyLeaderSelectorLoading, changeCopyLeaderSelectorLoading, normalUserBalance, currentCopyingLeaders } = usePortfolioData();
+	const { 
+		getMyportfolio, getMyportfolioRatio, getMyCopyCoin, startCopy, changeCopy, 
+		copyLeaderSelectorLoading, changeCopyLeaderSelectorLoading, myPortfolioSelectorData, myPortfolioRatioSelectorData,
+		normalUserBalance, currentCopyingLeaders 
+	} = usePortfolioData();
 
 	const [inputPercentPlus, setInputPercentPlus] = useState(1);
 	const [inputPercentMinus, setInputPercentMinus] = useState(-1);
@@ -50,6 +54,15 @@ const Copy = (props) => {
 				amount: normalUserBalance * inputPercentPlus / 100,
 			},
 			onSuccess: () => {
+				getMyportfolioRatio({
+					getMyportfolioRatioRequest: { userId: ID } 
+				});
+				getMyportfolio({ 
+					getMyportfolioRequest: { userId: ID } 
+				});
+				getMyCopyCoin({ 
+					getMyCopyCoinRequest: { userId: ID } 
+				});
 				S.message.success('카피를 완료했습니다.');
 				setInputPercentPlus(1);
 				setIsModalVisible(false);
@@ -73,6 +86,15 @@ const Copy = (props) => {
 				amount: normalUserBalance * inputPercent / 100,
 			},
 			onSuccess: () => {
+				getMyportfolioRatio({
+					getMyportfolioRatioRequest: { userId: ID } 
+				});
+				getMyportfolio({ 
+					getMyportfolioRequest: { userId: ID } 
+				});
+				getMyCopyCoin({ 
+					getMyCopyCoinRequest: { userId: ID } 
+				});
 				S.message.success('카피금액 변경을 완료했습니다.');
 				setInputPercentPlus(1);
 				setInputPercentMinus(-1);
@@ -98,7 +120,9 @@ const Copy = (props) => {
 					<ProfileMini leaderEarningRate={ leaderEarningRate } leaderEarningBest={ leaderEarningBest }/>
 					<S.Tabs defaultActiveKey="1" centered>
 						<S.TabPane tab={ CHANGE_TAB_ADD } key="1">
-							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber(normalUserBalance)) }</S.Info>
+							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber( 
+								(10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100
+								)) }</S.Info>
 							<S.Info>{ stringFormat(CURRENT_MONEY, insertCommaToNumber(normalUserBalance)) }</S.Info>
 							<S.Info>{ CURRENT_VOLUME }</S.Info>
 							<Slider inputValue={ inputPercentPlus } onChange={ onChange }/>
@@ -107,10 +131,15 @@ const Copy = (props) => {
 						</S.TabPane>
 
 						<S.TabPane tab={ CHANGE_TAB_WITHDRAW } key="2">
-							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber(normalUserBalance)) }</S.Info>
+							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber( 
+								(10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100
+								)) }</S.Info>
 							<S.Info>{ COPY_VOLUME }</S.Info>
 							<SliderReverse inputValue={ inputPercentMinus } onChange={ onChange }/>
-							<S.ResultInfo>{ stringFormat(COPY_WITHDRAW_RESULT, insertCommaToNumber(normalUserBalance), insertCommaToNumber(normalUserBalance * inputPercentMinus / 100), inputPercentMinus) }</S.ResultInfo>
+							<S.ResultInfo>{ stringFormat(COPY_WITHDRAW_RESULT, insertCommaToNumber(
+								(10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100
+								), insertCommaToNumber(
+									(10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100 * inputPercentMinus / 100), inputPercentMinus) }</S.ResultInfo>
 							<CopyChangeButton key="back" type="primary" shape="round" loading={ changeCopyLeaderSelectorLoading } onClick={ () => submitChange(COPY_TYPE_MINUS, inputPercentMinus * (-1)) }>{ COPY_WITHDRAW_BUTTON }</CopyChangeButton>
 						</S.TabPane>
 					</S.Tabs>
