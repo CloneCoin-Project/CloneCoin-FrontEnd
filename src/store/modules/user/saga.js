@@ -3,7 +3,7 @@ import { createAsyncAction } from 'typesafe-actions';
 import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import { userServices, portfolioServices } from '@apis/rest';
 import { STATUS_NORMAL } from '@assets/string';
-import { getMyportfolio, getMyCopyCoin } from '../portfolio/saga';
+import { getMyportfolioRatio, getMyportfolio, getMyCopyCoin } from '../portfolio/saga';
 
 export const PREFIX = 'user';
 
@@ -35,8 +35,17 @@ function* signInSaga(action) {
       });
       yield put(
         getMyportfolio.success({
-          data,
+			data,
         }),
+      );
+
+      const myPortfolioRatioData = yield call(portfolioServices.fetchMyportfolioRatio, {
+		userId: ID,
+      });
+      yield put(
+        getMyportfolioRatio.success({
+			myPortfolioRatioData,
+		}),
       );
 
       const myCopyCoinData = yield call(portfolioServices.fetchMyCopyCoin, {

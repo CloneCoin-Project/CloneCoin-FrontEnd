@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { Modal as AntdModal, Button } from 'antd';
 import BithumbGold from '@assets/images/bithumb_1.png';
 import BithumbSilver from '@assets/images/bithumb_2.png';
-import { BITHUMB_COLOR } from '@assets/color';
+import { BITHUMB_COLOR, GOLD_COLOR, BLACK_WHITE } from '@assets/color';
 import { PROJECT_TITLE } from '@assets/string';
 
 // Close Button
@@ -62,8 +62,33 @@ export const CoinWrapper = styled.div`
     }
 `;
 
-export const Desc = styled.div`
-    margin: 20px auto;
+export const DescTitle = styled.span.attrs({
+	title: PROJECT_TITLE,
+  })`
+	font-size: 16px;
+	font-weight: 700;
+	font-style: italic;
+	color: #D2AC47;
+  
+	&::before {
+	  content: attr(title);
+	}
+  `;
+
+export const DescGold = styled.div`
+    margin: 1px auto;
+    text-align: center;
+	color: ${ GOLD_COLOR [2]};
+`;
+
+export const DescSilver = styled.div`
+    margin: 1px auto;
+    text-align: center;
+	color: ${BLACK_WHITE [1]};
+`;
+
+export const DescWrapper = styled.div`
+    padding: 20px 10px;
     text-align: center;
 `;
 

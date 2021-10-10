@@ -3,7 +3,7 @@ import {
   parseToDataSource,
   tickerColumns,
   isObjectEmpty,
-} from '@utils/bithumb';
+} from '@/utils/bithumbUtils';
 
 import * as S from '@components/home/RTQTable/style';
 
