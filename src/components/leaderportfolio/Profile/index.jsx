@@ -4,6 +4,8 @@ import { useLocation } from 'react-router';
 import { useWalletData } from '@hooks';
 import LeaderDescription from '@/components/common/LeaderDescription';
 
+import { COPY_BUTTON } from '@assets/string';
+
 import * as S from '@components/leaderportfolio/Profile/style';
 
 const LeaderProfile = () => {
@@ -41,6 +43,12 @@ const LeaderProfile = () => {
                   </>
               </S.CopyFollowContainer>
             </S.Col>
+          </S.Row>
+        </S.Col>
+
+        <S.Col xs={24} sm={12}>
+          <S.Row justify="center">
+          <S.CopyButton size="large" type="primary" shape="round">{ COPY_BUTTON }</S.CopyButton>
           </S.Row>
         </S.Col>
       </S.Row>

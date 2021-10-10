@@ -1,4 +1,4 @@
-import { convertToFixed } from '@utils/parse';
+import { convertToFixed, convertToQuantityFixed } from '@utils/parse';
 
 export const leaderInvestColumns = [
   {
@@ -32,9 +32,13 @@ export const leaderInvestColumns = [
     align: 'center',
     render: (fluctuationRate) =>
       fluctuationRate >= 0 ? (
-        <span style={{ color: '#F75467' }}>{`+${convertToFixed(fluctuationRate)}`}</span>
+        <span style={{ color: '#F75467' }}>{`+${convertToFixed(
+          fluctuationRate,
+        )}`}</span>
       ) : (
-        <span style={{ color: '#4386F9' }}>{convertToFixed(fluctuationRate)}</span>
+        <span style={{ color: '#4386F9' }}>
+          {convertToFixed(fluctuationRate)}
+        </span>
       ),
   },
   {
@@ -49,6 +53,7 @@ export const leaderInvestColumns = [
     dataIndex: 'coinQuantity',
     key: 'coinQuantity',
     align: 'right',
+    render: (coinQuantity) => convertToQuantityFixed(coinQuantity),
   },
 ];
 
@@ -91,9 +96,13 @@ export const normalUserInvestColumns = [
     align: 'center',
     render: (fluctuationRate) =>
       fluctuationRate >= 0 ? (
-        <span style={{ color: '#F75467' }}>{`+${convertToFixed(fluctuationRate)}`}</span>
+        <span style={{ color: '#F75467' }}>{`+${convertToFixed(
+          fluctuationRate,
+        )}`}</span>
       ) : (
-        <span style={{ color: '#4386F9' }}>{convertToFixed(fluctuationRate)}</span>
+        <span style={{ color: '#4386F9' }}>
+          {convertToFixed(fluctuationRate)}
+        </span>
       ),
   },
   {
@@ -108,5 +117,6 @@ export const normalUserInvestColumns = [
     dataIndex: 'coinQuantity',
     key: 'coinQuantity',
     align: 'right',
+    render: (coinQuantity) => convertToQuantityFixed(coinQuantity),
   },
 ];
