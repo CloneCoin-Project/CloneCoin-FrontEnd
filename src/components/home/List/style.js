@@ -18,6 +18,7 @@ import {
   ArrowRightOutlined,
   LikeTwoTone,
   CopyTwoTone,
+  UserOutlined,
 } from '@ant-design/icons';
 import { GOLD_COLOR } from '@assets/color';
 
@@ -34,6 +35,7 @@ export const OuterCard = styled(AntdCard)`
   & .ant-card-actions > li > span:hover {
     color: inherit;
   }
+  width: 100%;
 `;
 
 export const InnerCard = styled(AntdCard).attrs({
@@ -64,14 +66,14 @@ export const Badge = styled(AntdBadge)`
 `;
 
 export const Ribbon = styled(AntdBadge.Ribbon).attrs({
-  color: GOLD_COLOR[4]
+  color: GOLD_COLOR[4],
 })`
   margin: 0 10px 0 0;
 `;
 
 export const DividerContainer = styled.div`
   &:hover {
-	cursor: pointer;
+    cursor: pointer;
   }
 `;
 
@@ -133,6 +135,7 @@ export {
   NotificationOutlined,
   CopyrightOutlined,
   ArrowRightOutlined,
+  UserOutlined,
   LikeTwoTone,
   CopyTwoTone,
   Divider,

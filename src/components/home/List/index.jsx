@@ -1,144 +1,166 @@
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router';
+import { useCallback, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router';
+import { useWalletData, useUserData, usePortfolioData } from '@hooks';
 
+import { isHome, yieldArr } from '@utils/listUtil';
+import { convertToFixed } from '@utils/parse';
+
+import { CopyModal } from '@/components/modal';
 import * as S from '@components/home/List/style';
 import { Divider } from '@components/home/Filter/style';
 import {
-  OVERALL_YILED,
-  BEST_YILED,
-  WORST_YILED,
   HEADER_DIVISION_YILED,
   HEADER_CONTENT_YILED,
   LEADERS_TITLE,
-  VIEW_MORE
+  VIEW_MORE,
 } from '@assets/string';
 
-const LeaderInfo = ({ icon, text, number, onClick }) => (
+const LeaderInfo = ({ icon, text, onClick }) => (
   <S.Row align="center">
     <S.Col span={24}>
       <S.LeaderInfoTitle>{text}</S.LeaderInfoTitle>
     </S.Col>
     <S.Col span={24}>
       <S.Button type="text" icon={icon} onClick={onClick} />
-      <S.LeaderInfoNumber>{number}</S.LeaderInfoNumber>
     </S.Col>
   </S.Row>
 );
 
-const YieldList = () => {
+const YieldList = ({ all, best, worst }) => {
   return (
     <S.YieldContainer>
       <S.YieldContentContainer>
         <S.YieldTitle type="HEADER">{HEADER_DIVISION_YILED}</S.YieldTitle>
         <S.YieldNumber>{HEADER_CONTENT_YILED}</S.YieldNumber>
       </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="ALL">{OVERALL_YILED}</S.YieldTitle>
-        <S.YieldNumber number={10}>+10.0</S.YieldNumber>
-      </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="BEST">{BEST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={10}>+32.0</S.YieldNumber>
-      </S.YieldContentContainer>
-      <S.YieldContentContainer>
-        <S.YieldTitle type="WORST">{WORST_YILED}</S.YieldTitle>
-        <S.YieldNumber number={-7}>-7.2</S.YieldNumber>
-      </S.YieldContentContainer>
+      {yieldArr(all, best, worst).map((value) => {
+        const { type, title, number } = value;
+        return (
+          <S.YieldContentContainer key={`${type}`}>
+            <S.YieldTitle type={type}>{title}</S.YieldTitle>
+            <S.YieldNumber number={number}>{number}</S.YieldNumber>
+          </S.YieldContentContainer>
+        );
+      })}
     </S.YieldContainer>
   );
 };
 
-const List = (props) => {
-  const { count } = props; 
-
+const List = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { pathname } = location;
 
-  const listData = [];
-  for (let i = 0; i < count; i++) {
-    listData.push({
-      nickName: `Nick Name ${i}`,
-      avatar:
-        'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    });
-  }
+  const { getAllLeader, LeaderListLoading, refinedLeaderList } =
+    useWalletData();
+  const { isLogged, ID, userStatus } = useUserData();
+  const { normalUserBalance, getMyportfolio } = usePortfolioData();
 
-  const handlePortfolioClick = useCallback(() => {
-    navigate({ pathname: '/leader' });
-  }, [navigate]);
+  console.log(normalUserBalance); //<- 로그인 한 상태면 밸런스가 나오고 그외의 상태에서는 0이 나옴
+
+  useEffect(() => {
+    getAllLeader();
+  }, []);
+
+  useEffect(() => {
+    if (isLogged && userStatus === 'normal') {
+      getMyportfolio({ getMyportfolioRequest: { userId: ID } });
+    }
+  }, [userStatus, isLogged]);
+
+  const handlePortfolioClick = useCallback(
+    (leaderId) => {
+      navigate({ pathname: `/leader/${leaderId}` });
+    },
+    [navigate],
+  );
 
   const handleLeaderListClick = useCallback(() => {
     navigate({ pathname: '/leaderlist' });
   }, [navigate]);
 
   return (
-	<>
-		{ !(count > 2) &&
-			<S.DividerContainer onClick={handleLeaderListClick}>
-				<S.Ribbon text={ VIEW_MORE }>
-					<Divider orientation="left">{ LEADERS_TITLE }</Divider>
-				</S.Ribbon>
-			</S.DividerContainer>
-		}
-		<S.List
-		dataSource={listData}
-		renderItem={(item) => (
-			<S.List.Item key={item.nickName}>
-			<S.OuterCard
-				hoverable
-				bordered={false}
-				actions={[
-				<LeaderInfo
-					text="Follower"
-					icon={<S.LikeOutlined style={{ fontSize: 18 }} />}
-					number={156}
-					key="list-vertical-follow-o"
-				/>,
-				<LeaderInfo
-					text="Copier"
-					icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
-					number={156}
-					key="list-vertical-cory-o"
-				/>,
-				<LeaderInfo
-					text="More"
-					icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
-					key="list-vertical-more-o"
-					onClick={handlePortfolioClick}
-				/>,
-				]}
-			>
-				<S.Row>
-				<S.Col xs={24} sm={12}>
-					<S.CardGrid>
-					<S.InnerCard>
-						<S.Meta
-						avatar={<S.Avatar src={item.avatar} />}
-						title={
-							<S.NickNameContainer>
-							{item.nickName}
-							{/* <S.Badge dot>
-								<S.NotificationOutlined style={{ fontSize: 16 }} />
-							</S.Badge> */}
-							</S.NickNameContainer>
-						}
-						description={item.description}
-						/>
-					</S.InnerCard>
-					</S.CardGrid>
-				</S.Col>
-				<S.Col xs={24} sm={12}>
-					<S.CardGrid>
-					<YieldList />
-					</S.CardGrid>
-				</S.Col>
-				</S.Row>
-			</S.OuterCard>
-			</S.List.Item>
-		)}
-		/>
-	</>
+    <>
+      {isHome(pathname) && (
+        <S.DividerContainer onClick={handleLeaderListClick}>
+          <S.Ribbon text={VIEW_MORE}>
+            <Divider orientation="left">{LEADERS_TITLE}</Divider>
+          </S.Ribbon>
+        </S.DividerContainer>
+      )}
+      <S.List
+        dataSource={refinedLeaderList}
+        renderItem={(item) => (
+          <S.List.Item key={item.leaderName}>
+            <S.OuterCard
+              hoverable
+              loading={LeaderListLoading}
+              bordered={false}
+              actions={[
+                <LeaderInfo
+                  text="Follower"
+                  icon={<S.LikeOutlined style={{ fontSize: 18 }} />}
+                  number={156}
+                  key="list-vertical-follow-o"
+                />,
+                <CopyModal
+                  key={item.leaderName}
+                  leaderId={item.leaderId}
+                  leaderName={item.leaderName}
+                  leaderEarningRate={item.all}
+                  leaderEarningBest={item.best}
+                  triggerButton={
+                    <LeaderInfo
+                      text="Copy"
+                      icon={<S.CopyrightOutlined style={{ fontSize: 18 }} />}
+                      number={156}
+                      key="list-vertical-cory-o"
+                    />
+                  }
+                />,
+                <LeaderInfo
+                  text="More"
+                  icon={<S.ArrowRightOutlined style={{ fontSize: 18 }} />}
+                  key="list-vertical-more-o"
+                  onClick={() => {
+                    handlePortfolioClick(item.leaderId);
+                  }}
+                />,
+              ]}
+            >
+              <S.Row>
+                <S.Col xs={24} sm={12}>
+                  <S.CardGrid>
+                    <S.InnerCard>
+                      <S.Meta
+                        avatar={
+                          <S.Avatar size={40} icon={<S.UserOutlined />} />
+                        }
+                        title={
+                          <S.NickNameContainer>
+                            {item.leaderName}
+                          </S.NickNameContainer>
+                        }
+                        description={item.description ?? ''}
+                      />
+                    </S.InnerCard>
+                  </S.CardGrid>
+                </S.Col>
+                <S.Col xs={24} sm={12}>
+                  <S.CardGrid>
+                    <YieldList
+                      all={convertToFixed(item.all)}
+                      best={convertToFixed(item.best)}
+                      worst={convertToFixed(item.worst)}
+                    />
+                  </S.CardGrid>
+                </S.Col>
+              </S.Row>
+            </S.OuterCard>
+          </S.List.Item>
+        )}
+      />
+    </>
   );
 };
 

@@ -10,11 +10,9 @@ const neon = keyframes`
 	0%,
 	100% {
 		text-shadow: 0 0 9px ${GOLD_COLOR[5]}, 0 0 9px ${GOLD_COLOR[5]}, 0 0 19px ${GOLD_COLOR[5]}, 0 0 3px ${GOLD_COLOR[5]}, 9px 1px 1px ${BLACK_WHITE[3]};
-		color: ${GOLD_COLOR[2]} ${GOLD_COLOR[2]};
 	}
 	50% {
 		text-shadow: 0 0 9px ${GOLD_COLOR[4]}, 0 0 9px ${GOLD_COLOR[4]}, 0 0 9px ${GOLD_COLOR[4]}, 0 0 3px ${GOLD_COLOR[4]}, 9px 1px 1px ${BLACK_WHITE[3]};
-		color: ${GOLD_COLOR[1]} ${GOLD_COLOR[2]};
 	}
 `;
 
@@ -59,8 +57,8 @@ export const LogoTitle = styled.span.attrs({
   font-size: 24px;
   font-weight: 700;
   font-style: italic;
-  color: ${GOLD_COLOR[0]};
-  animation: ${ neon } infinite 4s linear;
+  color: #D2AC47;
+  /* animation: ${ neon } infinite 4s linear; */
 
   &::before {
     content: attr(title);

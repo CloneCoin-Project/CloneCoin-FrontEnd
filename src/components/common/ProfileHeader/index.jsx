@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { fetchOneUser } from '@apis/rest/user';
 import { ProfileHeaderSkeleton } from '@components/skeleton';
 import { COUNT_COPIED, COUNT_FOLLOWED, COUNT_FOLLOWING, COPY_BUTTON, EDIT_BUTTON } from '@assets/string';
 import { CopyModal, IntroductionModal } from '@/components/modal';
@@ -21,7 +20,12 @@ const ProfileCard = ( props ) => {
 						{ count_copied } { COUNT_COPIED } { count_followed } { COUNT_FOLLOWED } { count_following } { COUNT_FOLLOWING }
 					</S.Count>
 				</S.InnerSection>
-				<CopyModal parent='ProfileCard' str={ COPY_BUTTON } />
+				<CopyModal
+					triggerButton={
+						<S.CopyButton type="primary" shape="round">{ COPY_BUTTON }</S.CopyButton>
+					} 
+					str={ COPY_BUTTON } 
+				/>
 			</S.UpperSection>
 
 			<S.UnderSection>
@@ -37,24 +41,17 @@ const ProfileHeader = ({ userId }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [profile, setProfile] = useState(null);
 
-	useEffect( async () => {
-		setIsLoading(true);
-		let user = await fetchOneUser(userId);
-		setIsLoading(false);
-		setProfile(user.data);
-	}, []);
-
 	return (
 		<>
-		{ isLoading 
+		{ isLoading
 			? <ProfileHeaderSkeleton />
-			: <ProfileCard 
+			: <ProfileCard
 				nickname={'nickname'}
 				introduction={'description description description description description description description description'}
 				profile_image={''}
-				count_copied={0} 
-				count_followed={0} 
-				count_following={0} 
+				count_copied={0}
+				count_followed={0}
+				count_following={0}
 			/>
 		}
 		</>

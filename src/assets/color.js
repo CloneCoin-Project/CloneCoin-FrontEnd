@@ -2,27 +2,25 @@ export const LINE_COLOR = "#4073FF";   // Blue
 
 export const RING_COLOR = [
 	/* length 20, select random */
-	"#B8255F",   // Berry Red 
-	"#DB4035",   // Red
-	"#FF9933",   // Orange
 	"#FAD000",   // Yellow
-	"#AFB83B",   // Olive Green
+	"#EB96EB",   // Lavender
 	"#7ECC49",   // Lime Green
+	"#14AAF5",   // Sky Blue
+	"#96C3EB",   // Light Blue
+	"#AFB83B",   // Olive Green
+	"#FF9933",   // Orange
 	"#299438",   // Green
 	"#6ACCBC",   // Mint Green
 	"#158FAD",   // Teal
-	"#14AAF5",   // Sky Blue
-	"#96C3EB",   // Light Blue
 	"#4073FF",   // Blue
 	"#884DFF",   // Grape
 	"#AF38EB",   // Violet
-	"#EB96EB",   // Lavender
 	"#E05194",   // Magenta
 	"#FF8D85",   // Salmon
 	"#808080",   // Charcoal
 	"#B8B8B8",   // Grey
 	"#CCAC93",   // Taupe
-]; 
+];
 
 export const BITHUMB_COLOR = [
 	"#E48701",   // Orange (Logo)
@@ -36,7 +34,7 @@ export const BITHUMB_COLOR = [
 
 export const GOLD_COLOR = [
 	/* Dark to Light */
-	"#AE8625",
+	"#D4A534",
 	"#BD9A3F",
 	"#D2AC47",
 	"#DFBD69",

@@ -14,6 +14,15 @@ const useTickerSocket = () => {
   }, []);
 
   useEffect(() => {
+    return () => {
+      if (currentSocket) {
+        currentSocket.close();
+        setCurrentSocket(null);
+      }
+    };
+  }, [currentSocket]);
+
+  useEffect(() => {
     if (Object.keys(tickerAllData).length < 1) return;
     setCurrentTickers(tickerAllData);
   }, [tickerAllData]);

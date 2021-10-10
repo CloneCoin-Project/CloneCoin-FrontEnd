@@ -1,87 +1,77 @@
 import { useEffect, useState } from 'react';
+
+import { useWalletData, useUserData, usePortfolioData } from '@hooks';
+import { convertToFixed } from '@utils/parse';
 import * as S from '@/components/common/Chart/style';
+
 import { RING_COLOR } from '@assets/color';
-import { shuffle } from '@utils/random';
-import axios from 'axios';
+import { STATUS_LEADER, STATUS_NORMAL } from '@assets/string';
 
-const RingDetail = ({ data, color }) => {
-	const [detail, setDetail] = useState([]);
+const RingDetail = ({ data, status }) => {
+  return (
+    <S.DetailContainer>
+      {data.map((item, index) => (
+        <S.Detail key={index}>
+          <S.SmallCircle color={RING_COLOR[index % RING_COLOR.length]} />
+          <S.Name>
+            {status === STATUS_LEADER ? item.coinName : item.leaderName}
+          </S.Name>
+          <S.Ratio>
+            {status === STATUS_LEADER
+              ? `${convertToFixed(item.ratio)}%`
+              : `${item.copyRatio}%`}
+          </S.Ratio>
+        </S.Detail>
+      ))}
+    </S.DetailContainer>
+  );
+};
 
-	useEffect(() => {
-		// setDetail
-		let result = [];
-		let sum = data.reduce(function (accumulator, currentValue) {
-			return accumulator + currentValue.value;
-		}, 0)
+const Ring = () => {
+  const [invertData, setInvertData] = useState();
+  const { userStatus } = useUserData();
+  const { leaderInvestRatio } = useWalletData();
+  const { myPortfolioRatioSelectorData } = usePortfolioData();
 
-		for (let i=0; i<data.length; i++) {
-			result.push({ ...data[i], percentage: (data[i].value / sum * 100).toFixed(2) + '%', color: color[i] })
-		}
-		setDetail(result);
-		
-	}, [data, color]);
+  useEffect(() => {
+    if (userStatus === STATUS_LEADER) {
+      setInvertData(leaderInvestRatio);
+    } else if (userStatus === STATUS_NORMAL) {
+      setInvertData(myPortfolioRatioSelectorData);
+    }
+  }, [userStatus, leaderInvestRatio, myPortfolioRatioSelectorData]);
 
-	return (
-		<S.DetailContainer>
-			{ detail.map(
-				(item, i) => 
-				<S.Detail key={i}>
-					<S.SmallCircle color={item.color} />
-					<S.Name>{item.name} {item.percentage}</S.Name>
-				</S.Detail> ) 
-			}
-		</S.DetailContainer>
-	);
-}
-
-
-const Ring = (props) => {
-	const { id } = props;
-	const [data, setData] = useState([]);
-	const [color, setColor] = useState(RING_COLOR);
-
-	useEffect(() => {
-		// axios 요청은 Ring 컴포넌트가 아닌 상위에서 해야 함.
-		axios({
-			url: process.env.REACT_APP_CLONECOIN_API_PATH + `/wallet/leaders/${id}`, 
-			method: "get",
-			headers: {
-			},
-			data: {
-				apiKey: "b77a16ccfd3a08d45193cac6b9b9264d",
-				secretKey: "4e1d84ce42f01b4344ec899622d919c9",
-				currency: "ALL",
-			}
-		}).then((response) => {
-			console.log(response.data);
-			setData(response.data);
-			shuffle(color);
-			setColor(color.slice(0, data.length + 1));
-			
-		}).catch((error) => {
-			console.log(error);
-		});
-	}, []);
-	
-	return (
-		<S.Container>
-			<S.PieChart width={200} height={200}>
-				<S.Pie
-					data={data}
-					innerRadius={40}
-					outerRadius={80}
-					paddingAngle={0}
-					startAngle={90}
-					endAngle={450}
-				>
-					{data.map((entry, index) => (
-						<S.Cell key={`cell-${index}`} fill={color[index % color.length]} />
-					))}
-				</S.Pie>
-			</S.PieChart>
-			<RingDetail data={data} color={color} style={{width:"400px"}}/>
-		</S.Container>
-	);
-}
+  return (
+    <S.Container>
+      {invertData && (
+        <>
+          <S.PieChart width={200} height={200}>
+            <S.Pie
+              data={invertData}
+              innerRadius={40}
+              outerRadius={80}
+              paddingAngle={0}
+              startAngle={90}
+              endAngle={450}
+              dataKey={userStatus === STATUS_LEADER ? 'ratio' : 'copyRatio'}
+            >
+              {invertData.map((entry, index) => (
+                <S.Cell
+                  key={`cell-${index}`}
+                  fill={RING_COLOR[index % RING_COLOR.length]}
+                />
+              ))}
+            </S.Pie>
+          </S.PieChart>
+          <RingDetail
+            data={invertData}
+            status={userStatus}
+            style={{ width: '400px' }}
+          />
+        </>
+      )}
+    </S.Container>
+  );
+};
 
 export default Ring;
