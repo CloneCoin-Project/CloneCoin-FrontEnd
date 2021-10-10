@@ -6,3 +6,5 @@ export const convertToFixed = (num) =>
 
 export const convertToFloorLocaleString = (num) =>
 typeof num === 'number' ? Math.floor(num).toLocaleString() : num;
+
+export const isObjectEmpty = (obj) => Object.keys(obj).length === 0;

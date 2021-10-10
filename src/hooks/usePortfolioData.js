@@ -119,6 +119,11 @@ const usePortfolioData = () => {
     myCopyCoinSelectorLoading,
   ]);
 
+  const myCopyCoins = useMemo(
+    () => (myCopyCoinSelectorData ? myCopyCoinSelectorData : []),
+    [myCopyCoinSelectorData, myCopyCoinSelectorLoading],
+  );
+
   const chartNormalUserProfit = useMemo(
     () =>
       myPortfolioProfitSelectorData?.profits
@@ -150,6 +155,7 @@ const usePortfolioData = () => {
     myCopyCoinSelectorData,
     myCopyCoinSelectorError,
     getMyCopyCoin,
+    myCopyCoins,
   };
 };
 

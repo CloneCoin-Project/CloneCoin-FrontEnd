@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useUserData, useWalletData, usePortfolioData } from '@hooks';
+import { useWalletData } from '@hooks';
+import { useLocation } from 'react-router';
 
-import YieldLineChart from '@components/myportfolio/LineChart';
+import YieldLineChart from '@components/leaderportfolio/LineChart';
+import Ring from '@components/leaderportfolio/PieChart';
 import InvestList from '@/components/common/InvestList';
-import * as S from '@components/myportfolio/style';
-import { Ring } from '@components/common/Chart';
+
+import * as S from '@components/leaderportfolio/Portfolio/style';
 
 import {
-  STATUS_LEADER,
-  STATUS_NORMAL,
   ONE_DAY,
   SEVEN_DAY,
   THIRTY_DAY,
@@ -18,33 +18,28 @@ import {
   INVEST_LIST,
 } from '@assets/string';
 
-const MyPortfolio = () => {
+const LeaderPortfolio = () => {
+  const location = useLocation();
+  const { pathname } = location;
+
   const [period, setPeriod] = useState(1);
-  const { userStatus, ID } = useUserData();
   const { getSelectedLeader, getSelectedLeaderProfit } = useWalletData();
-  const { getMyportfolioProfit, getMyportfolioRatio } = usePortfolioData();
 
   useEffect(() => {
-    if (userStatus === STATUS_LEADER) {
-      getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
-    } else if (userStatus === STATUS_NORMAL) {
-      getMyportfolioRatio({
-        getMyportfolioRatioRequest: { userId: ID },
-      });
-    }
-  }, []);
+    if (!pathname) return;
+    const pathSplited = pathname.split('/');
+    const leaderId = pathSplited[pathSplited.length - 1];
+    getSelectedLeader({ getSelectedLeaderRequest: { leaderId } });
+  }, [pathname]);
 
   useEffect(() => {
-    if (userStatus === STATUS_LEADER) {
-      getSelectedLeaderProfit({
-        getSelectedLeaderProfitRequest: { leaderId: ID, period },
-      });
-    } else if (userStatus === STATUS_NORMAL) {
-      getMyportfolioProfit({
-        getMyportfolioProfitRequest: { userId: ID, period },
-      });
-    }
-  }, [period]);
+    if (!pathname) return;
+    const pathSplited = pathname.split('/');
+    const leaderId = pathSplited[pathSplited.length - 1];
+    getSelectedLeaderProfit({
+      getSelectedLeaderProfitRequest: { leaderId, period },
+    });
+  }, [period, pathname]);
 
   return (
     <>
@@ -81,4 +76,4 @@ const MyPortfolio = () => {
   );
 };
 
-export default MyPortfolio;
+export default LeaderPortfolio;

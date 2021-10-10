@@ -5,28 +5,19 @@ import {
   Form,
   Input,
   Card as AntdCard,
-  Badge as AntdBadge,
   Button as AntdButton,
   Row,
   Col,
   Divider,
-  Table,
   Popconfirm,
   message,
 } from 'antd';
 
 import {
-  NotificationOutlined,
-  LikeOutlined,
   UserOutlined,
-  CopyrightOutlined,
-  ArrowRightOutlined,
-  LikeTwoTone,
-  CopyTwoTone,
-  EditOutlined,
 } from '@ant-design/icons';
 
-const { Meta, Grid } = AntdCard;
+const { Grid } = AntdCard;
 const { TextArea } = Input;
 
 export const CardGrid = styled(Grid).attrs({
@@ -77,8 +68,6 @@ export const Modal = styled(AntdModal)`
   }
 `;
 
-export const Badge = styled(AntdBadge)``;
-
 export const BalanceHeader = styled.div`
   display: flex;
   align-items: center;
@@ -100,23 +89,7 @@ export const DividerContent = styled.div`
   align-items: center;
 `;
 
-export const DescriptionContainer = styled.div``;
-
-export const DescriptionContent = styled.div``;
-
 export const PortfolioHeader = styled.h2``;
-
-export const YieldContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-`;
-
-export const YieldHeader = styled.div``;
-
-export const YieldContent = styled.div``;
 
 export const LineChartContainer = styled.div`
   width: 100%;
@@ -124,27 +97,12 @@ export const LineChartContainer = styled.div`
   margin: 2rem 0;
 `;
 
-export const PieChartContainer = styled.div`
-  width: 100%;
-  height: 300px;
-  margin: 0 0 2rem;
-`;
-
-export const TableContainer = styled.div`
-  width: 100%;
-  margin: 2rem 0;
-`;
-
 export {
-  NotificationOutlined,
   UserOutlined,
-  EditOutlined,
   Avatar,
-  Meta,
   Row,
   Col,
   Divider,
-  Table,
   Popconfirm,
   message,
   Form,
