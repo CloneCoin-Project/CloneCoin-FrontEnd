@@ -83,7 +83,9 @@ const Copy = (props) => {
 				userId: ID,
 				leaderId,
 				type,
-				amount: normalUserBalance * inputPercent / 100,
+				amount: (type == COPY_TYPE_PLUS) 
+					? normalUserBalance * inputPercent / 100
+					: (10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100 * inputPercentMinus * (-1) / 100,
 			},
 			onSuccess: () => {
 				getMyportfolioRatio({
