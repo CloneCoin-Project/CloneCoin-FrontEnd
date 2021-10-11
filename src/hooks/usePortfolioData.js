@@ -121,7 +121,7 @@ const usePortfolioData = () => {
     if (myCopyCoinSelectorData?.length > 0) {
       return myCopyCoinSelectorData.reduce(
         (acc, coin) => acc + coin.avgPrice * coin.coinQuantity,
-        myPortfolioSelectorData.balance,
+        myPortfolioSelectorData?.balance,
       );
     } else
       return myPortfolioSelectorData?.balance

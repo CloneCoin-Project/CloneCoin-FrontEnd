@@ -55,8 +55,7 @@ const List = () => {
   const { getAllLeader, LeaderListLoading, refinedLeaderList } =
     useWalletData();
   const { 
-	followLeaderLoading, followLeaderError, followDeleteLeaderLoading, followDeleteLeaderError, 
-	userFollowingData, isLogged, ID, userStatus, getMyFollowing, startFollow, 
+	currentFollowingLeaders, isLogged, ID, userStatus, startFollow, deleteFollow, getMyFollowing,
   } = useUserData();
   const { getMyportfolio, normalUserBalance } = usePortfolioData();
 
@@ -82,18 +81,44 @@ const List = () => {
   }, [navigate]);
 
   const onRequest = useCallback((leaderId) => {
-	startFollow({
-      followRequest: {
-		userId: ID,
-        leaderId,
-      },
-      onSuccess: () => {
-        S.message.success('팔로우를 완료했습니다.');
-      },
-      onFailure: () => {
-        S.message.error('에러가 발생하였습니다.');
-      },
-	}, []);
+	if (currentFollowingLeaders.includes(leaderId)) {
+		deleteFollow({
+			followDeleteRequest: {
+				userId: ID,
+				leaderId,
+			},
+			onSuccess: () => {
+				/*
+				getMyFollowing({ 
+					getMyFollowingRequest: { userId: ID } 
+				});
+				*/
+				S.message.success('팔로우를 취소했습니다.');
+			},
+			onFailure: () => {
+				S.message.error('에러가 발생하였습니다.');
+			},
+		}, []);
+	}
+	else {
+		startFollow({
+			followRequest: {
+				userId: ID,
+				leaderId,
+			},
+			onSuccess: () => {
+				/*
+				getMyFollowing({ 
+					getMyFollowingRequest: { userId: ID } 
+				});
+				*/
+				S.message.success('팔로우를 완료했습니다.');
+			},
+			onFailure: () => {
+				S.message.error('에러가 발생하였습니다.');
+			},
+		}, []);
+	}
   })
 
   const rejectRequest = () => {

@@ -22,14 +22,14 @@ function* signInSaga(action) {
 
   try {
     const data = yield call(userServices.signIn, signInRequest);
-
     yield put(
       signIn.success({
         data,
       }),
     );
+
     const { ID, status } = data;
-    if (status === STATUS_NORMAL) {
+    if (status == STATUS_NORMAL) {
       const data = yield call(portfolioServices.fetchMyportfolio, {
         userId: ID,
       });
@@ -61,7 +61,6 @@ function* signInSaga(action) {
       const myFollowingData = yield call(userServices.fetchMyFollowing, {
         userId: ID,
       });
-
       yield put(
         getMyFollowing.success({
 			myFollowingData,
@@ -242,10 +241,20 @@ function* startFollowSaga(action) {
 
   try {
     const data = yield call(userServices.startFollow, followRequest);
-
     yield put(
 		startFollow.success({ data }),
     );
+	
+	const { userId } = followRequest;
+	const myFollowingData = yield call(userServices.fetchMyFollowing, {
+        userId,
+    });
+    yield put(
+        getMyportfolio.success({
+			myFollowingData,
+        }),
+    );
+
     yield fork(onSuccess);
   } catch (e) {
     yield put(startFollow.failure());
@@ -268,10 +277,20 @@ function* deleteFollowSaga(action) {
 
   try {
     const data = yield call(userServices.deleteFollow, followDeleteRequest);
-
     yield put(
 		deleteFollow.success({ data }),
     );
+
+	const { userId } = followDeleteRequest;
+	const myFollowingData = yield call(userServices.fetchMyFollowing, {
+        userId,
+    });
+    yield put(
+        getMyportfolio.success({
+			myFollowingData,
+        }),
+    );
+	
     yield fork(onSuccess);
   } catch (e) {
     yield put(deleteFollow.failure());

@@ -13,6 +13,8 @@ import {
   userAction,
 } from '@store/modules/user';
 
+import { convertObjArrToPropArr } from '@utils/parse';
+
 const useUserData = () => {
   const dispatch = useAppDispatch();
 
@@ -138,6 +140,24 @@ const useUserData = () => {
   const email = useMemo(() => loginStatusData?.email, [loginStatusData]);
   const userStatus = useMemo(() => loginStatusData?.status, [loginStatusData]);
 
+  const currentFollowingLeaders = useMemo(
+	() => {
+		if (userFollowingData) {
+			return convertObjArrToPropArr(userFollowingData, 'leaderId'); 
+		}
+		else {
+			return []
+		}
+	},
+	/*
+	() =>
+	userFollowingData
+        ? convertObjArrToPropArr(userFollowingData, 'leaderId'); 	  
+        : [],
+	*/
+    [userFollowingData, followLeaderLoading, followDeleteLeaderLoading],
+  );
+
   return {
     signIn,
     signUp,
@@ -173,6 +193,7 @@ const useUserData = () => {
     userId,
     email,
     userStatus,
+	currentFollowingLeaders,
   };
 };
 
