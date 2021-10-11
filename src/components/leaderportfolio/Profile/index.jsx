@@ -48,7 +48,6 @@ const LeaderProfile = () => {
 
         <S.Col xs={24} sm={12}>
           <S.Row justify="center">
-          <S.CopyButton size="large" type="primary" shape="round">{ COPY_BUTTON }</S.CopyButton>
           </S.Row>
         </S.Col>
       </S.Row>

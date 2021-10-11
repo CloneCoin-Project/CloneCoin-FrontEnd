@@ -24,6 +24,7 @@ import {
 import { GOLD_COLOR } from '@assets/color';
 
 const { Meta, Grid } = AntdCard;
+let color_obj = { "ALL": '#E48701', "BEST": '#F75467', "WORST": '#4386F9'};
 
 export const OuterCard = styled(AntdCard)`
   & .ant-card-body {
@@ -70,6 +71,10 @@ export const Ribbon = styled(AntdBadge.Ribbon).attrs({
   color: GOLD_COLOR[4],
 })`
   margin: 0 10px 0 0;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 `;
 
 export const DividerContainer = styled.div`
@@ -108,7 +113,7 @@ export const YieldTitle = styled.div`
 
 export const YieldNumber = styled.div`
   color: ${(props) =>
-    props.number ? (props.number > 0 ? '#F75467' : '#4386F9') : 'inherit'};
+    props.type ? (props.type ? color_obj[props.type] : '#AAAAAA' ) : 'inherit'};
 `;
 
 export const LeaderInfoTitle = styled.div`
