@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { useWalletData } from '@hooks';
 import { convertToFixed } from '@utils/parse';
+import { sortPieObjArr } from '@utils/sort';
 import * as S from '@/components/common/Chart/style';
-
 import { RING_COLOR } from '@assets/color';
 
 const RingDetail = ({ data }) => {
@@ -16,7 +16,7 @@ const RingDetail = ({ data }) => {
             {item.coinName}
           </S.Name>
           <S.Ratio>
-            {`${convertToFixed(item.ratio)}%`}
+            {`${convertToFixed(item.ratio, 6)}%`}
           </S.Ratio>
         </S.Detail>
       ))}
@@ -39,7 +39,7 @@ const Ring = () => {
         <>
           <S.PieChart width={200} height={200}>
             <S.Pie
-              data={invertData}
+              data={sortPieObjArr(invertData)}
               innerRadius={40}
               outerRadius={80}
               paddingAngle={0}
@@ -47,7 +47,7 @@ const Ring = () => {
               endAngle={450}
               dataKey={'ratio'}
             >
-              {invertData.map((entry, index) => (
+              {sortPieObjArr(invertData).map((entry, index) => (
                 <S.Cell
                   key={`cell-${index}`}
                   fill={RING_COLOR[index % RING_COLOR.length]}
@@ -56,7 +56,7 @@ const Ring = () => {
             </S.Pie>
           </S.PieChart>
           <RingDetail
-            data={invertData}
+            data={sortPieObjArr(invertData)}
             style={{ width: '400px' }}
           />
         </>
