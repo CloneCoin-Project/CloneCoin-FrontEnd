@@ -98,7 +98,9 @@ export const DividerContent = styled.div`
   align-items: center;
 `;
 
-export const PortfolioHeader = styled.h2``;
+export const PortfolioHeader = styled.h2`
+  margin: 35px 0 0 0;
+`;
 
 export const LineChartContainer = styled.div`
   width: 100%;
