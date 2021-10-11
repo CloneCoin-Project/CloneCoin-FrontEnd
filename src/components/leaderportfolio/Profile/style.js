@@ -8,6 +8,7 @@ import {
 export const NickNameContainer = styled.div`
   display: flex;
   align-items: center;
+  padding: 15px;
   font-size: 18px;
 `;
 
@@ -24,7 +25,7 @@ export const CopyButton = styled(AntdButton)`
 export const Button = styled(AntdButton)`
   color: ${(props) => (props.color ? props.color : 'inherit')};
   border: none;
-  padding: 0 15px;
+  padding: 3px 15px 0;
   height: 28px;
   &:hover,
   &:focus {

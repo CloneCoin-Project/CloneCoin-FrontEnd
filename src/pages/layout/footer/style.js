@@ -8,6 +8,7 @@ const { Footer } = Layout;
 export const LayoutPageFooter = styled(Footer)`
   display: flex;
   justify-content: center;
+  padding: 5px 10px;
   align-items: center;
   height: 60px;
   background: #FBFBFB;
@@ -34,8 +35,28 @@ export const Sub = styled.span`
   color: #AAAAAA;
 `;
 
+export const _Sub = styled.span`
+  font-size: 12px;
+  font-weight: lighter;
+  color: #AAAAAA;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+`;
+
 export const Subject = styled.span`
   font-size: 12px;
   font-weight: bolder;
   color: #AAAAAA;
+`;
+
+export const _Subject = styled.span`
+  font-size: 12px;
+  font-weight: bolder;
+  color: #AAAAAA;
+
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
 `;

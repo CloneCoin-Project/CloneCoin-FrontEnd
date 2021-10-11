@@ -19,6 +19,12 @@ export const Button = styled(AntdButton)`
   font-weight: 500;
 
   @media screen and (max-width: 480px) {
+	padding: 0 15px;
+	svg {
+		padding: 3px 0 0 0;
+		width: 18px;
+	}
+
 	span:last-child {
 		display: none;
 	}

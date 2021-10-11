@@ -38,8 +38,8 @@ const YieldList = ({ all, best, worst }) => {
         const { type, title, number } = value;
         return (
           <S.YieldContentContainer key={`${type}`}>
-            <S.YieldTitle type={type}>{title}</S.YieldTitle>
-            <S.YieldNumber number={number}>{number}</S.YieldNumber>
+            <S.YieldTitle type={ type }>{title}</S.YieldTitle>
+            <S.YieldNumber type={ type }>{number}</S.YieldNumber>
           </S.YieldContentContainer>
         );
       })}

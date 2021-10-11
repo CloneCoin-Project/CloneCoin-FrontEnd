@@ -28,6 +28,7 @@ export const LayoutPageHeader = styled(Header)`
   box-shadow: 0 2px 8px ${BLACK_WHITE[2]};
   background-color: ${BLACK_WHITE[3]};
   z-index: 2;
+  
   @media screen and (max-width: 480px) {
     padding: 0 20px;
 	height: 60px;
@@ -49,6 +50,12 @@ export const LogoImage = styled.img.attrs({
   height: 36px;
   max-width: 100%;
   max-height: 100%;
+
+  @media screen and (max-width: 480px) {
+	height: 30px;
+	max-width: 100%;
+	max-height: 100%;
+  }
 `;
 
 export const LogoTitle = styled.span.attrs({
@@ -70,6 +77,10 @@ export const LogoTitle = styled.span.attrs({
 
   @media screen and (max-width: 380px) {
     font-size: 16px;
+  }
+
+  @media screen and (max-width: 280px) {
+    font-size: 12px;
   }
 `;
 

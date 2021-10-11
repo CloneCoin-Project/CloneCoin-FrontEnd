@@ -6,7 +6,7 @@ import {
 } from '@/utils/bithumbUtils';
 
 import * as S from '@components/home/RTQTable/style';
-
+import { Divider } from '@components/home/Filter/style';
 import { TABLE_TITLE, SCROLL_DOWN } from '@assets/string';
 
 const RTQTable = () => {
@@ -16,7 +16,7 @@ const RTQTable = () => {
     <>
       <S.DividerContainer>
         <S.Ribbon text={SCROLL_DOWN}>
-          <S.Divider orientation="left">{TABLE_TITLE}</S.Divider>
+          <Divider orientation="left">{TABLE_TITLE}</Divider>
         </S.Ribbon>
       </S.DividerContainer>
       <S.TableContainer>

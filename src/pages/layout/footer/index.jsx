@@ -13,9 +13,9 @@ const LayoutPageFooter = () => {
       <S.InfoContainer>
         <S.Sub>{COPYRIGHT} </S.Sub>
         <S.Subject>{PROJECT_TITLE}</S.Subject>
-        <S.Sub>, {BUILT} </S.Sub>
-        <S.Subject>{ACADEMY}</S.Subject>
-        <S.Sub>, {THIS_YEAR}</S.Sub>
+        <S._Sub>, {BUILT} </S._Sub>
+        <S._Subject>{ACADEMY}</S._Subject>
+        <S._Sub>, {THIS_YEAR}</S._Sub>
       </S.InfoContainer>
       <S.LogoContainer>
         <S.LogoImage />
