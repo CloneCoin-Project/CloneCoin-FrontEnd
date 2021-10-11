@@ -16,7 +16,7 @@ const RingDetail = ({ data }) => {
             {item.coinName}
           </S.Name>
           <S.Ratio>
-            {`${convertToFixed(item.ratio, 6)}%`}
+            {`${convertToFixed(item.ratio, 2)}%`}
           </S.Ratio>
         </S.Detail>
       ))}
