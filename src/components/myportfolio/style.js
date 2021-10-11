@@ -32,6 +32,7 @@ export const NickNameContainer = styled.div`
   display: flex;
   align-items: center;
   /* justify-content: space-around; */
+  padding: 15px;
   font-size: 18px;
 `;
 
@@ -68,18 +69,26 @@ export const Modal = styled(AntdModal)`
   }
 `;
 
+export const _Col = styled(Col)`
+  padding: 10px 0;
+`;
+
+export const _Row = styled(Row)`
+  padding: 10px 0 0 0;
+`;
+
 export const BalanceHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 16px;
+  font-size: 15px;
   height: 28px;
 `;
 
 export const BalanceContent = styled.div`
   display: flex;
   justify-content: space-around;
-  font-size: 16px;
+  font-size: 15px;
   height: 28px;
 `;
 

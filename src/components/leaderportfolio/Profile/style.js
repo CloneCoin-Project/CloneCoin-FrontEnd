@@ -8,6 +8,7 @@ import {
 export const NickNameContainer = styled.div`
   display: flex;
   align-items: center;
+  padding: 15px;
   font-size: 18px;
 `;
 

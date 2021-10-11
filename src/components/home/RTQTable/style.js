@@ -13,7 +13,7 @@ export const Table = styled(AntdTable)`
 
 export const TableContainer = styled.div`
   position: relative;
-  max-height: 600px;
+  max-height: 700px;
   overflow: auto;
 `;
 

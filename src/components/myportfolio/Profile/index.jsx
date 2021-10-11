@@ -80,8 +80,8 @@ const MyProfile = () => {
           </S.Row>
         </S.Col>
 
-        <S.Col xs={24} sm={12}>
-          <S.Row>
+        <S._Col xs={24} sm={12}>
+          <S._Row>
             <S.Col span={24}>
               <S.BalanceHeader>
                 <span>{HOLDING_KRW}</span>
@@ -97,8 +97,8 @@ const MyProfile = () => {
                 )}
               </S.BalanceContent>
             </S.Col>
-          </S.Row>
-        </S.Col>
+          </S._Row>
+        </S._Col>
       </S.Row>
       {userStatus === STATUS_LEADER && <LeaderDescription />}
     </>
