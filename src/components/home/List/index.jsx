@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { useWalletData, useUserData, usePortfolioData } from '@hooks';
 
+import { STATUS_LEADER } from '@assets/string';
 import { isHome, yieldArr } from '@utils/listUtil';
 import { convertToFixed } from '@utils/parse';
 
@@ -53,8 +54,10 @@ const List = () => {
 
   const { getAllLeader, LeaderListLoading, refinedLeaderList } =
     useWalletData();
-  const { isLogged, ID, userStatus } = useUserData();
-  const { normalUserBalance, getMyportfolio } = usePortfolioData();
+  const { 
+	currentFollowingLeaders, isLogged, ID, userStatus, startFollow, deleteFollow, getMyFollowing,
+  } = useUserData();
+  const { getMyportfolio, normalUserBalance } = usePortfolioData();
 
   useEffect(() => {
     getAllLeader();
@@ -77,6 +80,54 @@ const List = () => {
     navigate({ pathname: '/leaderlist' });
   }, [navigate]);
 
+  const onRequest = useCallback((leaderId) => {
+	if (currentFollowingLeaders.includes(leaderId)) {
+		deleteFollow({
+			followDeleteRequest: {
+				userId: ID,
+				leaderId,
+			},
+			onSuccess: () => {
+				/*
+				getMyFollowing({ 
+					getMyFollowingRequest: { userId: ID } 
+				});
+				*/
+				S.message.success('팔로우를 취소했습니다.');
+			},
+			onFailure: () => {
+				S.message.error('에러가 발생하였습니다.');
+			},
+		}, []);
+	}
+	else {
+		startFollow({
+			followRequest: {
+				userId: ID,
+				leaderId,
+			},
+			onSuccess: () => {
+				/*
+				getMyFollowing({ 
+					getMyFollowingRequest: { userId: ID } 
+				});
+				*/
+				S.message.success('팔로우를 완료했습니다.');
+			},
+			onFailure: () => {
+				S.message.error('에러가 발생하였습니다.');
+			},
+		}, []);
+	}
+  })
+
+  const rejectRequest = () => {
+	if (!isLogged) {
+		return S.message.error('로그인이 필요한 서비스입니다.');
+	}
+	return S.message.error('일반 유저만 이용할 수 있는 서비스입니다.');
+  }
+
   return (
     <>
       {isHome(pathname) && (
@@ -96,6 +147,7 @@ const List = () => {
               bordered={false}
               actions={[
                 <LeaderInfo
+                  onClick={ (isLogged && userStatus != STATUS_LEADER) ? () => onRequest(item.leaderId) : rejectRequest }
                   text="Follower"
                   icon={<S.LikeOutlined style={{ fontSize: 18 }} />}
                   number={156}

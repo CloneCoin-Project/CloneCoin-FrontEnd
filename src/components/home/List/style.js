@@ -9,6 +9,7 @@ import {
   Divider,
   Row,
   Col,
+  message
 } from 'antd';
 
 import {
@@ -142,4 +143,5 @@ export {
   Meta,
   Row,
   Col,
+  message
 };
