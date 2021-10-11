@@ -15,7 +15,7 @@ const portfolioServices = {
     return res.data;
   },
 
-  async fetchMyportfolioRatio({userId}) {
+  async fetchMyportfolioRatio({ userId }) {
     const res = await Client.publicInstance.get(
       `${Client.path.cloneCoinApi}/portfolio/copy/ratio/${userId}`,
     );
@@ -54,6 +54,13 @@ const portfolioServices = {
         amount,
         type,
       },
+    );
+    return res.data;
+  },
+
+  async fetchCopiedAmount({ leaderId }) {
+    const res = await Client.publicInstance.get(
+      `${Client.path.cloneCoinApi}/portfolio/copy/${leaderId}`,
     );
     return res.data;
   },

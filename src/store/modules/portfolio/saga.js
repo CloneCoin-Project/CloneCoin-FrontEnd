@@ -122,25 +122,22 @@ export const POST_COPY_SUCCESS = `${PREFIX}/START_COPY_SUCCESS`;
 export const POST_COPY_FAILURE = `${PREFIX}/START_COPY_FAILURE`;
 
 export const startCopy = createAsyncAction(
-	POST_COPY,
-	POST_COPY_SUCCESS,
-	POST_COPY_FAILURE,
+  POST_COPY,
+  POST_COPY_SUCCESS,
+  POST_COPY_FAILURE,
 )();
 
 function* startCopySaga(action) {
-	const { copyRequest, onSuccess, onFailure } = action.payload;
+  const { copyRequest, onSuccess, onFailure } = action.payload;
 
-	try {
-		const data = yield call(
-			portfolioServices.StartCopy,
-			copyRequest,
-		);
-		yield put(startCopy.success({ data }));
-		yield fork(onSuccess);
-	} catch (e) {
-		yield put(startCopy.failure());
-		yield fork(onFailure);
-	}
+  try {
+    const data = yield call(portfolioServices.StartCopy, copyRequest);
+    yield put(startCopy.success({ data }));
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(startCopy.failure());
+    yield fork(onFailure);
+  }
 }
 
 export const PUT_COPY = `${PREFIX}/PUT_COPY`;
@@ -148,25 +145,46 @@ export const PUT_COPY_SUCCESS = `${PREFIX}/PUT_COPY_SUCCESS`;
 export const PUT_COPY_FAILURE = `${PREFIX}/PUT_COPY_FAILURE`;
 
 export const changeCopy = createAsyncAction(
-	PUT_COPY,
-	PUT_COPY_SUCCESS,
-	PUT_COPY_FAILURE,
+  PUT_COPY,
+  PUT_COPY_SUCCESS,
+  PUT_COPY_FAILURE,
 )();
 
 function* changeCopySaga(action) {
-	const { changeCopyRequest, onSuccess, onFailure } = action.payload;
+  const { changeCopyRequest, onSuccess, onFailure } = action.payload;
 
-	try {
-		const data = yield call(
-			portfolioServices.ChangeCopy,
-			changeCopyRequest,
-		);
-		yield put(changeCopy.success({ data }));
-		yield fork(onSuccess);
-	} catch (e) {
-		yield put(changeCopy.failure());
-		yield fork(onFailure);
-	}
+  try {
+    const data = yield call(portfolioServices.ChangeCopy, changeCopyRequest);
+    yield put(changeCopy.success({ data }));
+    yield fork(onSuccess);
+  } catch (e) {
+    yield put(changeCopy.failure());
+    yield fork(onFailure);
+  }
+}
+
+export const FETCH_COPIED_AMOUNT = `${PREFIX}/FETCH_COPIED_AMOUNT`;
+export const FETCH_COPIED_AMOUNT_SUCCESS = `${PREFIX}/FETCH_COPIED_AMOUNT_SUCCESS`;
+export const FETCH_COPIED_AMOUNT_FAILURE = `${PREFIX}/FETCH_COPIED_AMOUNT_FAILURE`;
+
+export const fetchCopiedAmount = createAsyncAction(
+  FETCH_COPIED_AMOUNT,
+  FETCH_COPIED_AMOUNT_SUCCESS,
+  FETCH_COPIED_AMOUNT_FAILURE,
+)();
+
+function* fetchCopiedAmountSaga(action) {
+  const { fetchCopiedAmountRequest } = action.payload;
+
+  try {
+    const data = yield call(
+      portfolioServices.fetchCopiedAmount,
+      fetchCopiedAmountRequest,
+    );
+    yield put(fetchCopiedAmount.success({ data }));
+  } catch (e) {
+    yield put(fetchCopiedAmount.failure());
+  }
 }
 
 export const portfolioAsyncAction = {
@@ -176,6 +194,7 @@ export const portfolioAsyncAction = {
   getMyCopyCoin,
   startCopy,
   changeCopy,
+  fetchCopiedAmount,
 };
 
 export default function* portfolioSaga() {
@@ -185,4 +204,5 @@ export default function* portfolioSaga() {
   yield takeLatest(FETCH_MY_COPY_COIN, getMyCopyCoinSaga);
   yield takeLatest(POST_COPY, startCopySaga);
   yield takeLatest(PUT_COPY, changeCopySaga);
+  yield takeLatest(FETCH_COPIED_AMOUNT, fetchCopiedAmountSaga);
 }

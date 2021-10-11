@@ -33,12 +33,15 @@ const MyProfile = () => {
     getMyCopyCoin,
     getMyportfolioRatio,
     myPortfolioRatioSelectorData,
+    getCopiedAmount,
+    copiedAmountSelectorData,
   } = usePortfolioData();
 
   useEffect(() => {
     if (userStatus === STATUS_LEADER) {
       getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
       getMyFollower({ getMyFollowerRequest: { leaderId: ID } });
+      getCopiedAmount({ fetchCopiedAmountRequest: { leaderId: ID } });
     } else if (userStatus === STATUS_NORMAL) {
       getMyportfolioRatio({
         getMyportfolioRatioRequest: { userId: ID },
@@ -84,7 +87,11 @@ const MyProfile = () => {
               <S.CopyFollowContainer>
                 {userStatus === STATUS_LEADER ? (
                   <>
-                    <S.Button type="text">copied: 2</S.Button>
+                    <S.Button type="text">{`copied: ${
+                      copiedAmountSelectorData?.copyAmount
+                        ? copiedAmountSelectorData.copyAmount
+                        : 0
+                    }`}</S.Button>
                     <S.Divider type="vertical" />
                     <S.Button type="text">{`follower: ${
                       userFollowerData?.length ? userFollowerData.length : 0

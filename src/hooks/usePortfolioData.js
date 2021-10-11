@@ -9,6 +9,7 @@ import {
   MyCopyCoinSelector,
   CopyLeaderSelector,
   ChangeCopyLeaderSelector,
+  CopiedAmountSelector,
 } from '@store/modules/portfolio';
 
 import { convertObjArrToPropArr } from '@utils/parse';
@@ -66,6 +67,16 @@ const usePortfolioData = () => {
     useAppSelector(ChangeCopyLeaderSelector.error),
   ];
 
+  const [
+    copiedAmountSelectorLoading,
+    copiedAmountSelectorData,
+    copiedAmountSelectorError,
+  ] = [
+    useAppSelector(CopiedAmountSelector.loading),
+    useAppSelector(CopiedAmountSelector.data),
+    useAppSelector(CopiedAmountSelector.error),
+  ];
+
   const getMyportfolio = useCallback(
     (value) => {
       dispatch(portfolioAsyncAction.getMyportfolio.request(value));
@@ -107,6 +118,13 @@ const usePortfolioData = () => {
   const changeCopy = useCallback(
     (value) => {
       dispatch(portfolioAsyncAction.changeCopy.request(value));
+    },
+    [dispatch],
+  );
+
+  const getCopiedAmount = useCallback(
+    (value) => {
+      dispatch(portfolioAsyncAction.fetchCopiedAmount.request(value));
     },
     [dispatch],
   );
@@ -187,6 +205,10 @@ const usePortfolioData = () => {
     normalUserTotalBalance,
     chartNormalUserProfit,
     currentCopyingLeaders,
+    copiedAmountSelectorLoading,
+    copiedAmountSelectorData,
+    copiedAmountSelectorError,
+    getCopiedAmount,
   };
 };
 
