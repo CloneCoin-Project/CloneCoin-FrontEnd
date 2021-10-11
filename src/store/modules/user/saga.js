@@ -194,16 +194,14 @@ export const getMyFollower = createAsyncAction(
 )();
 
 function* getMyFollowerSaga(action) {
-  const { getMyFollowerRequest, onSuccess, onFailure } = action.payload;
+  const { getMyFollowerRequest } = action.payload;
 
   try {
     const data = yield call(userServices.fetchMyFollower, getMyFollowerRequest);
 
     yield put(getMyFollower.success({ data }));
-    yield fork(onSuccess);
   } catch (e) {
     yield put(getMyFollower.failure());
-    yield fork(onFailure);
   }
 }
 

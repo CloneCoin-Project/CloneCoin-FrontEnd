@@ -141,18 +141,17 @@ const useUserData = () => {
   const userStatus = useMemo(() => loginStatusData?.status, [loginStatusData]);
 
   const currentFollowingLeaders = useMemo(
-	() => {
-		if (userFollowingData) {
-			return convertObjArrToPropArr(userFollowingData, 'leaderId'); 
-		}
-		else {
-			return []
-		}
-	},
-	/*
+    () => {
+      if (userFollowingData) {
+        return convertObjArrToPropArr(userFollowingData, 'leaderId');
+      } else {
+        return [];
+      }
+    },
+    /*
 	() =>
 	userFollowingData
-        ? convertObjArrToPropArr(userFollowingData, 'leaderId'); 	  
+        ? convertObjArrToPropArr(userFollowingData, 'leaderId');
         : [],
 	*/
     [userFollowingData, followLeaderLoading, followDeleteLeaderLoading],
@@ -163,12 +162,12 @@ const useUserData = () => {
     signUp,
     leaderRegister,
     logout,
-	getDescription,
+    getDescription,
     postDescription,
-	getMyFollower,
-	getMyFollowing,
-	startFollow,
-	deleteFollow,
+    getMyFollower,
+    getMyFollowing,
+    startFollow,
+    deleteFollow,
     loginStatusLoading,
     loginStatusData,
     loginStatusError,
@@ -177,23 +176,23 @@ const useUserData = () => {
     userDescriptionLoading,
     userDescriptionData,
     userDescriptionError,
-	userFollowerLoading,
-	userFollowerData,
-	userFollowerError,
-	userFollowingLoading,
-	userFollowingData,
-	userFollowingError,
-	followLeaderLoading,
-	followLeaderError,
-	followDeleteLeaderLoading,
-	followDeleteLeaderError,
+    userFollowerLoading,
+    userFollowerData,
+    userFollowerError,
+    userFollowingLoading,
+    userFollowingData,
+    userFollowingError,
+    followLeaderLoading,
+    followLeaderError,
+    followDeleteLeaderLoading,
+    followDeleteLeaderError,
     isLogged,
     ID,
     userName,
     userId,
     email,
     userStatus,
-	currentFollowingLeaders,
+    currentFollowingLeaders,
   };
 };
 
