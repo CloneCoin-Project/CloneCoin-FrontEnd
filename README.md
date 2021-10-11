@@ -19,9 +19,7 @@
 - Language : JavaScript
 - 비즈니스 로직 처리: React Custom hooks
 - 통신 API : REST, WebSocket
-- CI / CD : AWS Code PipeLine, S3, CloudFront
-- SSL : AWS Certificate Manager
-- Hosting : AWS Route 53
+- SSL / Hosting : Netlify
 
 ### 사용 Tool (VScode Extension)
 - ESLint : JavaScript 코드에서 발견 된 문제을 식별하는 정적 코드 분석 도구
