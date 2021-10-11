@@ -54,7 +54,7 @@ const List = () => {
 
   const { getAllLeader, LeaderListLoading, refinedLeaderList } =
     useWalletData();
-  const { 
+  const {
 	currentFollowingLeaders, isLogged, ID, userStatus, startFollow, deleteFollow, getMyFollowing,
   } = useUserData();
   const { getMyportfolio, normalUserBalance } = usePortfolioData();
@@ -89,8 +89,8 @@ const List = () => {
 			},
 			onSuccess: () => {
 				/*
-				getMyFollowing({ 
-					getMyFollowingRequest: { userId: ID } 
+				getMyFollowing({
+					getMyFollowingRequest: { userId: ID }
 				});
 				*/
 				S.message.success('팔로우를 취소했습니다.');
@@ -107,11 +107,9 @@ const List = () => {
 				leaderId,
 			},
 			onSuccess: () => {
-				/*
-				getMyFollowing({ 
-					getMyFollowingRequest: { userId: ID } 
-				});
-				*/
+				// getMyFollowing({
+				// 	getMyFollowingRequest: { userId: ID }
+				// });
 				S.message.success('팔로우를 완료했습니다.');
 			},
 			onFailure: () => {
@@ -199,9 +197,9 @@ const List = () => {
                 <S.Col xs={24} sm={12}>
                   <S.CardGrid>
                     <YieldList
-                      all={convertToFixed(item.all, 2)}
-                      best={convertToFixed(item.best, 2)}
-                      worst={convertToFixed(item.worst, 2)}
+                      all={item.all === 'NaN' ? '신규 리더' : convertToFixed(item.all, 2)}
+                      best={item.best === 'NaN' ? '신규 리더' : convertToFixed(item.best, 2)}
+                      worst={item.worst === 'NaN' ? '신규 리더' : convertToFixed(item.worst, 2)}
                     />
                   </S.CardGrid>
                 </S.Col>

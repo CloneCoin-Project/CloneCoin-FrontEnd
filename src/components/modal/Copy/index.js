@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { useModal, useUserData, usePortfolioData } from '@hooks';
 
 import { stringFormat, insertCommaToNumber } from '@/utils/stringFormat';
-import { 
+import {
 	STATUS_LEADER,
-	COPY_TITLE, COPY_CHANGE_TITLE, 
-	CHANGE_TAB_ADD, CHANGE_TAB_WITHDRAW, COPY_TYPE_PLUS, COPY_TYPE_MINUS, 
-	CURRENT_VOLUME, COPY_VOLUME, CURRENT_MONEY, CURRENT_COPY, 
+	COPY_TITLE, COPY_CHANGE_TITLE,
+	CHANGE_TAB_ADD, CHANGE_TAB_WITHDRAW, COPY_TYPE_PLUS, COPY_TYPE_MINUS,
+	CURRENT_VOLUME, COPY_VOLUME, CURRENT_MONEY, CURRENT_COPY,
 	COPY_RESULT, COPY_ADD_RESULT, COPY_WITHDRAW_RESULT,
 	COPY_BUTTON, COPY_ADD_BUTTON, COPY_WITHDRAW_BUTTON,
 } from '@assets/string';
@@ -21,10 +21,10 @@ const Copy = (props) => {
 
 	const { isModalVisible, handleToggle, setIsModalVisible } = useModal();
 	const { ID, isLogged, userStatus } = useUserData();
-	const { 
-		getMyportfolio, getMyportfolioRatio, getMyCopyCoin, startCopy, changeCopy, 
+	const {
+		getMyportfolio, getMyportfolioRatio, getMyCopyCoin, startCopy, changeCopy,
 		copyLeaderSelectorLoading, changeCopyLeaderSelectorLoading, myPortfolioSelectorData, myPortfolioRatioSelectorData,
-		normalUserBalance, currentCopyingLeaders 
+		normalUserBalance, currentCopyingLeaders
 	} = usePortfolioData();
 
 	const [inputPercentPlus, setInputPercentPlus] = useState(1);
@@ -55,13 +55,13 @@ const Copy = (props) => {
 			},
 			onSuccess: () => {
 				getMyportfolioRatio({
-					getMyportfolioRatioRequest: { userId: ID } 
+					getMyportfolioRatioRequest: { userId: ID }
 				});
-				getMyportfolio({ 
-					getMyportfolioRequest: { userId: ID } 
+				getMyportfolio({
+					getMyportfolioRequest: { userId: ID }
 				});
-				getMyCopyCoin({ 
-					getMyCopyCoinRequest: { userId: ID } 
+				getMyCopyCoin({
+					getMyCopyCoinRequest: { userId: ID }
 				});
 				S.message.success('카피를 완료했습니다.');
 				setInputPercentPlus(1);
@@ -74,7 +74,7 @@ const Copy = (props) => {
 	})
 
 	const submitChange = useCallback((type, inputPercent) => {
-		if (!normalUserBalance) {
+		if (type == COPY_TYPE_PLUS && !normalUserBalance) {
 			return S.message.error('잔액이 0원입니다.');
 		}
 
@@ -83,19 +83,19 @@ const Copy = (props) => {
 				userId: ID,
 				leaderId,
 				type,
-				amount: (type == COPY_TYPE_PLUS) 
+				amount: (type == COPY_TYPE_PLUS)
 					? normalUserBalance * inputPercent / 100
 					: (10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100 * inputPercentMinus * (-1) / 100,
 			},
 			onSuccess: () => {
 				getMyportfolioRatio({
-					getMyportfolioRatioRequest: { userId: ID } 
+					getMyportfolioRatioRequest: { userId: ID }
 				});
-				getMyportfolio({ 
-					getMyportfolioRequest: { userId: ID } 
+				getMyportfolio({
+					getMyportfolioRequest: { userId: ID }
 				});
-				getMyCopyCoin({ 
-					getMyCopyCoinRequest: { userId: ID } 
+				getMyCopyCoin({
+					getMyCopyCoinRequest: { userId: ID }
 				});
 				S.message.success('카피금액 변경을 완료했습니다.');
 				setInputPercentPlus(1);
@@ -111,18 +111,18 @@ const Copy = (props) => {
 	return (
 		<>
 			<S.Trigger onClick={ (isLogged && userStatus != STATUS_LEADER) ? handleToggle : rejectModal }>{ triggerButton }</S.Trigger>
-			
+
 			{ (currentCopyingLeaders.includes(leaderId))
 			?
 				<S.Modal
-					title={ COPY_CHANGE_TITLE } visible={ isModalVisible } 
+					title={ COPY_CHANGE_TITLE } visible={ isModalVisible }
 					onCancel={ handleToggle }
 					footer={[]}
 				>
 					<ProfileMini leaderEarningRate={ leaderEarningRate } leaderEarningBest={ leaderEarningBest }/>
 					<S.Tabs defaultActiveKey="1" centered>
 						<S.TabPane tab={ CHANGE_TAB_ADD } key="1">
-							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber( 
+							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber(
 								(10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100
 								)) }</S.Info>
 							<S.Info>{ stringFormat(CURRENT_MONEY, insertCommaToNumber(normalUserBalance)) }</S.Info>
@@ -133,7 +133,7 @@ const Copy = (props) => {
 						</S.TabPane>
 
 						<S.TabPane tab={ CHANGE_TAB_WITHDRAW } key="2">
-							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber( 
+							<S.Info>{ stringFormat(CURRENT_COPY, insertCommaToNumber(
 								(10000000 - myPortfolioSelectorData?.balance) * myPortfolioRatioSelectorData?.find(item => (item?.leaderId == leaderId))?.copyRatio / 100
 								)) }</S.Info>
 							<S.Info>{ COPY_VOLUME }</S.Info>
@@ -148,7 +148,7 @@ const Copy = (props) => {
 				</S.Modal>
 			:
 				<S.Modal
-					title={ COPY_TITLE } visible={ isModalVisible } 
+					title={ COPY_TITLE } visible={ isModalVisible }
 					onCancel={ handleToggle }
 					footer={[
 						<CopyButton key="back" type="primary" shape="round" loading={ copyLeaderSelectorLoading } onClick={ submitFinish }>{ COPY_BUTTON }</CopyButton>

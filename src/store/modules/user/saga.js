@@ -3,7 +3,11 @@ import { createAsyncAction } from 'typesafe-actions';
 import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import { userServices, portfolioServices } from '@apis/rest';
 import { STATUS_NORMAL } from '@assets/string';
-import { getMyportfolioRatio, getMyportfolio, getMyCopyCoin } from '../portfolio/saga';
+import {
+  getMyportfolioRatio,
+  getMyportfolio,
+  getMyCopyCoin,
+} from '../portfolio/saga';
 
 export const PREFIX = 'user';
 
@@ -35,17 +39,20 @@ function* signInSaga(action) {
       });
       yield put(
         getMyportfolio.success({
-			data,
+          data,
         }),
       );
 
-      const myPortfolioRatioData = yield call(portfolioServices.fetchMyportfolioRatio, {
-		userId: ID,
-      });
+      const myPortfolioRatioData = yield call(
+        portfolioServices.fetchMyportfolioRatio,
+        {
+          userId: ID,
+        },
+      );
       yield put(
         getMyportfolioRatio.success({
-			myPortfolioRatioData,
-		}),
+          myPortfolioRatioData,
+        }),
       );
 
       const myCopyCoinData = yield call(portfolioServices.fetchMyCopyCoin, {
@@ -57,13 +64,14 @@ function* signInSaga(action) {
           myCopyCoinData,
         }),
       );
-
-      const myFollowingData = yield call(userServices.fetchMyFollowing, {
+    }
+    if (status == STATUS_NORMAL) {
+      const data = yield call(userServices.fetchMyFollowing, {
         userId: ID,
       });
       yield put(
         getMyFollowing.success({
-			myFollowingData,
+          data,
         }),
       );
     }
@@ -191,9 +199,7 @@ function* getMyFollowerSaga(action) {
   try {
     const data = yield call(userServices.fetchMyFollower, getMyFollowerRequest);
 
-    yield put(
-		getMyFollower.success({ data }),
-    );
+    yield put(getMyFollower.success({ data }));
     yield fork(onSuccess);
   } catch (e) {
     yield put(getMyFollower.failure());
@@ -212,17 +218,16 @@ export const getMyFollowing = createAsyncAction(
 )();
 
 function* getMyFollowingSaga(action) {
-  const { getMyFollowingRequest, onSuccess, onFailure } = action.payload;
+  const { getMyFollowingRequest } = action.payload;
 
   try {
-    const data = yield call(userServices.fetchMyFollowing, getMyFollowingRequest);
-    yield put(
-		getMyFollowing.success({ data }),
+    const data = yield call(
+      userServices.fetchMyFollowing,
+      getMyFollowingRequest,
     );
-	yield fork(onSuccess);
+    yield put(getMyFollowing.success({ data }));
   } catch (e) {
     yield put(getMyFollowing.failure());
-	yield fork(onFailure);
   }
 }
 
@@ -241,18 +246,16 @@ function* startFollowSaga(action) {
 
   try {
     const data = yield call(userServices.startFollow, followRequest);
-    yield put(
-		startFollow.success({ data }),
-    );
-	
-	const { userId } = followRequest;
-	const myFollowingData = yield call(userServices.fetchMyFollowing, {
-        userId,
+    yield put(startFollow.success({ data }));
+
+    const { userId } = followRequest;
+    const myFollowingData = yield call(userServices.fetchMyFollowing, {
+      userId,
     });
     yield put(
-        getMyportfolio.success({
-			myFollowingData,
-        }),
+      getMyportfolio.success({
+        myFollowingData,
+      }),
     );
 
     yield fork(onSuccess);
@@ -277,20 +280,18 @@ function* deleteFollowSaga(action) {
 
   try {
     const data = yield call(userServices.deleteFollow, followDeleteRequest);
-    yield put(
-		deleteFollow.success({ data }),
-    );
+    yield put(deleteFollow.success({ data }));
 
-	const { userId } = followDeleteRequest;
-	const myFollowingData = yield call(userServices.fetchMyFollowing, {
-        userId,
+    const { userId } = followDeleteRequest;
+    const myFollowingData = yield call(userServices.fetchMyFollowing, {
+      userId,
     });
     yield put(
-        getMyportfolio.success({
-			myFollowingData,
-        }),
+      getMyportfolio.success({
+        myFollowingData,
+      }),
     );
-	
+
     yield fork(onSuccess);
   } catch (e) {
     yield put(deleteFollow.failure());

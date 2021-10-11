@@ -43,7 +43,7 @@ const Register = () => {
               name="userId"
               labelCol={{ span: 7 }}
               rules={[
-                { required: true, message: '아이디를 입력해주세요!' },
+                { required: true, message: '아이디를 입력해 주세요!' },
                 {
                   validator(_, value) {
                     const regExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
@@ -64,7 +64,7 @@ const Register = () => {
               label="이름"
               name="userName"
               labelCol={{ span: 7 }}
-              rules={[{ required: true, message: '이름을 입력해주세요!' }]}
+              rules={[{ required: true, message: '이름을 입력해 주세요!' }]}
               children={
                 <S.Input placeholder="이름" suffix={<S.MailOutlined />} />
               }
@@ -74,7 +74,7 @@ const Register = () => {
               label="이메일"
               name="email"
               labelCol={{ span: 7 }}
-              rules={[{ required: true, message: '이메일을 입력해주세요!' }]}
+              rules={[{ required: true, message: '이메일을 입력해 주세요!' }]}
               children={
                 <S.Input placeholder="이메일" suffix={<S.MailOutlined />} />
               }
@@ -83,6 +83,7 @@ const Register = () => {
               label="비밀번호"
               name="password"
               labelCol={{ span: 7 }}
+              rules={[{ required: true, message: '비밀번호를 입력해 주세요!' }]}
               children={
                 <S.Input
                   type="password"

@@ -59,7 +59,6 @@ export const InnerSection = styled.div`
 	flex-grow: 5;
 	margin: auto 10px;
 	padding: auto 5px;
-	max-height:
 `;
 
 export const UpperSection = styled.div`

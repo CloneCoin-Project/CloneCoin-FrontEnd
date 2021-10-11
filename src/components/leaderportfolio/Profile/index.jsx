@@ -19,6 +19,8 @@ const LeaderProfile = () => {
     getSelectedLeader({ getSelectedLeaderRequest: { leaderId } });
   }, [pathname]);
 
+  const rand_0_2 = Math.floor(Math.random() * 2);
+  const rand_0_5 = Math.floor(Math.random() * 5);
   return (
     <>
       <S.Row gutter={[12]} align="middle">
@@ -41,9 +43,9 @@ const LeaderProfile = () => {
             <S.Col xs={24} sm={24}>
               <S.CopyFollowContainer>
                   <>
-                    <S.Button type="text">copied: 10</S.Button>
+                    <S.Button type="text">{`copied: ${rand_0_2}`}</S.Button>
                     <S.Divider type="vertical" />
-                    <S.Button type="text">follower: 3</S.Button>
+                    <S.Button type="text">{`follower: ${rand_0_5}`}</S.Button>
                   </>
               </S.CopyFollowContainer>
             </S.Col>

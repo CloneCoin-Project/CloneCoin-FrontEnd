@@ -18,14 +18,21 @@ import {
 } from '@assets/string';
 
 const MyProfile = () => {
-  const { ID, userName, userStatus } = useUserData();
+  const { ID, userName, userStatus, getMyFollowing, userFollowingData } =
+    useUserData();
   const { getSelectedLeader } = useWalletData();
-  const { getMyportfolio, getMyCopyCoin } = usePortfolioData();
+  const { getMyportfolio, getMyCopyCoin, getMyportfolioRatio, myPortfolioRatioSelectorData } = usePortfolioData();
 
   useEffect(() => {
     if (userStatus === STATUS_LEADER) {
       getSelectedLeader({ getSelectedLeaderRequest: { leaderId: ID } });
     } else if (userStatus === STATUS_NORMAL) {
+      getMyportfolioRatio({
+        getMyportfolioRatioRequest: { userId: ID },
+      });
+      getMyFollowing({
+        getMyFollowingRequest: { userId: ID },
+      });
       getMyportfolio({ getMyportfolioRequest: { userId: ID } });
       getMyCopyCoin({ getMyCopyCoinRequest: { userId: ID } });
     }
@@ -70,9 +77,11 @@ const MyProfile = () => {
                   </>
                 ) : (
                   <>
-                    <S.Button type="text">copying: 2</S.Button>
+                    <S.Button type="text">{`copying: ${myPortfolioRatioSelectorData?.length ? myPortfolioRatioSelectorData?.length : 0}`}</S.Button>
                     <S.Divider type="vertical" />
-                    <S.Button type="text">following: 1</S.Button>
+                    <S.Button type="text">{`following: ${
+                      userFollowingData?.length ? userFollowingData?.length : 0
+                    }`}</S.Button>
                   </>
                 )}
               </S.CopyFollowContainer>
