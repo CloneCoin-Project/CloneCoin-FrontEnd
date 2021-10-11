@@ -57,6 +57,16 @@ function* signInSaga(action) {
           myCopyCoinData,
         }),
       );
+
+      const myFollowingData = yield call(userServices.fetchMyFollowing, {
+        userId: ID,
+      });
+
+      yield put(
+        getMyFollowing.success({
+			myFollowingData,
+        }),
+      );
     }
     yield fork(onSuccess);
   } catch (e) {
@@ -207,14 +217,13 @@ function* getMyFollowingSaga(action) {
 
   try {
     const data = yield call(userServices.fetchMyFollowing, getMyFollowingRequest);
-
     yield put(
 		getMyFollowing.success({ data }),
     );
-    yield fork(onSuccess);
+	yield fork(onSuccess);
   } catch (e) {
     yield put(getMyFollowing.failure());
-    yield fork(onFailure);
+	yield fork(onFailure);
   }
 }
 

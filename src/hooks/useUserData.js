@@ -143,6 +143,12 @@ const useUserData = () => {
     signUp,
     leaderRegister,
     logout,
+	getDescription,
+    postDescription,
+	getMyFollower,
+	getMyFollowing,
+	startFollow,
+	deleteFollow,
     loginStatusLoading,
     loginStatusData,
     loginStatusError,
@@ -167,8 +173,6 @@ const useUserData = () => {
     userId,
     email,
     userStatus,
-    getDescription,
-    postDescription,
   };
 };
 
